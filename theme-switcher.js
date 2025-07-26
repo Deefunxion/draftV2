@@ -14,7 +14,7 @@ class ThemeSwitcher {
             'apple': 'Apple Luxury',
             'conversion': 'Conversion Psychology',
             'performance': 'Performance Optimized',
-            'cinematic': 'Cinematic Storytelling',
+            'cinematic': 'Cinematic',
             'mobile-social': 'Mobile Social',
             'accessibility': 'Accessibility WCAG',
             'micro-interactions': 'Micro-Interactions',
@@ -39,7 +39,7 @@ class ThemeSwitcher {
         const switcher = document.createElement('div');
         switcher.className = 'theme-switcher';
         switcher.innerHTML = `
-            <h4>🎨 Theme Switcher</h4>
+            <h4>◇ Theme Switcher</h4>
             <div class="theme-grid">
                 ${this.themes.map(theme => `
                     <div class="theme-option" 
