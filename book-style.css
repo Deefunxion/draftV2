@@ -7,8 +7,8 @@
 :root {
     --text-color: #000000;          /* High contrast black text */
     --background: #ffffff;          /* Pure white background for maximum readability */
-    --link-color: #0000EE;          /* Classic web blue for links - immediately recognizable */
-    --visited-link: #551A8B;        /* Classic visited link purple */
+    --link-color: #333333;          /* Professional dark gray for links */
+    --visited-link: #666666;        /* Medium gray for visited links */
     --nav-border: #000000;          /* Strong border for clear separation */
     --table-border: #000000;        /* Black borders for table clarity */
 }
@@ -36,7 +36,7 @@ body {
 
 /* REMOVED: Pipe separators - create visual clutter */
 .nav-menu a {
-    color: var(--link-color);       /* Classic blue links */
+    color: var(--link-color);       /* Professional dark gray links */
     text-decoration: underline;     /* Always underlined - no ambiguity */
     margin-right: 30px;            /* Clear spacing between links */
     font-size: 16px;               /* Same size as body text for consistency */
@@ -94,7 +94,7 @@ p {
 
 /* All links must be immediately recognizable as links */
 a {
-    color: var(--link-color);      /* Classic blue */
+    color: var(--link-color);      /* Professional dark gray */
     text-decoration: underline;    /* Always underlined */
 }
 
