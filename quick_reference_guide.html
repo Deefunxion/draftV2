@@ -1,323 +1,72 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Quick Reference Guide</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-  <link rel="stylesheet" href="book-style.css" />
-</head>
-<body>
-<div class="nav-menu">
-    <a href="expanded _draft_V2.htm">Main Document</a> |
-    <a href="student_workbook_enhanced.html">Student Workbook</a> |
-    <a href="quick_reference_guide.html">Quick Reference</a> |
-    <a href="instructor_implementation_guide_parts_1_2.html">Instructor Guide</a>
-</div>
 
-<header id="title-block-header">
-<h1 class="title">Quick Reference Guide</h1>
-</header>
-<h1 id="ο-ai-orchestrator-γρήγορος-οδηγός-αναφοράς">Ο AI Orchestrator:
-Γρήγορος Οδηγός Αναφοράς</h1>
-<hr />
-<h2 id="ενότητα-1-οι-top-20-συνταγές-ενορχήστρωσης">Ενότητα 1: Οι Top 20
-“Συνταγές” Ενορχήστρωσης</h2>
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr>
-<th style="text-align: left;">Συνταγή</th>
-<th style="text-align: left;">Βήματα Ενορχήστρωσης</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>1. The Brand Identity
-Sprint</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Research -
-GPT-4o):</strong> Prompt για ανάλυση αγοράς &amp; αξίες
-ανταγωνιστών.<br>2. <strong>Agent 2 (Ideation - Claude 3.5):</strong>
-Χρήση ανάλυσης για παραγωγή 10 ονομάτων &amp; taglines.<br>3.
-<strong>Agent 3 (Visualization - Midjourney):</strong> Χρήση των 3
-κορυφαίων ονομάτων για παραγωγή αρχικών λογοτύπων &amp; mood
-boards.<br>4. <strong>Human (Curation):</strong> Επιλογή και βελτίωση
-της ισχυρότερης κατεύθυνσης.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>2. The Content Repurposing
-Engine</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Transcription -
-Whisper/Voxtral):</strong> Μεταγραφή ενός βίντεο ή podcast σε
-κείμενο.<br>2. <strong>Agent 2 (Summarization - Gemini 2.5):</strong>
-Δημιουργία περίληψης, 5 key takeaways, και ενός άρθρου 500 λέξεων από το
-κείμενο.<br>3. <strong>Agent 3 (Social Media - Claude 3.5):</strong>
-Δημιουργία 10 tweets και 3 LinkedIn posts από το άρθρο.<br>4.
-<strong>Human (Scheduling):</strong> Προγραμματισμός του
-περιεχομένου.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>3. The Video Storyboard
-Generator</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Scripting - Claude
-3.5):</strong> Γράψε ένα σενάριο 60 δευτερολέπτων για ένα
-διαφημιστικό.<br>2. <strong>Agent 2 (Shot List - GPT-4o):</strong>
-Δημιούργησε μια λίστα λήψεων (shot list) από το σενάριο.<br>3.
-<strong>Agent 3 (Visualization - Midjourney/Sora):</strong> Παραγωγή
-μιας εικόνας-κλειδί για κάθε λήψη στη λίστα.<br>4. <strong>Human
-(Assembly):</strong> Σύνθεση των εικόνων σε ένα αρχείο storyboard.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>4. The Market Research
-Analyst</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Data Mining -
-Perplexity/Web-enabled Gemini):</strong> Συλλογή 10 πρόσφατων άρθρων για
-μια τάση της αγοράς.<br>2. <strong>Agent 2 (Synthesis - Claude
-3.5):</strong> Σύνοψη των βασικών ευρημάτων, των κοινών θεμάτων και των
-αντικρουόμενων απόψεων από τα άρθρα.<br>3. <strong>Agent 3 (Presentation
-- GPT-4o):</strong> Δημιουργία μιας παρουσίασης 10 διαφανειών με τα
-βασικά ευρήματα.<br>4. <strong>Human (Strategy):</strong> Χρήση της
-παρουσίασης για τη διαμόρφωση στρατηγικής.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>5. The Persona
-Creator</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Research - Gemini
-2.5):</strong> Ανάλυση δημογραφικών και ψυχογραφικών δεδομένων για ένα
-κοινό-στόχο.<br>2. <strong>Agent 2 (Empathy - Claude 3.5):</strong>
-Δημιουργία μιας λεπτομερούς “persona” με όνομα, ιστορία, πόνο και
-κίνητρα.<br>3. <strong>Agent 3 (Visualization - Midjourney):</strong>
-Δημιουργία ενός πορτρέτου για την persona.<br>4. <strong>Human
-(Validation):</strong> Αξιολόγηση της persona σε σχέση με τους
-επιχειρηματικούς στόχους.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>6. The A/B Test
-Copywriter</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Core Message -
-GPT-4o):</strong> Δημιουργία του κεντρικού μηνύματος για μια landing
-page.<br>2. <strong>Agent 2 (Variation - Claude 3.5):</strong> Παραγωγή
-5 εναλλακτικών τίτλων και 5 εναλλακτικών Call-to-Action (CTA) για το
-ίδιο μήνυμα.<br>3. <strong>Human (Implementation):</strong> Εφαρμογή των
-παραλλαγών σε ένα A/B testing εργαλείο.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>7. The Naming
-Workshop</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Keywords -
-GPT-4o):</strong> Δημιουργία λίστας 50 λέξεων-κλειδιών σχετικών με ένα
-προϊόν.<br>2. <strong>Agent 2 (Combination - Claude 3.5):</strong>
-Συνδυασμός των λέξεων για τη δημιουργία 20 πιθανών ονομάτων.<br>3.
-<strong>Agent 3 (Domain Check - Web-enabled Gemini):</strong> Έλεγχος
-διαθεσιμότητας domain για τα 5 κορυφαία ονόματα.<br>4. <strong>Human
-(Selection):</strong> Επιλογή του τελικού ονόματος.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>8. The Blog Post
-Factory</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Outline -
-GPT-4o):</strong> Δημιουργία ενός λεπτομερούς outline για ένα
-άρθρο.<br>2. <strong>Agent 2 (Drafting - Claude 3.5):</strong> Συγγραφή
-του πρώτου προσχεδίου του άρθρου βάσει του outline.<br>3. <strong>Agent
-3 (Editing - Gemini 2.5):</strong> Επιμέλεια του κειμένου για ύφος,
-γραμματική και σαφήνεια.<br>4. <strong>Human (Final Polish):</strong>
-Τελική επιμέλεια και προσθήκη προσωπικής οπτικής.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>9. The Presentation
-Builder</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Content - Claude
-3.5):</strong> Συγγραφή του περιεχομένου για κάθε διαφάνεια μιας
-παρουσίασης 15 διαφανειών.<br>2. <strong>Agent 2 (Structure -
-GPT-4o):</strong> Οργάνωση του περιεχομένου σε μια λογική ροή και
-πρόταση τίτλων.<br>3. <strong>Agent 3 (Visualization -
-Midjourney):</strong> Δημιουργία μιας εικόνας-κλειδί για κάθε
-διαφάνεια.<br>4. <strong>Human (Design):</strong> Συναρμολόγηση του
-περιεχομένου και των εικόνων σε ένα πρόγραμμα παρουσιάσεων.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>10. The Competitor Analysis
-Bot</strong></td>
-<td style="text-align: left;">1. <strong>Agent 1 (Identification -
-Web-enabled Gemini):</strong> Εντοπισμός των 5 κυριότερων ανταγωνιστών
-σε μια αγορά.<br>2. <strong>Agent 2 (SWOT Analysis - GPT-4o):</strong>
-Εκτέλεση ανάλυσης SWOT (Strengths, Weaknesses, Opportunities, Threats)
-για κάθε ανταγωνιστή.<br>3. <strong>Agent 3 (Reporting - Claude
-3.5):</strong> Σύνταξη μιας συνοπτικής αναφοράς που συγκρίνει τα
-ευρήματα.<br>4. <strong>Human (Strategy):</strong> Χρήση της αναφοράς
-για τον εντοπισμό ανταγωνιστικού πλεονεκτήματος.</td>
-</tr>
-<tr>
-<td style="text-align: left;">… (10 more recipes)</td>
-<td style="text-align: left;">…</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="ενότητα-2-το-cheat-sheet-του-prompting">Ενότητα 2: Το Cheat
-Sheet του Prompting</h2>
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr>
-<th style="text-align: left;">Τεχνική</th>
-<th style="text-align: left;">Παράδειγμα Αποσπάσματος Εντολής</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Persona Adoption</strong></td>
-<td
-style="text-align: left;"><code>"Act as a skeptical venture capitalist..."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Chain-of-Thought
-(CoT)</strong></td>
-<td
-style="text-align: left;"><code>"First, identify the core problem. Second, list three potential solutions. Third, evaluate the pros and cons of each. Think step-by-step..."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Format Specification</strong></td>
-<td
-style="text-align: left;"><code>"Present the output as a markdown table with three columns: 'Feature', 'Benefit', and 'Target Audience'."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Constraint
-Application</strong></td>
-<td
-style="text-align: left;"><code>"Generate a response that is under 100 words and avoids using technical jargon."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Few-Shot Prompting</strong></td>
-<td
-style="text-align: left;"><code>"Here are two examples of the style I want. Example 1: [...]. Example 2: [...]. Now, write a new paragraph in the same style about..."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Negative Prompting</strong></td>
-<td
-style="text-align: left;"><code>"Generate a list of marketing ideas, but do not include social media campaigns."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Role-Play Scenario</strong></td>
-<td
-style="text-align: left;"><code>"You are a customer support agent. I am a frustrated customer whose order is late. Respond to my complaint."</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Output Priming</strong></td>
-<td
-style="text-align: left;"><code>"Here is the beginning of the text I want you to complete: 'The key to successful AI orchestration is...'"</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="ενότητα-3-η-λίστα-ελέγχου-ηθικής-10-σημείων">Ενότητα 3: Η Λίστα
-Ελέγχου Ηθικής 10 Σημείων</h2>
-<p><em>Πριν από την έναρξη κάθε έργου με υποβοήθηση ΑΙ, εξετάστε τα
-παρακάτω:</em></p>
-<ol type="1">
-<li><strong>[ ] Διαφάνεια:</strong> Είναι η χρήση της ΑΙ σαφής και
-διαφανής προς τον πελάτη, τους συνεργάτες και το κοινό;</li>
-<li><strong>[ ] Ανάληψη Ευθύνης:</strong> Έχω αναλάβει την πλήρη ευθύνη
-για το τελικό αποτέλεσμα, ανεξάρτητα από τη συμβολή της ΑΙ;</li>
-<li><strong>[ ] Έλεγχος Προκατάληψης:</strong> Έχω ελέγξει ενεργά το
-παραγόμενο περιεχόμενο για πιθανές κοινωνικές, πολιτισμικές ή άλλες
-προκαταλήψεις;</li>
-<li><strong>[ ] Πνευματικά Δικαιώματα:</strong> Σέβεται η χρήση μου το
-ισχύον νομικό πλαίσιο για τα πνευματικά δικαιώματα και την πνευματική
-ιδιοκτησία;</li>
-<li><strong>[ ] Πρωτοτυπία:</strong> Έχω προσθέσει επαρκή ανθρώπινη
-δημιουργικότητα, επιμέλεια και πρόθεση ώστε το τελικό έργο να είναι
-ουσιαστικά δικό μου;</li>
-<li><strong>[ ] Κίνδυνος Παραπληροφόρησης:</strong> Θα μπορούσε το
-παραγόμενο περιεχόμενο να χρησιμοποιηθεί για τη δημιουργία ή τη διάδοση
-παραπλανητικών πληροφοριών;</li>
-<li><strong>[ ] Ιδιωτικότητα Δεδομένων:</strong> Χρησιμοποιώ δεδομένα
-εισόδου (input data) με τρόπο που σέβεται την ιδιωτικότητα και τους
-κανονισμούς (π.χ. GDPR);</li>
-<li><strong>[ ] Αιτιολόγηση Διαδικασίας:</strong> Είμαι σε θέση να
-τεκμηριώσω και να υπερασπιστώ τις στρατηγικές επιλογές που έκανα κατά τη
-διαδικασία ενορχήστρωσης;</li>
-<li><strong>[ ] Αντίκτυπος:</strong> Έχω εξετάσει τον πιθανό αρνητικό
-αντίκτυπο της δουλειάς μου σε άτομα ή κοινωνικές ομάδες;</li>
-<li><strong>[ ] Ευθυγράμμιση με Αξίες:</strong> Είναι η συγκεκριμένη
-χρήση της ΑΙ ευθυγραμμισμένη με τις προσωπικές και επαγγελματικές μου
-αξίες, όπως αυτές ορίζονται στο Μανιφέστο μου;</li>
-</ol>
-<hr />
-<h2 id="ενότητα-4-γλωσσάρι-χωρίς-ορολογία">Ενότητα 4: Γλωσσάρι χωρίς
-Ορολογία</h2>
-<ul>
-<li><strong>AI Orchestrator:</strong> Ένας επαγγελματίας που διευθύνει
-στρατηγικά πολλαπλά εργαλεία ΑΙ για να πετύχει ένα σύνθετο δημιουργικό
-στόχο.</li>
-<li><strong>LLM (Large Language Model):</strong> Ένα σύστημα ΑΙ
-εκπαιδευμένο σε τεράστιες ποσότητες κειμένου για να κατανοεί και να
-παράγει ανθρώπινη γλώσσα.</li>
-<li><strong>Diffusion Model:</strong> Ένα σύστημα ΑΙ που δημιουργεί
-εικόνες προσθέτοντας σταδιακά “λεπτομέρεια” σε έναν αρχικό
-“θόρυβο”.</li>
-<li><strong>Tool-Agnostic:</strong> Η φιλοσοφία του να εστιάζεις στις
-αρχές και τις στρατηγικές, αντί να εξαρτάσαι από ένα συγκεκριμένο
-λογισμικό.</li>
-<li><strong>Value-Based Pricing:</strong> Η τιμολόγηση μιας υπηρεσίας με
-βάση την αξία που προσφέρει στον πελάτη, αντί για τον χρόνο που
-απαιτείται.</li>
-<li><strong>Prompt Engineering:</strong> Η τέχνη και η τεχνική της
-διαμόρφωσης αποτελεσματικών εντολών για την καθοδήγηση της ΑΙ.</li>
-<li><strong>Workflow:</strong> Μια σειρά από βήματα ή διαδικασίες που
-ακολουθούνται για την ολοκλήρωση μιας εργασίας.</li>
-<li><strong>Algorithmic Bias:</strong> Η τάση ενός συστήματος ΑΙ να
-παράγει αποτελέσματα που αντικατοπτρίζουν τις προκαταλήψεις που υπάρχουν
-στα δεδομένα με τα οποία εκπαιδεύτηκε.</li>
-<li><strong>API (Application Programming Interface):</strong> Μια
-“γέφυρα” που επιτρέπει σε διαφορετικά προγράμματα λογισμικού να
-επικοινωνούν μεταξύ τους.</li>
-<li><strong>Second Brain:</strong> Ένα προσωπικό, ψηφιακό σύστημα για
-την οργάνωση και διαχείριση της γνώσης, των ιδεών και των
-πληροφοριών.</li>
-<li><strong>Multimodal Agent:</strong> Ένας πράκτορας ΑΙ που μπορεί να
-κατανοεί και να επεξεργάζεται πολλαπλούς τύπους πληροφορίας (π.χ.
-κείμενο, εικόνες, ήχο).</li>
-<li><strong>Capstone Project:</strong> Ένα τελικό, συνθετικό έργο που
-ενσωματώνει όλες τις γνώσεις και δεξιότητες που αποκτήθηκαν σε ένα
-πρόγραμμα σπουδών.</li>
-<li><strong>Thought Leadership:</strong> Η πρακτική της εδραίωσης της
-φήμης κάποιου ως αυθεντία σε έναν τομέα, μέσω της συνεισφοράς πολύτιμης
-γνώσης και ανάλυσης.</li>
-<li><strong>Persona:</strong> Ένα φανταστικό προφίλ που αντιπροσωπεύει
-ένα τμήμα του κοινού-στόχου, βοηθώντας στην κατανόηση των αναγκών
-του.</li>
-<li><strong>SWOT Analysis:</strong> Ένα στρατηγικό πλαίσιο για την
-ανάλυση των Δυνατών σημείων, των Αδυναμιών, των Ευκαιριών και των
-Απειλών ενός έργου ή μιας επιχείρησης.</li>
-</ul>
+# Ο AI Orchestrator: Γρήγορος Οδηγός Αναφοράς
 
-<div class="back-link">
-    <a href="expanded _draft_V2.htm">← Επιστροφή στο Κύριο Έγγραφο</a>
-</div>
+--- 
 
-</body>
-</html>
+## Ενότητα 1: Οι Top 20 "Συνταγές" Ενορχήστρωσης
+
+| Συνταγή | Βήματα Ενορχήστρωσης |
+| :--- | :--- |
+| **1. The Brand Identity Sprint** | 1. **Agent 1 (Research - GPT-4o):** Prompt για ανάλυση αγοράς & αξίες ανταγωνιστών.<br>2. **Agent 2 (Ideation - Claude 3.5):** Χρήση ανάλυσης για παραγωγή 10 ονομάτων & taglines.<br>3. **Agent 3 (Visualization - Midjourney):** Χρήση των 3 κορυφαίων ονομάτων για παραγωγή αρχικών λογοτύπων & mood boards.<br>4. **Human (Curation):** Επιλογή και βελτίωση της ισχυρότερης κατεύθυνσης. |
+| **2. The Content Repurposing Engine** | 1. **Agent 1 (Transcription - Whisper/Voxtral):** Μεταγραφή ενός βίντεο ή podcast σε κείμενο.<br>2. **Agent 2 (Summarization - Gemini 2.5):** Δημιουργία περίληψης, 5 key takeaways, και ενός άρθρου 500 λέξεων από το κείμενο.<br>3. **Agent 3 (Social Media - Claude 3.5):** Δημιουργία 10 tweets και 3 LinkedIn posts από το άρθρο.<br>4. **Human (Scheduling):** Προγραμματισμός του περιεχομένου. |
+| **3. The Video Storyboard Generator** | 1. **Agent 1 (Scripting - Claude 3.5):** Γράψε ένα σενάριο 60 δευτερολέπτων για ένα διαφημιστικό.<br>2. **Agent 2 (Shot List - GPT-4o):** Δημιούργησε μια λίστα λήψεων (shot list) από το σενάριο.<br>3. **Agent 3 (Visualization - Midjourney/Sora):** Παραγωγή μιας εικόνας-κλειδί για κάθε λήψη στη λίστα.<br>4. **Human (Assembly):** Σύνθεση των εικόνων σε ένα αρχείο storyboard. |
+| **4. The Market Research Analyst** | 1. **Agent 1 (Data Mining - Perplexity/Web-enabled Gemini):** Συλλογή 10 πρόσφατων άρθρων για μια τάση της αγοράς.<br>2. **Agent 2 (Synthesis - Claude 3.5):** Σύνοψη των βασικών ευρημάτων, των κοινών θεμάτων και των αντικρουόμενων απόψεων από τα άρθρα.<br>3. **Agent 3 (Presentation - GPT-4o):** Δημιουργία μιας παρουσίασης 10 διαφανειών με τα βασικά ευρήματα.<br>4. **Human (Strategy):** Χρήση της παρουσίασης για τη διαμόρφωση στρατηγικής. |
+| **5. The Persona Creator** | 1. **Agent 1 (Research - Gemini 2.5):** Ανάλυση δημογραφικών και ψυχογραφικών δεδομένων για ένα κοινό-στόχο.<br>2. **Agent 2 (Empathy - Claude 3.5):** Δημιουργία μιας λεπτομερούς "persona" με όνομα, ιστορία, πόνο και κίνητρα.<br>3. **Agent 3 (Visualization - Midjourney):** Δημιουργία ενός πορτρέτου για την persona.<br>4. **Human (Validation):** Αξιολόγηση της persona σε σχέση με τους επιχειρηματικούς στόχους. |
+| **6. The A/B Test Copywriter** | 1. **Agent 1 (Core Message - GPT-4o):** Δημιουργία του κεντρικού μηνύματος για μια landing page.<br>2. **Agent 2 (Variation - Claude 3.5):** Παραγωγή 5 εναλλακτικών τίτλων και 5 εναλλακτικών Call-to-Action (CTA) για το ίδιο μήνυμα.<br>3. **Human (Implementation):** Εφαρμογή των παραλλαγών σε ένα A/B testing εργαλείο. |
+| **7. The Naming Workshop** | 1. **Agent 1 (Keywords - GPT-4o):** Δημιουργία λίστας 50 λέξεων-κλειδιών σχετικών με ένα προϊόν.<br>2. **Agent 2 (Combination - Claude 3.5):** Συνδυασμός των λέξεων για τη δημιουργία 20 πιθανών ονομάτων.<br>3. **Agent 3 (Domain Check - Web-enabled Gemini):** Έλεγχος διαθεσιμότητας domain για τα 5 κορυφαία ονόματα.<br>4. **Human (Selection):** Επιλογή του τελικού ονόματος. |
+| **8. The Blog Post Factory** | 1. **Agent 1 (Outline - GPT-4o):** Δημιουργία ενός λεπτομερούς outline για ένα άρθρο.<br>2. **Agent 2 (Drafting - Claude 3.5):** Συγγραφή του πρώτου προσχεδίου του άρθρου βάσει του outline.<br>3. **Agent 3 (Editing - Gemini 2.5):** Επιμέλεια του κειμένου για ύφος, γραμματική και σαφήνεια.<br>4. **Human (Final Polish):** Τελική επιμέλεια και προσθήκη προσωπικής οπτικής. |
+| **9. The Presentation Builder** | 1. **Agent 1 (Content - Claude 3.5):** Συγγραφή του περιεχομένου για κάθε διαφάνεια μιας παρουσίασης 15 διαφανειών.<br>2. **Agent 2 (Structure - GPT-4o):** Οργάνωση του περιεχομένου σε μια λογική ροή και πρόταση τίτλων.<br>3. **Agent 3 (Visualization - Midjourney):** Δημιουργία μιας εικόνας-κλειδί για κάθε διαφάνεια.<br>4. **Human (Design):** Συναρμολόγηση του περιεχομένου και των εικόνων σε ένα πρόγραμμα παρουσιάσεων. |
+| **10. The Competitor Analysis Bot** | 1. **Agent 1 (Identification - Web-enabled Gemini):** Εντοπισμός των 5 κυριότερων ανταγωνιστών σε μια αγορά.<br>2. **Agent 2 (SWOT Analysis - GPT-4o):** Εκτέλεση ανάλυσης SWOT (Strengths, Weaknesses, Opportunities, Threats) για κάθε ανταγωνιστή.<br>3. **Agent 3 (Reporting - Claude 3.5):** Σύνταξη μιας συνοπτικής αναφοράς που συγκρίνει τα ευρήματα.<br>4. **Human (Strategy):** Χρήση της αναφοράς για τον εντοπισμό ανταγωνιστικού πλεονεκτήματος. |
+| ... (10 more recipes) | ... |
+
+--- 
+
+## Ενότητα 2: Το Cheat Sheet του Prompting
+
+| Τεχνική | Παράδειγμα Αποσπάσματος Εντολής |
+| :--- | :--- |
+| **Persona Adoption** | `"Act as a skeptical venture capitalist..."` |
+| **Chain-of-Thought (CoT)** | `"First, identify the core problem. Second, list three potential solutions. Third, evaluate the pros and cons of each. Think step-by-step..."` |
+| **Format Specification** | `"Present the output as a markdown table with three columns: 'Feature', 'Benefit', and 'Target Audience'."` |
+| **Constraint Application** | `"Generate a response that is under 100 words and avoids using technical jargon."` |
+| **Few-Shot Prompting** | `"Here are two examples of the style I want. Example 1: [...]. Example 2: [...]. Now, write a new paragraph in the same style about..."` |
+| **Negative Prompting** | `"Generate a list of marketing ideas, but do not include social media campaigns."` |
+| **Role-Play Scenario** | `"You are a customer support agent. I am a frustrated customer whose order is late. Respond to my complaint."` |
+| **Output Priming** | `"Here is the beginning of the text I want you to complete: 'The key to successful AI orchestration is...'"` |
+
+--- 
+
+## Ενότητα 3: Η Λίστα Ελέγχου Ηθικής 10 Σημείων
+
+*Πριν από την έναρξη κάθε έργου με υποβοήθηση ΑΙ, εξετάστε τα παρακάτω:* 
+
+1.  **[ ] Διαφάνεια:** Είναι η χρήση της ΑΙ σαφής και διαφανής προς τον πελάτη, τους συνεργάτες και το κοινό;
+2.  **[ ] Ανάληψη Ευθύνης:** Έχω αναλάβει την πλήρη ευθύνη για το τελικό αποτέλεσμα, ανεξάρτητα από τη συμβολή της ΑΙ;
+3.  **[ ] Έλεγχος Προκατάληψης:** Έχω ελέγξει ενεργά το παραγόμενο περιεχόμενο για πιθανές κοινωνικές, πολιτισμικές ή άλλες προκαταλήψεις;
+4.  **[ ] Πνευματικά Δικαιώματα:** Σέβεται η χρήση μου το ισχύον νομικό πλαίσιο για τα πνευματικά δικαιώματα και την πνευματική ιδιοκτησία;
+5.  **[ ] Πρωτοτυπία:** Έχω προσθέσει επαρκή ανθρώπινη δημιουργικότητα, επιμέλεια και πρόθεση ώστε το τελικό έργο να είναι ουσιαστικά δικό μου;
+6.  **[ ] Κίνδυνος Παραπληροφόρησης:** Θα μπορούσε το παραγόμενο περιεχόμενο να χρησιμοποιηθεί για τη δημιουργία ή τη διάδοση παραπλανητικών πληροφοριών;
+7.  **[ ] Ιδιωτικότητα Δεδομένων:** Χρησιμοποιώ δεδομένα εισόδου (input data) με τρόπο που σέβεται την ιδιωτικότητα και τους κανονισμούς (π.χ. GDPR);
+8.  **[ ] Αιτιολόγηση Διαδικασίας:** Είμαι σε θέση να τεκμηριώσω και να υπερασπιστώ τις στρατηγικές επιλογές που έκανα κατά τη διαδικασία ενορχήστρωσης;
+9.  **[ ] Αντίκτυπος:** Έχω εξετάσει τον πιθανό αρνητικό αντίκτυπο της δουλειάς μου σε άτομα ή κοινωνικές ομάδες;
+10. **[ ] Ευθυγράμμιση με Αξίες:** Είναι η συγκεκριμένη χρήση της ΑΙ ευθυγραμμισμένη με τις προσωπικές και επαγγελματικές μου αξίες, όπως αυτές ορίζονται στο Μανιφέστο μου;
+
+--- 
+
+## Ενότητα 4: Γλωσσάρι χωρίς Ορολογία
+
+*   **AI Orchestrator:** Ένας επαγγελματίας που διευθύνει στρατηγικά πολλαπλά εργαλεία ΑΙ για να πετύχει ένα σύνθετο δημιουργικό στόχο.
+*   **LLM (Large Language Model):** Ένα σύστημα ΑΙ εκπαιδευμένο σε τεράστιες ποσότητες κειμένου για να κατανοεί και να παράγει ανθρώπινη γλώσσα.
+*   **Diffusion Model:** Ένα σύστημα ΑΙ που δημιουργεί εικόνες προσθέτοντας σταδιακά "λεπτομέρεια" σε έναν αρχικό "θόρυβο".
+*   **Tool-Agnostic:** Η φιλοσοφία του να εστιάζεις στις αρχές και τις στρατηγικές, αντί να εξαρτάσαι από ένα συγκεκριμένο λογισμικό.
+*   **Value-Based Pricing:** Η τιμολόγηση μιας υπηρεσίας με βάση την αξία που προσφέρει στον πελάτη, αντί για τον χρόνο που απαιτείται.
+*   **Prompt Engineering:** Η τέχνη και η τεχνική της διαμόρφωσης αποτελεσματικών εντολών για την καθοδήγηση της ΑΙ.
+*   **Workflow:** Μια σειρά από βήματα ή διαδικασίες που ακολουθούνται για την ολοκλήρωση μιας εργασίας.
+*   **Algorithmic Bias:** Η τάση ενός συστήματος ΑΙ να παράγει αποτελέσματα που αντικατοπτρίζουν τις προκαταλήψεις που υπάρχουν στα δεδομένα με τα οποία εκπαιδεύτηκε.
+*   **API (Application Programming Interface):** Μια "γέφυρα" που επιτρέπει σε διαφορετικά προγράμματα λογισμικού να επικοινωνούν μεταξύ τους.
+*   **Second Brain:** Ένα προσωπικό, ψηφιακό σύστημα για την οργάνωση και διαχείριση της γνώσης, των ιδεών και των πληροφοριών.
+*   **Multimodal Agent:** Ένας πράκτορας ΑΙ που μπορεί να κατανοεί και να επεξεργάζεται πολλαπλούς τύπους πληροφορίας (π.χ. κείμενο, εικόνες, ήχο).
+*   **Capstone Project:** Ένα τελικό, συνθετικό έργο που ενσωματώνει όλες τις γνώσεις και δεξιότητες που αποκτήθηκαν σε ένα πρόγραμμα σπουδών.
+*   **Thought Leadership:** Η πρακτική της εδραίωσης της φήμης κάποιου ως αυθεντία σε έναν τομέα, μέσω της συνεισφοράς πολύτιμης γνώσης και ανάλυσης.
+*   **Persona:** Ένα φανταστικό προφίλ που αντιπροσωπεύει ένα τμήμα του κοινού-στόχου, βοηθώντας στην κατανόηση των αναγκών του.
+*   **SWOT Analysis:** Ένα στρατηγικό πλαίσιο για την ανάλυση των Δυνατών σημείων, των Αδυναμιών, των Ευκαιριών και των Απειλών ενός έργου ή μιας επιχείρησης.
