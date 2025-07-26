@@ -1,4 +1,37 @@
-/* Book-style CSS for enhanced reading experience */
+/* Book-style CSS for enhanced reading experience with Apple-inspired dual mode theming */
+
+/* Default (Normal) Mode Variables */
+:root {
+    --body-bg: #fdfdfe;       /* από το normal_mode (2η τιμή) */
+    --text-color: #000000;    /* (3η τιμή) */
+    --nav-bg: #f0f0f2;        /* (4η τιμή) */
+    --nav-link: #0071e3;      /* (6η τιμή) - Apple blue accent */
+    --backlink-bg: #f4f4f6;   /* (15η τιμή) */
+    --header-color: #1d1d1f;  /* (12η τιμή) - προσδίδει διακριτότητα */
+    --code-bg: #f6f6f8;       /* (16η τιμή) */
+    --border-color: #f0f0f2;  /* (4η τιμή) */
+    --table-header-bg: #f5f5f7; /* (1η τιμή) */
+}
+
+/* Dark Mode Variables */
+.dark-mode {
+    --body-bg: #000000;       /* dark_mode (1η τιμή) */
+    --text-color: #ffffff;    /* dark_mode (3η τιμή) */
+    --nav-bg: #141414;        /* dark_mode (18η τιμή) */
+    --nav-link: #0071e3;      /* dark_mode (4η τιμή) παραμένει ο ίδιος ως accent */
+    --backlink-bg: #0e0e0e;   /* dark_mode (15η τιμή) */
+    --header-color: #cccccc;  /* dark_mode (2η τιμή) */
+    --code-bg: #101010;       /* dark_mode (19η τιμή) */
+    --border-color: #0d0d0d;  /* dark_mode (14η τιμή) */
+    --table-header-bg: #0a0a0a; /* dark_mode (12η τιμή) */
+}
+
+/* Smooth transitions for mode switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Εφαρμογή των variables */
 body {
     max-width: 800px;
     margin: 0 auto;
@@ -6,24 +39,24 @@ body {
     font-family: "Cambria", "Times New Roman", serif;
     font-size: 12pt;
     line-height: 1.6;
-    color: #333;
-    background-color: #fafafa;
+    color: var(--text-color);
+    background-color: var(--body-bg);
     tab-interval: 36.0pt;
     word-wrap: break-word;
 }
 
 /* Navigation menu */
 .nav-menu {
-    background-color: #f0f0f0;
+    background-color: var(--nav-bg);
     padding: 15px;
     margin-bottom: 30px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
 }
 
 .nav-menu a {
-    color: #4F81BD;
+    color: var(--nav-link);
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
@@ -32,6 +65,7 @@ body {
 
 .nav-menu a:hover {
     text-decoration: underline;
+    opacity: 0.8;
 }
 
 /* Back to main link */
@@ -39,25 +73,27 @@ body {
     text-align: center;
     margin: 20px 0;
     padding: 10px;
-    background-color: #e6f2ff;
-    border-radius: 5px;
+    background-color: var(--backlink-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
 
 .back-link a {
-    color: #4F81BD;
+    color: var(--nav-link);
     text-decoration: none;
     font-weight: bold;
 }
 
 .back-link a:hover {
     text-decoration: underline;
+    opacity: 0.8;
 }
 
 /* Headers */
 h1 {
     font-size: 16pt;
     font-family: "Calibri", sans-serif;
-    color: #4F81BD;
+    color: var(--header-color);
     margin-top: 24pt;
     margin-bottom: 0;
     page-break-after: avoid;
@@ -67,7 +103,7 @@ h1 {
 h2 {
     font-size: 14pt;
     font-family: "Calibri", sans-serif;
-    color: #4F81BD;
+    color: var(--header-color);
     margin-top: 10pt;
     margin-bottom: 0;
     page-break-after: avoid;
@@ -76,7 +112,7 @@ h2 {
 h3 {
     font-size: 12pt;
     font-family: "Calibri", sans-serif;
-    color: #4F81BD;
+    color: var(--header-color);
     margin-top: 10pt;
     margin-bottom: 0;
     page-break-after: avoid;
@@ -85,7 +121,7 @@ h3 {
 h4 {
     font-size: 12pt;
     font-family: "Calibri", sans-serif;
-    color: #4F81BD;
+    color: var(--header-color);
     margin-top: 10pt;
     margin-bottom: 0;
     font-weight: normal;
@@ -96,7 +132,7 @@ h4 {
 h5 {
     font-size: 12pt;
     font-family: "Calibri", sans-serif;
-    color: #4F81BD;
+    color: var(--header-color);
     margin-top: 10pt;
     margin-bottom: 0;
     page-break-after: avoid;
@@ -111,11 +147,12 @@ p {
 
 /* Links */
 a {
-    color: #4F81BD;
+    color: var(--nav-link);
 }
 
 a:visited {
-    color: purple;
+    color: var(--nav-link);
+    opacity: 0.7;
 }
 
 /* Lists */
@@ -128,30 +165,51 @@ table {
     border-collapse: collapse;
     width: 100%;
     margin: 10pt 0;
+    border: 1px solid var(--border-color);
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     padding: 8px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: var(--table-header-bg);
     font-weight: bold;
+    color: var(--text-color);
 }
 
 /* Code blocks */
 pre, code {
-    font-family: "Consolas", monospace;
-    background-color: #f5f5f5;
+    font-family: "Consolas", "SF Mono", monospace;
+    background-color: var(--code-bg);
     padding: 5px;
-    border-radius: 3px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
 }
 
 pre {
     padding: 10px;
     overflow-x: auto;
+}
+
+/* Mode toggle button (optional) */
+.mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--nav-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12pt;
+}
+
+.mode-toggle:hover {
+    opacity: 0.8;
 }
 
 /* Print styles */
@@ -161,9 +219,10 @@ pre {
         margin: 0;
         padding: 20px;
         background-color: white;
+        color: black;
     }
     
-    .nav-menu, .back-link {
+    .nav-menu, .back-link, .mode-toggle {
         display: none;
     }
 }

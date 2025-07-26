@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Toggle Demo - Apple-inspired Web Book</title>
+    <link rel="stylesheet" href="book-style.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <div class="nav-menu">
+        <a href="index.html">Αρχική</a>
+        <a href="student_workbook_enhanced.html">Workbook</a>
+        <a href="instructor_implementation_guide_parts_1_2.html">Guide</a>
+        <a href="quick_reference_guide.html">Reference</a>
+    </div>
+
+    <!-- Main Content -->
+    <h1>Δοκιμή Theme Toggle</h1>
+    
+    <p>Αυτή είναι μια δοκιμαστική σελίδα για το Apple-inspired dual mode theming. Μπορείς να εναλλάσσεις μεταξύ φωτεινού και σκούρου mode χρησιμοποιώντας:</p>
+    
+    <ul>
+        <li>Το κουμπί toggle στην πάνω δεξιά γωνία (🌙/☀️)</li>
+        <li>Το πληκτρολογικό shortcut: <code>Ctrl+Shift+D</code> (ή <code>Cmd+Shift+D</code> σε Mac)</li>
+        <li>Το script αποθηκεύει την προτίμηση σου στο localStorage</li>
+    </ul>
+
+    <h2>Χαρακτηριστικά του Theme System</h2>
+    
+    <p>Το σύστημα themes έχει τα εξής χαρακτηριστικά:</p>
+    
+    <ol>
+        <li><strong>Αυτόματη ανίχνευση:</strong> Ανιχνεύει την προτίμηση του συστήματος (light/dark)</li>
+        <li><strong>Αποθήκευση προτίμησης:</strong> Θυμάται την επιλογή σου για επόμενες επισκέψεις</li>
+        <li><strong>Smooth transitions:</strong> Μαλακές μεταβάσεις μεταξύ των modes</li>
+        <li><strong>Accessibility:</strong> Υποστήριξη για screen readers</li>
+        <li><strong>Keyboard shortcuts:</strong> Πληκτρολογικά shortcuts για γρήγορη εναλλαγή</li>
+    </ol>
+
+    <h3>Code Example</h3>
+    
+    <pre><code>// Παράδειγμα χρήσης του theme toggle
+const toggleButton = document.querySelector('.mode-toggle');
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});</code></pre>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mode</th>
+                <th>Background</th>
+                <th>Text Color</th>
+                <th>Accent</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Light</td>
+                <td>#fdfdfe</td>
+                <td>#000000</td>
+                <td>#0071e3</td>
+            </tr>
+            <tr>
+                <td>Dark</td>
+                <td>#000000</td>
+                <td>#ffffff</td>
+                <td>#0071e3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Back to main link -->
+    <div class="back-link">
+        <a href="index.html">← Επιστροφή στην Αρχική</a>
+    </div>
+
+    <!-- Theme Toggle Script -->
+    <script src="theme-toggle.js"></script>
+</body>
+</html>
