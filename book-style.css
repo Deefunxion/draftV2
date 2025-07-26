@@ -1,228 +1,160 @@
-/* Book-style CSS for enhanced reading experience with Apple-inspired dual mode theming */
+/* Usability-focused CSS following Nielsen & Norman principles */
+/* REMOVED: Apple-inspired theming variables - unnecessary complexity and visual noise */
+/* REMOVED: Dark mode - adds complexity without clear user benefit for documentation */
+/* REMOVED: Smooth transitions - distracting and serve no functional purpose */
 
-/* Default (Normal) Mode Variables */
+/* Core Variables for Maximum Clarity */
 :root {
-    --body-bg: #fdfdfe;       /* από το normal_mode (2η τιμή) */
-    --text-color: #000000;    /* (3η τιμή) */
-    --nav-bg: #f0f0f2;        /* (4η τιμή) */
-    --nav-link: #0071e3;      /* (6η τιμή) - Apple blue accent */
-    --backlink-bg: #f4f4f6;   /* (15η τιμή) */
-    --header-color: #1d1d1f;  /* (12η τιμή) - προσδίδει διακριτότητα */
-    --code-bg: #f6f6f8;       /* (16η τιμή) */
-    --border-color: #f0f0f2;  /* (4η τιμή) */
-    --table-header-bg: #f5f5f7; /* (1η τιμή) */
+    --text-color: #000000;          /* High contrast black text */
+    --background: #ffffff;          /* Pure white background for maximum readability */
+    --link-color: #0000EE;          /* Classic web blue for links - immediately recognizable */
+    --visited-link: #551A8B;        /* Classic visited link purple */
+    --nav-border: #000000;          /* Strong border for clear separation */
+    --table-border: #000000;        /* Black borders for table clarity */
 }
 
-/* Dark Mode Variables */
-.dark-mode {
-    --body-bg: #000000;       /* dark_mode (1η τιμή) */
-    --text-color: #ffffff;    /* dark_mode (3η τιμή) */
-    --nav-bg: #141414;        /* dark_mode (18η τιμή) */
-    --nav-link: #0071e3;      /* dark_mode (4η τιμή) παραμένει ο ίδιος ως accent */
-    --backlink-bg: #0e0e0e;   /* dark_mode (15η τιμή) */
-    --header-color: #cccccc;  /* dark_mode (2η τιμή) */
-    --code-bg: #101010;       /* dark_mode (19η τιμή) */
-    --border-color: #0d0d0d;  /* dark_mode (14η τιμή) */
-    --table-header-bg: #0a0a0a; /* dark_mode (12η τιμή) */
-}
-
-/* Smooth transitions for mode switching */
-* {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Εφαρμογή των variables */
+/* REMOVED: Complex font fallbacks - single, system-standard font for consistency */
 body {
-    max-width: 800px;
+    max-width: 65ch;                /* Optimal line length for readability (45-75 chars) */
     margin: 0 auto;
-    padding: 40px 20px;
-    font-family: "Cambria", "Times New Roman", serif;
-    font-size: 12pt;
-    line-height: 1.6;
+    padding: 20px;                  /* Generous padding for comfortable reading */
+    font-family: Georgia, serif;    /* Single, highly readable serif font */
+    font-size: 16px;               /* Minimum 16px for accessibility compliance */
+    line-height: 1.5;              /* 1.5x line height for optimal readability */
     color: var(--text-color);
-    background-color: var(--body-bg);
-    tab-interval: 36.0pt;
-    word-wrap: break-word;
+    background-color: var(--background);
 }
 
-/* Navigation menu */
+/* REMOVED: Complex navigation background and borders - visual noise without function */
+/* Navigation must be simple and obvious */
 .nav-menu {
-    background-color: var(--nav-bg);
-    padding: 15px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid var(--border-color);
+    margin-bottom: 40px;            /* Clear separation from content */
+    padding: 20px 0;               /* Generous touch targets */
+    border-bottom: 2px solid var(--nav-border);  /* Clear visual separation */
+    text-align: left;              /* Left-aligned for scanning efficiency */
 }
 
+/* REMOVED: Pipe separators - create visual clutter */
 .nav-menu a {
-    color: var(--nav-link);
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    font-size: 14pt;
+    color: var(--link-color);       /* Classic blue links */
+    text-decoration: underline;     /* Always underlined - no ambiguity */
+    margin-right: 30px;            /* Clear spacing between links */
+    font-size: 16px;               /* Same size as body text for consistency */
+    font-weight: normal;           /* REMOVED: Bold styling - unnecessary emphasis */
+    display: inline-block;         /* Better click targets */
+    padding: 5px 0;               /* Larger touch targets */
+}
+
+.nav-menu a:visited {
+    color: var(--visited-link);    /* Standard visited link color */
+    text-decoration: underline;    /* Maintain underline for visited links */
 }
 
 .nav-menu a:hover {
-    text-decoration: underline;
-    opacity: 0.8;
+    text-decoration: underline;    /* Redundant but harmless since always underlined */
+    /* REMOVED: Opacity change - subtle and potentially confusing */
 }
 
-/* Back to main link */
-.back-link {
-    text-align: center;
-    margin: 20px 0;
-    padding: 10px;
-    background-color: var(--backlink-bg);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
+/* REMOVED: Back-link component - redundant with clear navigation */
+/* Users can navigate via browser back button or main navigation */
 
-.back-link a {
-    color: var(--nav-link);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.back-link a:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-}
-
-/* Headers */
+/* REMOVED: Multiple font families - creates inconsistency and complexity */
+/* Single font family throughout for maximum clarity */
+/* Headers use same font as body for consistency */
 h1 {
-    font-size: 16pt;
-    font-family: "Calibri", sans-serif;
-    color: var(--header-color);
-    margin-top: 24pt;
-    margin-bottom: 0;
-    page-break-after: avoid;
-    font-kerning: 0pt;
+    font-size: 24px;               /* Clear size hierarchy - 1.5x body text */
+    font-weight: bold;             /* Standard bold weight */
+    color: var(--text-color);      /* Same color as body text */
+    margin: 30px 0 15px 0;        /* Clear spacing above and below */
+    /* REMOVED: page-break-after, font-kerning - print-specific complexity */
 }
 
 h2 {
-    font-size: 14pt;
-    font-family: "Calibri", sans-serif;
-    color: var(--header-color);
-    margin-top: 10pt;
-    margin-bottom: 0;
-    page-break-after: avoid;
+    font-size: 20px;               /* Clear size hierarchy - 1.25x body text */
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 25px 0 10px 0;
 }
 
 h3 {
-    font-size: 12pt;
-    font-family: "Calibri", sans-serif;
-    color: var(--header-color);
-    margin-top: 10pt;
-    margin-bottom: 0;
-    page-break-after: avoid;
+    font-size: 18px;               /* Clear size hierarchy - 1.125x body text */
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 20px 0 10px 0;
 }
 
-h4 {
-    font-size: 12pt;
-    font-family: "Calibri", sans-serif;
-    color: var(--header-color);
-    margin-top: 10pt;
-    margin-bottom: 0;
-    font-weight: normal;
-    font-style: italic;
-    page-break-after: avoid;
-}
+/* REMOVED: h4, h5 - unnecessary hierarchy levels create confusion */
+/* Three levels of headers are sufficient for most content */
 
-h5 {
-    font-size: 12pt;
-    font-family: "Calibri", sans-serif;
-    color: var(--header-color);
-    margin-top: 10pt;
-    margin-bottom: 0;
-    page-break-after: avoid;
-}
-
-/* Paragraphs */
+/* REMOVED: Justified text - creates uneven spacing and reduces readability */
 p {
-    margin-top: 0;
-    margin-bottom: 10pt;
-    text-align: justify;
+    margin: 0 0 15px 0;            /* Clear paragraph separation */
+    text-align: left;              /* Left-aligned for better readability */
 }
 
-/* Links */
+/* All links must be immediately recognizable as links */
 a {
-    color: var(--nav-link);
+    color: var(--link-color);      /* Classic blue */
+    text-decoration: underline;    /* Always underlined */
 }
 
 a:visited {
-    color: var(--nav-link);
-    opacity: 0.7;
+    color: var(--visited-link);    /* Standard visited color */
+    text-decoration: underline;    /* Maintain underline */
 }
 
-/* Lists */
+a:hover, a:focus {
+    text-decoration: underline;    /* Consistent with default state */
+    /* REMOVED: Opacity changes - can be confusing for users */
+}
+
+/* Lists with clear spacing */
 ul, ol {
-    margin-bottom: 10pt;
+    margin: 15px 0;               /* Clear separation from surrounding content */
+    padding-left: 30px;          /* Standard indentation */
 }
 
-/* Tables */
+li {
+    margin-bottom: 5px;           /* Clear separation between list items */
+}
+
+/* Tables with maximum clarity */
 table {
     border-collapse: collapse;
     width: 100%;
-    margin: 10pt 0;
-    border: 1px solid var(--border-color);
+    margin: 20px 0;               /* Clear separation from surrounding content */
+    border: 2px solid var(--table-border);  /* Strong border for clear definition */
 }
 
 th, td {
-    border: 1px solid var(--border-color);
-    padding: 8px;
-    text-align: left;
+    border: 1px solid var(--table-border);  /* Clear cell boundaries */
+    padding: 12px;                /* Generous padding for readability */
+    text-align: left;            /* Left-aligned for easy scanning */
+    vertical-align: top;         /* Consistent alignment */
 }
 
 th {
-    background-color: var(--table-header-bg);
-    font-weight: bold;
+    background-color: var(--background);  /* REMOVED: Background color - unnecessary visual noise */
+    font-weight: bold;           /* Clear header distinction */
     color: var(--text-color);
 }
 
-/* Code blocks */
+/* Code blocks with minimal styling */
 pre, code {
-    font-family: "Consolas", "SF Mono", monospace;
-    background-color: var(--code-bg);
-    padding: 5px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
+    font-family: "Courier New", monospace;  /* Single, standard monospace font */
+    background-color: var(--background);    /* REMOVED: Background color - visual noise */
+    border: 1px solid var(--table-border); /* Simple border for definition */
+    padding: 8px;                /* Adequate padding */
+    /* REMOVED: border-radius - unnecessary decoration */
 }
 
 pre {
-    padding: 10px;
-    overflow-x: auto;
+    padding: 15px;               /* More padding for code blocks */
+    overflow-x: auto;           /* Horizontal scroll for long lines */
+    margin: 15px 0;             /* Clear separation */
 }
 
-/* Mode toggle button (optional) */
-.mode-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: var(--nav-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12pt;
-}
+/* REMOVED: Mode toggle button - adds complexity without clear user benefit */
+/* Users prefer consistency over customization for documentation */
 
-.mode-toggle:hover {
-    opacity: 0.8;
-}
-
-/* Print styles */
-@media print {
-    body {
-        max-width: none;
-        margin: 0;
-        padding: 20px;
-        background-color: white;
-        color: black;
-    }
-    
-    .nav-menu, .back-link, .mode-toggle {
-        display: none;
-    }
-}
+/* REMOVED: Print styles - focus on screen readability first */
