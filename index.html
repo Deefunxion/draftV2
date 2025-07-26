@@ -5,7 +5,8 @@ xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
 xmlns="http://www.w3.org/TR/REC-html40">
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name=ProgId content=Word.Document>
 <meta name=Generator content="Microsoft Word 15">
 <meta name=Originator content="Microsoft Word 15">
@@ -1753,10 +1754,12 @@ table.TableFirstRow
     margin: 50px auto;
     padding: 20px;
     line-height: 1.6;
-    font-family: Georgia, serif;
+    font-family: "Times New Roman", Georgia, serif;
     font-size: 1.1em;
     background-color: white;
     color: black;
+    unicode-bidi: embed;
+    direction: ltr;
   }
   
   .WordSection1 {
@@ -1767,6 +1770,7 @@ table.TableFirstRow
   p {
     margin-bottom: 1em;
     text-align: justify;
+    unicode-bidi: embed;
   }
   
   /* Στυλ για τίτλους */
@@ -1786,6 +1790,16 @@ table.TableFirstRow
   
   a:hover {
     text-decoration: underline;
+  }
+  
+  /* Διόρθωση για ελληνικούς χαρακτήρες */
+  span[style*="mso-ansi-language:EL"] {
+    font-family: "Times New Roman", Georgia, serif;
+  }
+  
+  /* Γενική υποστήριξη για ελληνικά */
+  span[lang="EL"], [lang="EL"] {
+    font-family: "Times New Roman", Georgia, serif;
   }
 </style>
 </head>
