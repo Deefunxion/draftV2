@@ -154,6 +154,40 @@ pre {
     margin: 15px 0;             /* Clear separation */
 }
 
+/* Digital Assets Resource Grid Styling */
+.stats-box {
+    background-color: var(--background);
+    border: 1px solid var(--table-border);
+    padding: 15px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.resource-grid a {
+    display: block;
+    padding: 12px 15px;
+    border: 1px solid var(--table-border);
+    text-decoration: underline;
+    color: var(--link-color);
+    background-color: var(--background);
+}
+
+.resource-grid a:visited {
+    color: var(--visited-link);
+}
+
+.resource-grid a:hover {
+    background-color: var(--text-color);
+    color: var(--background);
+}
+
 /* REMOVED: Mode toggle button - adds complexity without clear user benefit */
 /* Users prefer consistency over customization for documentation */
 
