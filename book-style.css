@@ -38,11 +38,19 @@ body {
 .nav-menu a {
     color: var(--link-color);       /* Professional dark gray links */
     text-decoration: underline;     /* Always underlined - no ambiguity */
-    margin-right: 30px;            /* Clear spacing between links */
-    font-size: 16px;               /* Same size as body text for consistency */
+    margin-right: 20px;            /* Reduced spacing for more links */
+    font-size: 15px;               /* Slightly smaller for better fit */
     font-weight: normal;           /* REMOVED: Bold styling - unnecessary emphasis */
     display: inline-block;         /* Better click targets */
     padding: 5px 0;               /* Larger touch targets */
+}
+
+/* Responsive navigation for smaller screens */
+@media (max-width: 768px) {
+    .nav-menu a {
+        margin-right: 15px;        /* Even smaller spacing on mobile */
+        font-size: 14px;           /* Smaller font on mobile */
+    }
 }
 
 .nav-menu a:visited {
