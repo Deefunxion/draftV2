@@ -1,0 +1,684 @@
+/* ==========================================================================
+   AI Orchestrator - Complete CSS Style System
+   Based on Design and Implementation Document Specifications
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET AND BASE STYLES
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base font size for rem calculations */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Charter, 'Times New Roman', serif;
+    font-size: 1rem; /* 16px equivalent to 11pt print */
+    line-height: 1.6; /* 16pt leading equivalent */
+    color: #1A1A1A; /* Primary text color */
+    background-color: #FFFFFF;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   COLOR SYSTEM VARIABLES
+   ========================================================================== */
+
+:root {
+    /* Primary Colors */
+    --color-primary-blue: #2D5AA0;
+    --color-secondary-teal: #0F7B7B;
+    
+    /* Text Colors */
+    --color-text-primary: #1A1A1A; /* 90% black */
+    --color-text-secondary: #4A4A4A; /* 70% black */
+    --color-text-tertiary: #888888; /* 50% black */
+    
+    /* Background Colors */
+    --color-background-primary: #FFFFFF;
+    --color-background-secondary: #F8F8F8; /* 3% black */
+    --color-border-gray: #E0E0E0; /* 12% black */
+    
+    /* Semantic Colors */
+    --color-success: #0F7B0F;
+    --color-warning: #FF8C00;
+    --color-error: #D73502;
+    --color-info: #1E88E5;
+    
+    /* Interactive Colors */
+    --color-link: #2D5AA0;
+    --color-link-hover: #1E3F73;
+    --color-link-visited: #5A2D8A;
+    --color-button-primary: #2D5AA0;
+    --color-button-secondary: #F5F5F5;
+    
+    /* Typography Colors */
+    --color-emphasis-strong: #1A1A1A;
+    --color-emphasis-conceptual: #2D5AA0;
+    --color-emphasis-warning: #D73502;
+    --color-emphasis-success: #0F7B0F;
+    
+    /* Code and Technical Colors */
+    --color-code-background: #F5F5F5;
+    --color-code-block-background: #F8F8F8;
+    --color-code-text: #1A1A1A;
+    
+    /* QR Code Colors */
+    --color-qr-primary: #2D5AA0;
+    --color-qr-background: #FFFFFF;
+    --color-qr-border: #E0E0E0;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM - PRIMARY HEADING TYPEFACE (Inter Display)
+   ========================================================================== */
+
+/* Import Inter Display font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+h1, h2, h3 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* H1 - Chapter Titles: 36pt, Weight 700, Letter-spacing -0.02em */
+h1 {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary-blue);
+}
+
+/* H2 - Major Sections: 28pt, Weight 600, Letter-spacing -0.01em */
+h2 {
+    font-size: 1.75rem; /* 28px */
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-text-primary);
+}
+
+/* H3 - Subsections: 22pt, Weight 600, Letter-spacing 0em */
+h3 {
+    font-size: 1.375rem; /* 22px */
+    font-weight: 600;
+    letter-spacing: 0em;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM - SECONDARY HEADING TYPEFACE (Source Sans Pro)
+   ========================================================================== */
+
+/* Import Source Sans Pro font */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+
+h4, h5, h6 {
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* H4 - Sub-subsections: 18pt, Weight 600, Letter-spacing 0.01em */
+h4 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* H5 - Minor headings: 16pt, Weight 600, Letter-spacing 0.01em */
+h5 {
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* H6 - Inline headings: 14pt, Weight 600, Letter-spacing 0.02em */
+h6 {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM - BODY TEXT (Charter)
+   ========================================================================== */
+
+/* Body Text: 11pt/16pt leading, Weight 400 */
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+}
+
+/* Captions: 9pt/13pt leading, Weight 400, Color #666666 */
+.caption, figcaption {
+    font-size: 0.75rem; /* 12px equivalent to 9pt */
+    line-height: 1.4; /* 13pt leading equivalent */
+    color: var(--color-text-tertiary);
+    font-style: italic;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Footnotes: 8pt/11pt leading, Weight 400, Color #888888 */
+.footnote {
+    font-size: 0.6875rem; /* 11px equivalent to 8pt */
+    line-height: 1.3; /* 11pt leading equivalent */
+    color: var(--color-text-tertiary);
+    margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   SPECIALIZED TYPOGRAPHY - CODE AND TECHNICAL CONTENT
+   ========================================================================== */
+
+/* Import JetBrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Inline Code: 10pt, Weight 400, Background #F5F5F5, Padding 2px 4px */
+code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.875rem; /* 14px equivalent to 10pt */
+    font-weight: 400;
+    background-color: var(--color-code-background);
+    color: var(--color-code-text);
+    padding: 2px 4px;
+    border-radius: 3px;
+    border: 1px solid var(--color-border-gray);
+}
+
+/* Code Blocks: 9pt/14pt leading, Weight 400, Background #F8F8F8, Padding 12px */
+pre {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.8125rem; /* 13px equivalent to 9pt */
+    line-height: 1.5; /* 14pt leading equivalent */
+    font-weight: 400;
+    background-color: var(--color-code-block-background);
+    color: var(--color-code-text);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-gray);
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    font-size: inherit;
+}
+
+/* ==========================================================================
+   EMPHASIS AND HIGHLIGHTING SYSTEM
+   ========================================================================== */
+
+/* Strong Emphasis: Weight 600, Color #1A1A1A */
+strong, b {
+    font-weight: 600;
+    color: var(--color-emphasis-strong);
+}
+
+/* Conceptual Terms: Italic, Color #2D5AA0 */
+.conceptual-term, em.conceptual {
+    font-style: italic;
+    color: var(--color-emphasis-conceptual);
+    font-weight: 500;
+}
+
+/* Warning Text: Weight 500, Color #D73502 */
+.warning-text {
+    font-weight: 500;
+    color: var(--color-emphasis-warning);
+}
+
+/* Success Text: Weight 500, Color #0F7B0F */
+.success-text {
+    font-weight: 500;
+    color: var(--color-emphasis-success);
+}
+
+/* Regular Emphasis */
+em, i {
+    font-style: italic;
+    color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   LINK SYSTEM
+   ========================================================================== */
+
+/* Default Links: #2D5AA0 color with subtle underline */
+a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: all 0.2s ease;
+}
+
+/* Hover Links: #1E3F73 color with full underline */
+a:hover {
+    color: var(--color-link-hover);
+    text-decoration-thickness: 2px;
+}
+
+/* Visited Links: #5A2D8A color (purple variant) */
+a:visited {
+    color: var(--color-link-visited);
+}
+
+/* External Links: Small external link icon after text */
+a[href^="http"]:not([href*="ai-orchestrator.github.io"])::after {
+    content: " ↗";
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   BUTTON SYSTEM
+   ========================================================================== */
+
+/* Base button styles */
+.button, button {
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
+    line-height: 1.2;
+}
+
+/* Primary Buttons: #2D5AA0 background, white text */
+.button-primary, button.primary {
+    background-color: var(--color-button-primary);
+    color: white;
+}
+
+.button-primary:hover, button.primary:hover {
+    background-color: var(--color-link-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(45, 90, 160, 0.2);
+}
+
+/* Secondary Buttons: #F5F5F5 background, #2D5AA0 text */
+.button-secondary, button.secondary {
+    background-color: var(--color-button-secondary);
+    color: var(--color-button-primary);
+    border: 1px solid var(--color-border-gray);
+}
+
+.button-secondary:hover, button.secondary:hover {
+    background-color: #EEEEEE;
+    border-color: var(--color-button-primary);
+}
+
+/* Active States: 2px inset shadow for tactile feedback */
+.button:active, button:active {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   FORM ELEMENTS
+   ========================================================================== */
+
+/* Input Fields: 1px border in #E0E0E0, 4px border-radius */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+    font-family: Charter, 'Times New Roman', serif;
+    font-size: 1rem;
+    padding: 12px;
+    border: 1px solid var(--color-border-gray);
+    border-radius: 4px;
+    background-color: white;
+    color: var(--color-text-primary);
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus States: 2px border in #2D5AA0 with subtle glow */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border: 2px solid var(--color-primary-blue);
+    box-shadow: 0 0 0 3px rgba(45, 90, 160, 0.1);
+    padding: 11px; /* Adjust padding to account for thicker border */
+}
+
+/* Labels: 12pt Source Sans Pro, Weight 600, #4A4A4A color */
+label {
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.875rem; /* 14px equivalent to 12pt */
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Help Text: 10pt Charter, #888888 color */
+.help-text {
+    font-size: 0.75rem; /* 12px equivalent to 10pt */
+    color: var(--color-text-tertiary);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   LAYOUT AND GRID SYSTEM
+   ========================================================================== */
+
+/* Container for main content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Desktop Layout (1200px and above) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        display: grid;
+        grid-template-columns: 800px 300px;
+        gap: 40px;
+        padding: 0 30px;
+    }
+    
+    .main-content {
+        grid-column: 1;
+    }
+    
+    .sidebar {
+        grid-column: 2;
+    }
+}
+
+/* Tablet Layout (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        max-width: 90%;
+        padding: 0 20px;
+    }
+    
+    body {
+        line-height: 1.7; /* Increased line height for touch-friendly reading */
+    }
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 767px) {
+    .container {
+        max-width: 95%;
+        padding: 0 10px;
+    }
+    
+    /* Simplified typography scaling for mobile */
+    h1 {
+        font-size: 1.875rem; /* 30px */
+    }
+    
+    h2 {
+        font-size: 1.5rem; /* 24px */
+    }
+    
+    h3 {
+        font-size: 1.25rem; /* 20px */
+    }
+    
+    h4 {
+        font-size: 1.125rem; /* 18px */
+    }
+    
+    h5, h6 {
+        font-size: 1rem; /* 16px */
+    }
+}
+
+/* ==========================================================================
+   QR CODE DESIGN SYSTEM
+   ========================================================================== */
+
+.qr-code-container {
+    display: inline-block;
+    background-color: var(--color-qr-background);
+    border: 1px solid var(--color-qr-border);
+    border-radius: 4px;
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+}
+
+.qr-code {
+    width: 60px; /* 15mm equivalent at 96 DPI */
+    height: 60px;
+    display: block;
+    margin: 0 auto 8px auto;
+}
+
+.qr-code-label {
+    font-size: 0.625rem; /* 10px equivalent to 8pt */
+    color: var(--color-text-tertiary);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* QR Code Category Icons */
+.qr-code-container::before {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    font-size: 0.625rem;
+}
+
+.qr-code-container.citation::before {
+    content: "📎";
+}
+
+.qr-code-container.data-viz::before {
+    content: "📊";
+}
+
+.qr-code-container.video::before {
+    content: "▶️";
+}
+
+.qr-code-container.community::before {
+    content: "💬";
+}
+
+/* ==========================================================================
+   INTERACTIVE ELEMENTS AND STATES
+   ========================================================================== */
+
+/* Hover states for interactive elements */
+.interactive:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--color-border-gray);
+    border-top-color: var(--color-primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY FEATURES
+   ========================================================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text-primary: #000000;
+        --color-text-secondary: #333333;
+        --color-background-primary: #FFFFFF;
+        --color-primary-blue: #0000FF;
+        --color-link: #0000FF;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus indicators for keyboard navigation */
+*:focus {
+    outline: 2px solid var(--color-primary-blue);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primary-blue);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Spacing utilities */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Display utilities */
+.hidden { display: none; }
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+/* Flexbox utilities */
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
+.flex-wrap { flex-wrap: wrap; }
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    body {
+        font-size: 11pt;
+        line-height: 1.4;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    
+    p, blockquote {
+        orphans: 3;
+        widows: 3;
+    }
+    
+    blockquote, pre {
+        page-break-inside: avoid;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
+
