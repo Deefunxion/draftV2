@@ -1,0 +1,51 @@
+# Research and draft files
+*.md
+*.txt
+
+# Batch files for development
+*.bat
+
+# Temporary and draft files
+*draft*
+*temp*
+*test*
+*_attempt*
+*_clean*
+*backup*
+
+# Development directories
+expanded _draft_V2.files/
+digital_assets_gptagent/
+
+# Specific files to ignore
+AI_for_Smart_Dummies_Draft.md
+expanded _draft_V2.md
+LIVE-THEME-SYSTEM-COMPLETE.md
+THEME-PROMPTS-READY.md
+color_modes.txt
+setup-theme-branches.bat
+start-live-demo.bat
+switch-theme.bat
+index_clean.html
+index_first_attempt.html
+index_second_attempt.html
+index_third_attempt.html
+theme-toggle.js
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if any)
+node_modules/
