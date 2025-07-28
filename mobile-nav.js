@@ -54,6 +54,7 @@ function initializeMobileNav() {
         const mobileLink = link.cloneNode(true);
         mobileLink.setAttribute('tabindex', '0');
         mobileNav.appendChild(mobileLink);
+    });
     
     // Add close button to mobile nav
     mobileNav.appendChild(closeBtn);
