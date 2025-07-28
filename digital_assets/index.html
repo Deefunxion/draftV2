@@ -6,18 +6,18 @@
     <title>Διαδραστικό Κέντρο Μάθησης - Διευθυντής Τεχνητής Νοημοσύνης</title>
     <link rel="stylesheet" href="../book-style.css">
     <link rel="stylesheet" href="../theme-switcher.css">
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <div class="nav-menu">
-        <a href="../index.html">Εστία</a>
+        <a href="../index.html"><strong>← Κύριο Μενού</strong></a>
         <a href="../main-book.html">Βιβλίον</a>
         <a href="../student_workbook_enhanced.html">Τετράδιον Εργασιών</a>
         <a href="../quick_reference_guide.html">Εγκόλπιον</a>
         <a href="../instructor_implementation_guide_parts_1_2.html">Οδηγός</a>
         <a href="../ai-smart-dummies-guide.html">Αλφαβητάριον</a>
         <a href="../digital_assets/index.html">Εποπτικά Μέσα</a>
-        <a href="../videos.html">Βιντεοθήκη</a>
         <a href="../videos.html">Βιντεοθήκη</a>
         <a href="../neo/index.html">Έδρα</a>
         <a href="https://deefunxion.github.io/AILEADER/" target="_blank">Αγωγή</a>
@@ -63,7 +63,7 @@
         <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank">Εξήγηση Νευρωνικών Δικτύων</a>
     </div>
 
-    <h2>◆ Οπτικοποιήσεις</h2>
+    <h2><i class="fa-solid fa-chart-bar"></i> Οπτικοποιήσεις</h2>
     <div class="resource-grid">
         <a href="https://www.figma.com/templates" target="_blank">Πρότυπα Αξιολόγησης</a>
         <a href="https://www.notion.so/templates" target="_blank">Εργαλεία Ανάλυσης Κόστους</a>
@@ -72,7 +72,28 @@
         <a href="https://miro.com/templates" target="_blank">Στρατηγικός Σχεδιασμός</a>
     </div>
 
-    <!-- Theme switcher will be auto-added here by JavaScript -->
+    <!-- Completion Section -->
+    <div class="completion-section">
+        <h3><i class="fa-solid fa-tools"></i> Ολοκληρώσατε τα Εποπτικά Μέσα!</h3>
+        <p>Εξερευνήσατε τα εργαλεία και τις αναφορές! Τώρα είστε έτοιμοι για πρακτική εφαρμογή με το <strong>Τετράδιον Εργασιών</strong>.</p>
+        
+        <button id="complete-level-btn" class="completion-button" 
+                data-unlocks="level_4" 
+                data-section-id="epoptika_mesa">
+            <i class="fa-solid fa-check"></i> Ολοκλήρωσα τα Εποπτικά Μέσα - Ξεκλειδώστε το Τετράδιον!
+        </button>
+        
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">
+            Πατώντας αυτό το κουμπί θα ξεκλειδώσετε το επόμενο επίπεδο.
+        </p>
+    </div>
+
+    <!-- Back to Dashboard -->
+    <a href="../index.html" class="back-to-dashboard"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στο Κύριο Μενού</a>
+
+    <!-- Scripts -->
+    <script src="../learning-path.js"></script>
+    <script src="../progress-tracker.js"></script>
     <script src="../theme-switcher.js"></script>
 </body>
 </html>

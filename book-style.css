@@ -46,6 +46,29 @@ body {
 }
 
 /* =================================
+   FONT AWESOME ICON STYLING
+   ================================= */
+
+/* Icon styling for consistent spacing and color */
+h3 i, h3 a i, h2 i, h2 a i {
+    margin-right: 0.75em;
+    color: var(--text-color);
+    width: 1.2em;
+    text-align: center;
+}
+
+.card-icon i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.card-meta i {
+    margin-right: 4px;
+    font-size: 10px;
+}
+
+/* =================================
    PROGRESSION SYSTEM STYLES
    ================================= */
 

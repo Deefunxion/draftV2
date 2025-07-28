@@ -12,7 +12,7 @@ const learningPath = {
     subtitle: 'Στρατηγικός Οδηγός για την ΤΝ',
     description: 'Ξεκινήστε εδώ αν η ΤΝ σας κατακλύζει. Οδηγός χωρίς τεχνική ορολογία.',
     entry_point: 'ai-smart-dummies-guide.html',
-    icon: '●',
+    icon: '<i class="fa-solid fa-compass"></i>',
     color: '#2563eb', // Blue
     unlocks: 'level_1',
     estimated_time: '45 λεπτά',
@@ -26,7 +26,7 @@ const learningPath = {
     subtitle: 'Οδηγός Γρήγορης Αναφοράς',
     description: 'Συμπυκνωμένος οδηγός με τις βασικότερες τεχνικές και εργαλεία.',
     entry_point: 'quick_reference_guide.html',
-    icon: '►',
+    icon: '<i class="fa-solid fa-compass"></i>',
     color: '#059669', // Green
     unlocks: 'level_2',
     estimated_time: '30 λεπτά',
@@ -40,7 +40,7 @@ const learningPath = {
     subtitle: 'Επιμελημένη Συλλογή Εκπαίδευσης',
     description: 'Συλλογή 49+ εκπαιδευτικών βίντεο οργανωμένων σε 6 κατηγορίες.',
     entry_point: 'videos.html',
-    icon: '●',
+    icon: '<i class="fa-solid fa-video"></i>',
     color: '#dc2626', // Red
     unlocks: 'level_3',
     estimated_time: '2-4 ώρες',
@@ -54,7 +54,7 @@ const learningPath = {
     subtitle: 'Εργαλεία και Αναφορές',
     description: 'Οπτικοποιήσεις, εργαλεία ΤΝ και επιμελημένη συλλογή πόρων.',
     entry_point: 'digital_assets/index.html',
-    icon: '◉',
+    icon: '<i class="fa-solid fa-chart-bar"></i>',
     color: '#7c3aed', // Purple
     unlocks: 'level_4',
     estimated_time: '1-2 ώρες',
@@ -68,7 +68,7 @@ const learningPath = {
     subtitle: 'Πρακτικές Ασκήσεις',
     description: 'Πρακτικές ασκήσεις, εργαλεία αυτοαξιολόγησης και εφαρμογές.',
     entry_point: 'student_workbook_enhanced.html',
-    icon: '▪',
+    icon: '<i class="fa-solid fa-pencil"></i>',
     color: '#ea580c', // Orange
     unlocks: 'level_5',
     estimated_time: '3-5 ώρες',
@@ -82,7 +82,7 @@ const learningPath = {
     subtitle: 'The AI Orchestrator Curriculum',
     description: 'Πλήρες περιεχόμενο προγράμματος AI Orchestrator (Κεφάλαια 1-11).',
     entry_point: 'main-book.html',
-    icon: '■',
+    icon: '<i class="fa-solid fa-book-open"></i>',
     color: '#1f2937', // Dark Gray
     unlocks: 'level_6',
     estimated_time: '8-12 ώρες',
@@ -96,7 +96,7 @@ const learningPath = {
     subtitle: 'Υλοποίηση και Αξιολόγηση',
     description: 'Οδηγός υλοποίησης για εκπαιδευτικούς με πλαίσια αξιολόγησης.',
     entry_point: 'instructor_implementation_guide_parts_1_2.html',
-    icon: '◆',
+    icon: '<i class="fa-solid fa-chalkboard-teacher"></i>',
     color: '#0891b2', // Cyan
     unlocks: 'level_7',
     estimated_time: '2-3 ώρες',
@@ -110,7 +110,7 @@ const learningPath = {
     subtitle: 'Έδρα Διευθυντή ΑΙ',
     description: 'Πλατφόρμα ανάπτυξης και διαχείρισης οικοσυστήματος με κοινότητα.',
     entry_point: 'neo/index.html',
-    icon: '★',
+    icon: '<i class="fa-solid fa-star"></i>',
     color: '#be185d', // Pink
     unlocks: 'level_8',
     estimated_time: '1-2 ώρες',
@@ -124,7 +124,7 @@ const learningPath = {
     subtitle: 'Θεμελιώδης Φιλοσοφία',
     description: 'Η φιλοσοφία και μεθοδολογία του AI Orchestrator.',
     entry_point: 'didaskalia.html',
-    icon: '◈',
+    icon: '<i class="fa-solid fa-brain"></i>',
     color: '#374151', // Gray
     unlocks: 'level_9',
     estimated_time: '2-4 ώρες',
@@ -138,7 +138,7 @@ const learningPath = {
     subtitle: 'Τεχνική Τεκμηρίωση',
     description: 'Τεχνική τεκμηρίωση, πρωτόκολλα ασφαλείας και άμυνα κατά prompt injection.',
     entry_point: 'themelion.html',
-    icon: '⬟',
+    icon: '<i class="fa-solid fa-shield-alt"></i>',
     color: '#065f46', // Dark Green
     unlocks: 'level_10',
     estimated_time: '3-5 ώρες',
@@ -152,7 +152,7 @@ const learningPath = {
     subtitle: 'Στρατηγική για C-level',
     description: 'Στρατηγική για ανώτερα διοικητικά στελέχη και οργανωσιακός μετασχηματισμός.',
     entry_point: 'https://deefunxion.github.io/AILEADER/',
-    icon: '▲',
+    icon: '<i class="fa-solid fa-rocket"></i>',
     color: '#7c2d12', // Brown
     unlocks: null, // Final level
     estimated_time: '4-6 ώρες',
