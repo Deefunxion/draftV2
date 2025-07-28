@@ -112,7 +112,8 @@ class LivingMarginDoodler {
         // Listen for AI-Q updates
         document.addEventListener('aiq-updated', (e) => {
             this.currentIQ = e.detail.iq;
-            this.updateStrokeStyle();
+            this.updateStrokeStyleForIQ();
+            console.log(`AI-Q updated to ${this.currentIQ} - stroke style enhanced!`);
         });
     }
 
@@ -178,38 +179,214 @@ class LivingMarginDoodler {
     }
 
     /**
-     * Basic smoothing algorithm (will be enhanced in Phase 3)
+     * AI-Q based stroke smoothing algorithm - THE MAGIC HAPPENS HERE
      */
-    applyBasicSmoothing(point) {
-        if (this.currentPath.length < 3) {
-            return point;
-        }
+    applyIQSmoothing(rawPoints, currentIQ) {
+        if (rawPoints.length < 2) return rawPoints;
 
-        // For now, just return the original point
-        // This will be replaced with AI-Q based smoothing
-        return point;
+        // IQ-based smoothing levels
+        if (currentIQ < 70) {
+            // Νεόφυτος: Raw, unprocessed strokes
+            return rawPoints;
+        } 
+        else if (currentIQ >= 70 && currentIQ < 90) {
+            // Αρχάριος: Basic averaging smoothing
+            return this.applyBasicSmoothing(rawPoints);
+        } 
+        else if (currentIQ >= 90 && currentIQ < 110) {
+            // Έμπειρος: Advanced smoothing with variable width
+            return this.applyAdvancedSmoothing(rawPoints);
+        } 
+        else if (currentIQ >= 110) {
+            // Μάστερ: Artistic Bezier curve smoothing
+            return this.applyMasterSmoothing(rawPoints);
+        }
     }
 
     /**
-     * Update stroke style based on current AI-Q
+     * Basic smoothing: Simple point averaging
      */
-    updateStrokeStyle() {
-        // Basic implementation - will be enhanced
+    applyBasicSmoothing(points) {
+        if (points.length < 3) return points;
+        
+        const smoothed = [points[0]]; // Keep first point
+        
+        for (let i = 1; i < points.length - 1; i++) {
+            const prev = points[i - 1];
+            const curr = points[i];
+            const next = points[i + 1];
+            
+            // Average with neighbors
+            const smoothPoint = {
+                x: (prev.x + curr.x + next.x) / 3,
+                y: (prev.y + curr.y + next.y) / 3
+            };
+            smoothed.push(smoothPoint);
+        }
+        
+        smoothed.push(points[points.length - 1]); // Keep last point
+        return smoothed;
+    }
+
+    /**
+     * Advanced smoothing: Quadratic interpolation with variable width
+     */
+    applyAdvancedSmoothing(points) {
+        if (points.length < 4) return this.applyBasicSmoothing(points);
+        
+        const smoothed = [];
+        
+        for (let i = 0; i < points.length - 1; i++) {
+            const p0 = points[Math.max(0, i - 1)];
+            const p1 = points[i];
+            const p2 = points[i + 1];
+            const p3 = points[Math.min(points.length - 1, i + 2)];
+            
+            // Catmull-Rom interpolation for smoothness
+            for (let t = 0; t < 1; t += 0.2) {
+                const x = this.catmullRom(p0.x, p1.x, p2.x, p3.x, t);
+                const y = this.catmullRom(p0.y, p1.y, p2.y, p3.y, t);
+                smoothed.push({ x, y });
+            }
+        }
+        
+        return smoothed;
+    }
+
+    /**
+     * Master smoothing: Artistic Bezier curves with dynamic width
+     */
+    applyMasterSmoothing(points) {
+        if (points.length < 3) return points;
+        
+        const smoothed = [];
+        
+        for (let i = 0; i < points.length - 2; i += 2) {
+            const p0 = points[i];
+            const p1 = points[i + 1];
+            const p2 = points[Math.min(points.length - 1, i + 2)];
+            
+            // Create control point for smooth curve
+            const cp = {
+                x: (p0.x + p2.x) / 2,
+                y: (p0.y + p2.y) / 2
+            };
+            
+            // Generate smooth curve points
+            for (let t = 0; t <= 1; t += 0.1) {
+                const x = this.quadraticBezier(p0.x, cp.x, p2.x, t);
+                const y = this.quadraticBezier(p0.y, cp.y, p2.y, t);
+                smoothed.push({ x, y });
+            }
+        }
+        
+        return smoothed;
+    }
+
+    /**
+     * Catmull-Rom spline interpolation
+     */
+    catmullRom(p0, p1, p2, p3, t) {
+        const t2 = t * t;
+        const t3 = t2 * t;
+        return 0.5 * (
+            (2 * p1) +
+            (-p0 + p2) * t +
+            (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
+            (-p0 + 3 * p1 - 3 * p2 + p3) * t3
+        );
+    }
+
+    /**
+     * Quadratic Bezier curve
+     */
+    quadraticBezier(p0, p1, p2, t) {
+        const u = 1 - t;
+        return u * u * p0 + 2 * u * t * p1 + t * t * p2;
+    }
+
+    /**
+     * Enhanced draw function with IQ-based smoothing
+     */
+    draw(e) {
+        if (!this.isDrawing) return;
+
+        const coords = this.getCoordinates(e);
+        this.currentPath.push(coords);
+
+        // Apply IQ-based stroke styling
+        this.updateStrokeStyleForIQ();
+
+        // Only apply smoothing if we have enough points
+        if (this.currentPath.length > 2) {
+            // Get smoothed version of current path
+            const smoothedPath = this.applyIQSmoothing([...this.currentPath], this.currentIQ);
+            
+            // Redraw the current stroke with smoothed path
+            this.redrawCurrentStroke(smoothedPath);
+        } else {
+            // For first few points, draw normally
+            this.ctx.lineTo(coords.x, coords.y);
+            this.ctx.stroke();
+        }
+    }
+
+    /**
+     * Redraw current stroke with smoothed path
+     */
+    redrawCurrentStroke(smoothedPath) {
+        if (smoothedPath.length < 2) return;
+        
+        this.ctx.beginPath();
+        this.ctx.moveTo(smoothedPath[0].x, smoothedPath[0].y);
+        
+        for (let i = 1; i < smoothedPath.length; i++) {
+            this.ctx.lineTo(smoothedPath[i].x, smoothedPath[i].y);
+        }
+        
+        this.ctx.stroke();
+    }
+
+    /**
+     * Enhanced stroke styling based on AI-Q level
+     */
+    updateStrokeStyleForIQ() {
         let strokeWidth = this.baseStrokeWidth;
         let opacity = 0.7;
+        let strokeColor = this.strokeColor;
 
-        if (this.currentIQ >= 90) {
+        if (this.currentIQ < 70) {
+            // Νεόφυτος: Rough, basic strokes
+            strokeWidth = this.baseStrokeWidth * 0.8;
+            opacity = 0.6;
+            strokeColor = '#6b7280'; // Gray
+        } 
+        else if (this.currentIQ >= 70 && this.currentIQ < 90) {
+            // Αρχάριος: Cleaner strokes
+            strokeWidth = this.baseStrokeWidth;
+            opacity = 0.7;
+            strokeColor = '#3b82f6'; // Blue
+        } 
+        else if (this.currentIQ >= 90 && this.currentIQ < 110) {
+            // Έμπειρος: Refined strokes with slight glow
             strokeWidth = this.baseStrokeWidth * 1.2;
             opacity = 0.8;
-        }
-
-        if (this.currentIQ >= 110) {
-            strokeWidth = this.baseStrokeWidth * 1.5;
+            strokeColor = '#7c3aed'; // Purple
+            this.ctx.shadowColor = strokeColor;
+            this.ctx.shadowBlur = 2;
+        } 
+        else if (this.currentIQ >= 110) {
+            // Μάστερ: Artistic, beautiful strokes
+            strokeWidth = this.baseStrokeWidth * 1.4;
             opacity = 0.9;
+            strokeColor = '#059669'; // Emerald
+            this.ctx.shadowColor = strokeColor;
+            this.ctx.shadowBlur = 4;
         }
 
         this.ctx.lineWidth = strokeWidth;
         this.ctx.globalAlpha = opacity;
+        this.ctx.strokeStyle = strokeColor;
     }
 
     /**
