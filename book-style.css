@@ -46,6 +46,98 @@ body {
 }
 
 /* =================================
+   LIVING MARGIN CANVAS SYSTEM
+   ================================= */
+
+/* The Creative Edge - Left Margin Canvas */
+#living-margin-canvas {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 100vh;
+    z-index: 998; /* Below AI-Q profile but above content */
+    cursor: crosshair;
+    background: linear-gradient(to right, 
+        rgba(255, 255, 255, 0.02) 0%, 
+        rgba(255, 255, 255, 0.01) 50%, 
+        transparent 100%);
+    border-right: 1px solid rgba(0, 0, 0, 0.03);
+    pointer-events: auto;
+    touch-action: none; /* Prevent default scrolling on touch */
+}
+
+/* Clear Doodles Button */
+#clear-doodles-btn {
+    position: fixed;
+    left: 15px;
+    bottom: 20px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-size: 14px;
+    color: #6b7280;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#clear-doodles-btn:hover {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+}
+
+#clear-doodles-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive adjustments for Living Margin */
+@media (max-width: 768px) {
+    #living-margin-canvas {
+        width: 40px; /* Smaller on mobile */
+    }
+    
+    #clear-doodles-btn {
+        left: 10px;
+        bottom: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+}
+
+/* Canvas fade-in animation */
+#living-margin-canvas {
+    opacity: 0;
+    animation: canvasFadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes canvasFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Adjust main content to account for Living Margin */
+.aiq-dashboard {
+    margin-left: 60px; /* Make room for the canvas */
+}
+
+@media (max-width: 768px) {
+    .aiq-dashboard {
+        margin-left: 40px;
+    }
+}
+
+/* =================================
    AI-Q DASHBOARD SYSTEM
    ================================= */
 

@@ -242,6 +242,15 @@ class AIQTracker {
             iqRankElement.textContent = this.getCurrentRank();
         }
 
+        // Dispatch AI-Q update event for Living Margin Doodler
+        document.dispatchEvent(new CustomEvent('aiq-updated', {
+            detail: {
+                iq: this.progress.iq,
+                rank: this.getCurrentRank(),
+                totalPoints: this.progress.totalPoints
+            }
+        }));
+
         // Update any cards on the page
         this.updateCardStates();
     }
