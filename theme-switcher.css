@@ -12,6 +12,27 @@
     --theme-card-bg: #FFFFFF;
     --theme-border: #000000;
     --theme-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #F8F9FA;
+    --table-row-even-bg: #FFFFFF;
+    --table-row-odd-bg: #F8F9FA;
+    --code-block-bg: #F8F9FA;
+    --highlight-bg: #FFF3CD;
+    --success-bg: #D4EDDA;
+    --warning-bg: #FFF3CD;
+    --foundation-path-bg: #F9F9F9;
+    --core-path-bg: #FFFFFF;
+    --advanced-path-bg: #F5F5F5;
+    --stats-box-bg: #FFFFFF;
+    --resource-grid-bg: #FFFFFF;
+    --text-on-accent-color: #000000;
+    
+    /* Video Library Variables */
+    --bg-color: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --border-color: #000000;
+    --accent-color: #000000;
 }
 
 /* Apple Luxury Theme Variables */
@@ -24,6 +45,27 @@
     --theme-card-bg: #FBFBFD;
     --theme-border: #D2D2D7;
     --theme-shadow: rgba(0, 0, 0, 0.08);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #F5F5F7;
+    --table-row-even-bg: #FBFBFD;
+    --table-row-odd-bg: #F5F5F7;
+    --code-block-bg: #F5F5F7;
+    --highlight-bg: #FFF4E6;
+    --success-bg: #E8F5E8;
+    --warning-bg: #FFF4E6;
+    --foundation-path-bg: #F5F5F7;
+    --core-path-bg: #FBFBFD;
+    --advanced-path-bg: #F0F0F2;
+    --stats-box-bg: #FBFBFD;
+    --resource-grid-bg: #FBFBFD;
+    --text-on-accent-color: #1D1D1F;
+    
+    /* Video Library Variables */
+    --bg-color: #FFFFFF;
+    --card-bg: #FBFBFD;
+    --border-color: #D2D2D7;
+    --accent-color: #0071e3;
 }
 
 /* Conversion Psychology Theme Variables */
@@ -36,6 +78,27 @@
     --theme-card-bg: #F8F9FA;
     --theme-border: #DEE2E6;
     --theme-shadow: rgba(255, 122, 0, 0.3);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #FFE5CC;
+    --table-row-even-bg: #F8F9FA;
+    --table-row-odd-bg: #FFF8F0;
+    --code-block-bg: #F8F9FA;
+    --highlight-bg: #FFE5CC;
+    --success-bg: #D4F7DC;
+    --warning-bg: #FFE5CC;
+    --foundation-path-bg: #FFF8F0;
+    --core-path-bg: #F8F9FA;
+    --advanced-path-bg: #E5F3FF;
+    --stats-box-bg: #F8F9FA;
+    --resource-grid-bg: #F8F9FA;
+    --text-on-accent-color: #212529;
+    
+    /* Video Library Variables */
+    --bg-color: #FFFFFF;
+    --card-bg: #F8F9FA;
+    --border-color: #DEE2E6;
+    --accent-color: #FF7A00;
 }
 
 /* Performance Optimized Theme Variables */
@@ -48,6 +111,21 @@
     --theme-card-bg: #F9FAFB;
     --theme-border: #E5E7EB;
     --theme-shadow: rgba(0, 0, 0, 0.05);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #EBF8FF;
+    --table-row-even-bg: #F9FAFB;
+    --table-row-odd-bg: #F3F4F6;
+    --code-block-bg: #F9FAFB;
+    --highlight-bg: #DBEAFE;
+    --success-bg: #D1FAE5;
+    --warning-bg: #FEF3C7;
+    --foundation-path-bg: #F3F4F6;
+    --core-path-bg: #F9FAFB;
+    --advanced-path-bg: #EBF8FF;
+    --stats-box-bg: #F9FAFB;
+    --resource-grid-bg: #F9FAFB;
+    --text-on-accent-color: #111827;
 }
 
 /* Cinematic Storytelling Theme Variables */
@@ -60,6 +138,21 @@
     --theme-card-bg: #E8E8E0;
     --theme-border: #7A8C7A;
     --theme-shadow: rgba(0, 0, 0, 0.15);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #D4B429;
+    --table-row-even-bg: #F8F8F0;
+    --table-row-odd-bg: #E8E8E0;
+    --code-block-bg: #E8E8E0;
+    --highlight-bg: #F4E6A1;
+    --success-bg: #C8D6C8;
+    --warning-bg: #F4E6A1;
+    --foundation-path-bg: #F8F8F0;
+    --core-path-bg: #FEFEF9;
+    --advanced-path-bg: #E8E8E0;
+    --stats-box-bg: #E8E8E0;
+    --resource-grid-bg: #E8E8E0;
+    --text-on-accent-color: #1A1A1A;
 }
 
 /* Mobile Social Theme Variables */
@@ -72,6 +165,21 @@
     --theme-card-bg: #F7F9FA;
     --theme-border: #E1E8ED;
     --theme-shadow: rgba(0, 0, 0, 0.08);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #E1F5FE;
+    --table-row-even-bg: #F7F9FA;
+    --table-row-odd-bg: #F0F8F0;
+    --code-block-bg: #F7F9FA;
+    --highlight-bg: #E1F5FE;
+    --success-bg: #E8F5E8;
+    --warning-bg: #FFF3E0;
+    --foundation-path-bg: #F7F9FA;
+    --core-path-bg: #FFFFFF;
+    --advanced-path-bg: #F0F8F0;
+    --stats-box-bg: #F7F9FA;
+    --resource-grid-bg: #F7F9FA;
+    --text-on-accent-color: #14171A;
 }
 
 /* Accessibility WCAG Theme Variables */
@@ -84,6 +192,21 @@
     --theme-card-bg: #F8F9FA;
     --theme-border: #333333;
     --theme-shadow: rgba(0, 0, 0, 0.2);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #CCE5FF;
+    --table-row-even-bg: #F8F9FA;
+    --table-row-odd-bg: #F0F8F0;
+    --code-block-bg: #F8F9FA;
+    --highlight-bg: #CCE5FF;
+    --success-bg: #C8E6C8;
+    --warning-bg: #FFF2CC;
+    --foundation-path-bg: #F8F9FA;
+    --core-path-bg: #FFFFFF;
+    --advanced-path-bg: #F0F8F0;
+    --stats-box-bg: #F8F9FA;
+    --resource-grid-bg: #F8F9FA;
+    --text-on-accent-color: #000000;
 }
 
 /* Micro-Interactions Theme Variables */
@@ -96,6 +219,21 @@
     --theme-card-bg: #F3F4F6;
     --theme-border: #E5E7EB;
     --theme-shadow: rgba(99, 102, 241, 0.1);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #E0E7FF;
+    --table-row-even-bg: #F3F4F6;
+    --table-row-odd-bg: #FAFAFF;
+    --code-block-bg: #F3F4F6;
+    --highlight-bg: #FEF3C7;
+    --success-bg: #D1FAE5;
+    --warning-bg: #FEF3C7;
+    --foundation-path-bg: #F3F4F6;
+    --core-path-bg: #FAFAFF;
+    --advanced-path-bg: #FCE7F3;
+    --stats-box-bg: #F3F4F6;
+    --resource-grid-bg: #F3F4F6;
+    --text-on-accent-color: #1F2937;
 }
 
 /* 3D Futuristic Theme Variables */
@@ -108,6 +246,27 @@
     --theme-card-bg: rgba(0, 212, 255, 0.1);
     --theme-border: #00D4FF;
     --theme-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: rgba(0, 212, 255, 0.2);
+    --table-row-even-bg: rgba(0, 212, 255, 0.05);
+    --table-row-odd-bg: rgba(255, 107, 157, 0.05);
+    --code-block-bg: rgba(0, 212, 255, 0.1);
+    --highlight-bg: rgba(201, 255, 220, 0.2);
+    --success-bg: rgba(201, 255, 220, 0.2);
+    --warning-bg: rgba(255, 107, 157, 0.2);
+    --foundation-path-bg: rgba(0, 212, 255, 0.05);
+    --core-path-bg: rgba(0, 212, 255, 0.1);
+    --advanced-path-bg: rgba(255, 107, 157, 0.1);
+    --stats-box-bg: rgba(0, 212, 255, 0.1);
+    --resource-grid-bg: rgba(0, 212, 255, 0.05);
+    --text-on-accent-color: #E0E6ED;
+    
+    /* Video Library Variables */
+    --bg-color: #0F0F23;
+    --card-bg: rgba(0, 212, 255, 0.1);
+    --border-color: #00D4FF;
+    --accent-color: #00D4FF;
 }
 
 /* Modular Variables Theme Variables */
@@ -120,6 +279,21 @@
     --theme-card-bg: #F9FAFB;
     --theme-border: #D1D5DB;
     --theme-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #D1FAE5;
+    --table-row-even-bg: #F9FAFB;
+    --table-row-odd-bg: #F3F4F6;
+    --code-block-bg: #F9FAFB;
+    --highlight-bg: #DBEAFE;
+    --success-bg: #D1FAE5;
+    --warning-bg: #FEF3C7;
+    --foundation-path-bg: #F9FAFB;
+    --core-path-bg: #FFFFFF;
+    --advanced-path-bg: #EDE9FE;
+    --stats-box-bg: #F9FAFB;
+    --resource-grid-bg: #F9FAFB;
+    --text-on-accent-color: #111827;
 }
 
 /* Eco Natural Theme Variables */
@@ -132,6 +306,21 @@
     --theme-card-bg: #ECFDF5;
     --theme-border: #10B981;
     --theme-shadow: rgba(5, 150, 105, 0.1);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #A7F3D0;
+    --table-row-even-bg: #ECFDF5;
+    --table-row-odd-bg: #F7FDF7;
+    --code-block-bg: #ECFDF5;
+    --highlight-bg: #FEF3C7;
+    --success-bg: #D1FAE5;
+    --warning-bg: #FEF3C7;
+    --foundation-path-bg: #ECFDF5;
+    --core-path-bg: #F7FDF7;
+    --advanced-path-bg: #FED7AA;
+    --stats-box-bg: #ECFDF5;
+    --resource-grid-bg: #ECFDF5;
+    --text-on-accent-color: #1F2937;
 }
 
 /* Editorial Magazine Theme Variables */
@@ -144,6 +333,21 @@
     --theme-card-bg: #FFFFFF;
     --theme-border: #E5E7EB;
     --theme-shadow: rgba(0, 0, 0, 0.08);
+    
+    /* Semantic Color Variables for Content Elements */
+    --table-header-bg: #FEF3C7;
+    --table-row-even-bg: #FFFFFF;
+    --table-row-odd-bg: #FFFBF0;
+    --code-block-bg: #FFFFFF;
+    --highlight-bg: #FEF3C7;
+    --success-bg: #D1FAE5;
+    --warning-bg: #FEF3C7;
+    --foundation-path-bg: #FFFFFF;
+    --core-path-bg: #FFFBF0;
+    --advanced-path-bg: #FEE2E2;
+    --stats-box-bg: #FFFFFF;
+    --resource-grid-bg: #FFFFFF;
+    --text-on-accent-color: #111827;
 }
 
 /* Core Styles - All Themes */
