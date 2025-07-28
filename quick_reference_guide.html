@@ -7,10 +7,11 @@
   <title>Quick Reference Guide</title>
   <link rel="stylesheet" href="book-style.css">
   <link rel="stylesheet" href="theme-switcher.css">
+  <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
 </head>
 <body>
 <div class="nav-menu">
-      <a href="index.html">Εστία</a>
+      <a href="index.html"><strong>← Κύριο Μενού</strong></a>
       <a href="main-book.html">Βιβλίον</a>
       <a href="student_workbook_enhanced.html">Τετράδιον Εργασιών</a>
       <a href="quick_reference_guide.html">Εγκόλπιον</a>
@@ -305,11 +306,32 @@ style="text-align: left;"><code>"Here is the beginning of the text I want you to
 Απειλών ενός έργου ή μιας επιχείρησης.</li>
 </ul>
 
-<div class="back-link">
-    <a href="index.html">← Επιστροφή στην Αρχική</a>
+<!-- Completion Section -->
+<div class="completion-section">
+    <h3><i class="fa-solid fa-trophy"></i> Ολοκληρώσατε το Εγκόλπιον!</h3>
+    <p>Τώρα έχετε γρήγορη πρόσβαση σε όλες τις βασικές έννοιες και τεχνικές. Επόμενο βήμα: Εξερευνήστε τη <strong>Βιντεοθήκη</strong> για να δείτε τη θεωρία σε δράση!</p>
+    
+    <button id="complete-level-btn" class="completion-button" 
+            data-unlocks="level_2" 
+            data-section-id="egkolpion">
+        <i class="fa-solid fa-check"></i> Ολοκλήρωσα το Εγκόλπιον - Ξεκλειδώστε τη Βιντεοθήκη!
+    </button>
+    
+    <p style="margin-top: 15px; font-size: 14px; color: #666;">
+        Πατώντας αυτό το κουμπί θα ξεκλειδώσετε το επόμενο επίπεδο.
+    </p>
 </div>
 
-<!-- Theme Toggle Script -->
+<div class="back-link">
+    <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στην Αρχική</a>
+</div>
+
+<!-- Back to Dashboard -->
+<a href="index.html" class="back-to-dashboard"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στο Κύριο Μενού</a>
+
+<!-- Scripts -->
+<script src="learning-path.js"></script>
+<script src="progress-tracker.js"></script>
 <script src="theme-switcher.js"></script>
 
 </body>
