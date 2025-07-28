@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neo-Monday Protocol</title>
+    <title>Neo-Monday Protocol - Διδασκαλία</title>
+    <link rel="stylesheet" href="book-style.css">
+    <link rel="stylesheet" href="theme-switcher.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
@@ -393,8 +395,25 @@
         .terminal-empty-line {
             height: 20px;
         }
-    </style>
-</head>
+<body class="min-h-screen">
+    <!-- Main Project Navigation -->
+    <div class="nav-menu">
+        <a href="index.html">Εστία</a>
+        <a href="main-book.html">Βιβλίον</a>
+        <a href="student_workbook_enhanced.html">Τετράδιον Εργασιών</a>
+        <a href="quick_reference_guide.html">Εγκόλπιον</a>
+        <a href="instructor_implementation_guide_parts_1_2.html">Οδηγός</a>
+        <a href="ai-smart-dummies-guide.html">Αλφαβητάριον</a>
+        <a href="digital_assets/index.html">Εποπτικά Μέσα</a>
+        <a href="videos.html">Βιντεοθήκη</a>
+        <a href="videos.html">Βιντεοθήκη</a>
+        <a href="neo/index.html">Έδρα</a>
+        <a href="https://deefunxion.github.io/AILEADER/" target="_blank">Αγωγή</a>
+        <a href="didaskalia.html">Διδασκαλία</a>
+        <a href="themelion.html">Θεμέλιον</a>
+    </div>
+
+    <!-- Navigation -->
 <body class="min-h-screen">
     <!-- Navigation -->
     <nav class="border-b border-gray-300 py-4 bg-white/70 backdrop-blur-lg sticky top-0 z-50">
@@ -2709,11 +2728,15 @@ function getBibliographyEntries() {
                         <div class="control-btn maximize"></div>
                     </div>
                 </div>
-                <div class="terminal-content">
-                    <div class="scrolling-content" id="claude-content"></div>
-                </div>
-            </div>
+        </div>
+        <button class="terminal-close-button" id="close-terminal-modal">&times;</button>
+    </div>
 
+    <!-- Theme Switcher Script -->
+    <script src="theme-switcher.js"></script>
+    <script src="mobile-nav.js"></script>
+</body>
+</html>
             <div class="terminal-window" id="gemini-terminal">
                 <div class="terminal-header">
                     <span>GEMINI_CLI</span>
