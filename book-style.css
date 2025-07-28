@@ -253,3 +253,169 @@ pre {
 }
 
 /* REMOVED: Print styles - focus on screen readability first */
+
+/* ===== Video Playlist Styles ===== */
+.playlist-body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Georgia, serif;    /* Match main project font */
+  background: #0f0f0f;
+  color: #ffffff;
+  display: flex;
+  height: 100vh;
+}
+
+/* Main player header - matches site h1 styling */
+.playlist-body h1 {
+  font-size: 24px;               /* Match main site h1 */
+  font-weight: bold;
+  color: #ffffff;                /* Override for dark theme */
+  margin: 20px 0 15px 0;
+  font-family: Georgia, serif;
+}
+
+/* Override nav-menu for playlist page */
+.playlist-body .nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #161616;
+  border-bottom: 1px solid #333;
+  margin-bottom: 0;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.playlist-body .nav-menu a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-size: 14px;
+  padding: 5px 8px;
+}
+
+.playlist-body .nav-menu a:hover {
+  background: #333;
+  color: #ffffff;
+}
+
+/* ===== Layout ===== */
+.player-container {
+  flex: 7;
+  padding: 1.5rem;
+  padding-top: 80px;              /* Account for fixed nav */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.playlist-container {
+  flex: 3;
+  border-left: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;              /* Account for fixed nav */
+}
+
+.playlist-header {
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #161616;
+  border-bottom: 1px solid #333;
+  font-family: Georgia, serif;    /* Match main project font */
+}
+
+.playlist {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ===== Accordion ===== */
+.category {
+  border-bottom: 1px solid #333;
+}
+
+.category-title {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161616;
+  font-family: Georgia, serif;    /* Match main project font */
+}
+
+.category-title:hover {
+  background: #1f1f1f;
+}
+
+.category-title::after {
+  content: "►";                   /* Use your geometric symbols */
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+.category.open .category-title::after {
+  transform: rotate(90deg);
+}
+
+.category-videos {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.category.open .category-videos {
+  max-height: 1000px;
+}
+
+/* ===== Video Items ===== */
+.video-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+}
+
+.video-item:hover {
+  background: #1a1a1a;
+}
+
+.video-item.active {
+  background: #333333;             /* More subtle active state */
+  color: #ffffff;
+}
+
+.video-thumb {
+  width: 120px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.video-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.video-title {
+  font-size: 0.9rem;
+  line-height: 1.2;
+  font-family: Georgia, serif;    /* Match main project font */
+}
+
+.playlist-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}

@@ -1,0 +1,237 @@
+[
+  {
+    "categoryName": "Top 5 \"Must-Watch\" Videos",
+    "videos": [
+      {
+        "title": "Andrej Karpathy: Software Is Changing (Again) - Y Combinator",
+        "url": "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
+        "id": "LCEmiRjPEtQ"
+      },
+      {
+        "title": "RAG vs. CAG: Solving Knowledge Gaps in AI Models - IBM Technology",
+        "url": "https://www.youtube.com/watch?v=HdafI0t3sEY",
+        "id": "HdafI0t3sEY"
+      },
+      {
+        "title": "Prompt Engineering Tutorial – Master ChatGPT and LLM Responses - freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=_ZvnD73m40o",
+        "id": "_ZvnD73m40o"
+      },
+      {
+        "title": "The Future of AI Orchestration: How to Avoid the Tool Trap (It's Costing Companies Millions) - Julia McCoy",
+        "url": "https://www.youtube.com/watch?v=-UfkDiYaeEE",
+        "id": "-UfkDiYaeEE"
+      },
+      {
+        "title": "Claude Code, Gemini CLI, or Cursor? The ONLY Comparison You Need To Watch - Rob Shocks",
+        "url": "https://www.youtube.com/watch?v=JcgdGESQlEQ",
+        "id": "JcgdGESQlEQ"
+      }
+    ]
+  },
+  {
+    "categoryName": "Foundational Concepts",
+    "videos": [
+      {
+        "title": "What Are Orchestrator Agents? AI Tools Working Smarter Together - IBM Technology",
+        "url": "https://www.youtube.com/watch?v=X3XJeTApVMM",
+        "id": "X3XJeTApVMM"
+      },
+      {
+        "title": "Understanding AI Models: Internet Browsing Limitations & Context Lengths - Harper Carroll AI",
+        "url": "https://www.youtube.com/watch?v=OBUNGqpq6AU",
+        "id": "OBUNGqpq6AU"
+      },
+      {
+        "title": "AI Fundamentals: Privacy, Hallucinations, Agents, and Open Source Explained - Harper Carroll AI",
+        "url": "https://www.youtube.com/watch?v=XffC4K3mL5c",
+        "id": "XffC4K3mL5c"
+      },
+      {
+        "title": "Learn LLMs From Scratch: The 5 Step Roadmap - Marina Wyss - AI & Machine Learning",
+        "url": "https://www.youtube.com/watch?v=GLGJCh7fXmI",
+        "id": "GLGJCh7fXmI"
+      },
+      {
+        "title": "What Is Hugging Face and How To Use It - Angel Poon",
+        "url": "https://www.youtube.com/watch?v=3kRB2TXewus",
+        "id": "3kRB2TXewus"
+      },
+      {
+        "title": "Transformers, the tech behind LLMs | Deep Learning Chapter 5 - 3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+        "id": "wjZofJX0v4M"
+      },
+      {
+        "title": "Deep Dive into LLMs like ChatGPT - Andrej Karpathy",
+        "url": "https://www.youtube.com/watch?v=7xTGNNLPyMI",
+        "id": "7xTGNNLPyMI"
+      },
+      {
+        "title": "What is NLP (Natural Language Processing)?",
+        "url": "https://www.youtube.com/watch?v=fLvJ8VdHLA0",
+        "id": "fLvJ8VdHLA0"
+      },
+      {
+        "title": "All Machine Learning algorithms explained in 17 min",
+        "url": "https://www.youtube.com/watch?v=E0Hmnixke2g",
+        "id": "E0Hmnixke2g"
+      }
+    ]
+  },
+  {
+    "categoryName": "High-Level Strategy",
+    "videos": [
+      {
+        "title": "The Future of AI Orchestration: How to Avoid the Tool Trap (It's Costing Companies Millions) - Julia McCoy",
+        "url": "https://www.youtube.com/watch?v=-UfkDiYaeEE",
+        "id": "-UfkDiYaeEE"
+      },
+      {
+        "title": "Sam Altman: The Future of OpenAI, ChatGPT's Origins, and Building AI Hardware - Y Combinator",
+        "url": "https://www.youtube.com/watch?v=V979Wd1gmTU",
+        "id": "V979Wd1gmTU"
+      },
+      {
+        "title": "Nick Bostrom: What AGI Really Means for the Future of Humanity - Young and Profiting",
+        "url": "https://www.youtube.com/watch?v=kEH91HAS1hw",
+        "id": "kEH91HAS1hw"
+      },
+      {
+        "title": "Andrej Karpathy: Software Is Changing (Again) - Y Combinator",
+        "url": "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
+        "id": "LCEmiRjPEtQ"
+      },
+      {
+        "title": "\"Godfather of AI\" Geoffrey Hinton: The 60 Minutes Interview - 60 Minutes",
+        "url": "https://www.youtube.com/watch?v=qrvK_KuIeJk",
+        "id": "qrvK_KuIeJk"
+      },
+      {
+        "title": "The Catastrophic Risks of AI — and a Safer Path | Yoshua Bengio - TED",
+        "url": "https://www.youtube.com/watch?v=qe9QSCF-d88",
+        "id": "qe9QSCF-d88"
+      },
+      {
+        "title": "Human Dignity in the Age of AI | Yuval Noah Harari - Yuval Noah Harari",
+        "url": "https://www.youtube.com/watch?v=2QXGDj9SAnI",
+        "id": "2QXGDj9SAnI"
+      },
+      {
+        "title": "The Age of Surveillance Capitalism | Shoshana Zuboff - The Institute of Art and Ideas",
+        "url": "https://www.youtube.com/watch?v=8HzW5rzPUy8",
+        "id": "8HzW5rzPUy8"
+      },
+      {
+        "title": "AI Hype Exposed: Meta VP on Why \"Intelligent\" Machines Stay Dumb | Yann LeCun - This Is World",
+        "url": "https://www.youtube.com/watch?v=ogMaVI7-A40",
+        "id": "ogMaVI7-A40"
+      },
+      {
+        "title": "Is Coding Still a Good Job With AI? Microsoft CTO, Kevin Scott, Weighs in - Matt Wolfe",
+        "url": "https://www.youtube.com/watch?v=mZUG0pr5hBo",
+        "id": "mZUG0pr5hBo"
+      }
+    ]
+  },
+  {
+    "categoryName": "Practical Tutorials (Deep Dives)",
+    "videos": [
+      {
+        "title": "Introducing RAG 2.0: Agentic RAG + Knowledge Graphs (FREE Template) - Cole Medin",
+        "url": "https://www.youtube.com/watch?v=p0FERNkpyHE",
+        "id": "p0FERNkpyHE"
+      },
+      {
+        "title": "localGPT 2.0 - Building the Best Private RAG System - Prompt Engineering",
+        "url": "https://www.youtube.com/watch?v=JTbtGH3secI",
+        "id": "JTbtGH3secI"
+      },
+      {
+        "title": "7 Secrets to Create Better Custom GPTs (4000 hours proven) - Daron Vener",
+        "url": "https://www.youtube.com/watch?v=ZOJZJS8ltok",
+        "id": "ZOJZJS8ltok"
+      },
+      {
+        "title": "Gemini CLI + MCP Tools Deep Dive - Build a Completely Local RAG with Ollama | Context7, NextJS - Venelin Valkov",
+        "url": "https://www.youtube.com/watch?v=JcgdGESQlEQ",
+        "id": "JcgdGESQlEQ"
+      },
+      {
+        "title": "Prompt Engineering Tutorial – Master ChatGPT and LLM Responses - freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=_ZvnD73m40o",
+        "id": "_ZvnD73m40o"
+      },
+      {
+        "title": "How I Build Full Websites in 1 Day Using AI (My Actual Workflow) - Life Of Gaurz",
+        "url": "https://www.youtube.com/watch?v=GLGJCh7fXmI",
+        "id": "GLGJCh7fXmI"
+      },
+      {
+        "title": "HuggingFace + Langchain | Run 1,000s of FREE AI Models Locally - Tech With Tim",
+        "url": "https://www.youtube.com/watch?v=1h6lfzJ0wZw",
+        "id": "1h6lfzJ0wZw"
+      },
+      {
+        "title": "Using ChatGPT with YOUR OWN Data. This is magical. (LangChain OpenAI API) - TechLead",
+        "url": "https://www.youtube.com/watch?v=9AXP7tCI9PI",
+        "id": "9AXP7tCI9PI"
+      },
+      {
+        "title": "Python Full Course for Beginners - Programming with Mosh",
+        "url": "https://www.youtube.com/watch?v=K5KVEU3aaeQ",
+        "id": "K5KVEU3aaeQ"
+      }
+    ]
+  },
+  {
+    "categoryName": "Tool Spotlights",
+    "videos": [
+      {
+        "title": "Google OPAL Just Dropped: And It's About to Go Viral - AI Revolution",
+        "url": "https://www.youtube.com/watch?v=SBclNff_O2w",
+        "id": "SBclNff_O2w"
+      },
+      {
+        "title": "Skywork: New FREE AI Super Agent DESTROYS Manus & Genspark? - Julian Goldie SEO",
+        "url": "https://www.youtube.com/watch?v=1kCCw5UwXyM",
+        "id": "1kCCw5UwXyM"
+      },
+      {
+        "title": "Claude Code, Gemini CLI, or Cursor? The ONLY Comparison You Need To Watch - Rob Shocks",
+        "url": "https://www.youtube.com/watch?v=JcgdGESQlEQ",
+        "id": "JcgdGESQlEQ"
+      },
+      {
+        "title": "Google Gemini CLI Just Changed Coding Forever! - BitBiasedAI",
+        "url": "https://www.youtube.com/watch?v=c0i1o4CuNBk",
+        "id": "c0i1o4CuNBk"
+      },
+      {
+        "title": "All You Need to Know About Google's Gemini CLI (10 Minute Tutorial) - J-HAYER",
+        "url": "https://www.youtube.com/watch?v=bMSq6ghdIYk",
+        "id": "bMSq6ghdIYk"
+      },
+      {
+        "title": "Google AI Studio Deep Dive - AI Advantage │ From Fundamentals to Leadership",
+        "url": "https://www.youtube.com/watch?v=zhx0MsqRvv8",
+        "id": "zhx0MsqRvv8"
+      },
+      {
+        "title": "Perplexity AI: The Google Killer You Need to Try! - The Tech Girl",
+        "url": "https://www.youtube.com/watch?v=xVUV9gFq0YA",
+        "id": "xVUV9gFq0YA"
+      },
+      {
+        "title": "My Overpowered AI Research Stack - NotebookLM, Deep Research, Grok, Gemini, o3-Pro, OpenAI - David Shapiro",
+        "url": "https://www.youtube.com/watch?v=ElNLXJ0-c3w",
+        "id": "ElNLXJ0-c3w"
+      },
+      {
+        "title": "Google Notebook LM Tutorial - [Become A Power User in 15 min] - Santrel Media",
+        "url": "https://www.youtube.com/watch?v=mYWyq-yBJnk",
+        "id": "mYWyq-yBJnk"
+      }
+    ]
+  }
+]
