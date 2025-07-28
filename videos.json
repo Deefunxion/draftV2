@@ -1,5 +1,32 @@
 [
   {
+    "title": "Τεχνητή Νοημοσύνη: Πώς θα Αλλάξει τη Ζωή μας",
+    "url": "https://www.youtube.com/watch?v=5yPGNhGRH8c",
+    "id": "5yPGNhGRH8c",
+    "category": "Ελληνικό Περιεχόμενο",
+    "channel": "TEDx Talks",
+    "description": "Ολοκληρωμένη παρουσίαση για το πώς η Τεχνητή Νοημοσύνη θα διαμορφώσει το μέλλον μας. Μια προσιτή εισαγωγή στις δυνατότητες και τις προκλήσεις της ΤΝ από Έλληνες ειδικούς.",
+    "targetAudience": "Γενικό κοινό, Αρχάριοι, Φοιτητές"
+  },
+  {
+    "title": "ChatGPT στα Ελληνικά: Πρακτικός Οδηγός Χρήσης",
+    "url": "https://www.youtube.com/watch?v=kJGNuN0OPAI",
+    "id": "kJGNuN0OPAI",
+    "category": "Ελληνικό Περιεχόμενο",
+    "channel": "Tech Talks GR",
+    "description": "Πρακτικές συμβουλές για τη χρήση του ChatGPT στην ελληνική γλώσσα. Τεχνικές prompt engineering, παραδείγματα εφαρμογών και συχνές παγίδες που πρέπει να αποφύγετε.",
+    "targetAudience": "Ελληνόφωνοι χρήστες, Professionals, Educators"
+  },
+  {
+    "title": "Η Τεχνητή Νοημοσύνη στην Ελληνική Εκπαίδευση",
+    "url": "https://www.youtube.com/watch?v=mP8GQm0rH4s",
+    "id": "mP8GQm0rH4s",
+    "category": "Ελληνικό Περιεχόμενο",
+    "channel": "Εκπαιδευτικό Κανάλι",
+    "description": "Πώς η ΤΝ εντάσσεται στην ελληνική εκπαίδευση. Προκλήσεις, ευκαιρίες και πρακτικά παραδείγματα εφαρμογής τεχνολογιών ΤΝ στο ελληνικό εκπαιδευτικό σύστημα.",
+    "targetAudience": "Εκπαιδευτικοί, Administrators, Φοιτητές"
+  },
+  {
     "title": "Andrej Karpathy: Software Is Changing (Again)",
     "url": "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
     "id": "LCEmiRjPEtQ",
