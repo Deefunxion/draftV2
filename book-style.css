@@ -138,127 +138,106 @@ body {
 }
 
 /* =================================
-   AI-Q DASHBOARD SYSTEM
+   AI-Q DASHBOARD SYSTEM (SUBTLE VERSION)
    ================================= */
 
-/* Main Dashboard Layout */
+/* Main Dashboard Layout - More Compact */
 .aiq-dashboard {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 30px;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
     margin: 20px auto;
     max-width: 1400px;
     min-height: 100vh;
     padding: 0 20px;
 }
 
-/* Left Column: AI-Q Profile Section */
+/* Left Column: AI-Q Profile Section - Compact */
 .aiq-profile-section {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border-radius: 16px;
-    padding: 25px;
-    color: white;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    color: #334155;
     position: sticky;
     top: 20px;
     height: fit-content;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .aiq-profile-header {
     text-align: center;
-    margin-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
 }
 
 .aiq-title {
-    margin: 0 0 5px 0;
-    font-size: 20px;
+    margin: 0 0 3px 0;
+    font-size: 14px;
     font-weight: 600;
-    color: #e2e8f0;
+    color: #64748b;
 }
 
 .aiq-subtitle {
-    font-size: 14px;
+    font-size: 11px;
     color: #94a3b8;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
-/* AI-Q Score Display */
+/* AI-Q Score Display - Compact */
 .aiq-score-container {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .aiq-score-display {
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 15px auto;
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.aiq-score-display::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: scoreShine 3s ease-in-out infinite;
-}
-
-@keyframes scoreShine {
-    0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    margin: 0 auto 8px auto;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .aiq-score-number {
-    font-size: 32px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1;
     color: white;
-    z-index: 1;
 }
 
 .aiq-score-label {
-    font-size: 12px;
+    font-size: 8px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
-    z-index: 1;
 }
 
 .aiq-score-description {
-    font-size: 14px;
-    color: #94a3b8;
+    font-size: 11px;
+    color: #64748b;
     font-weight: 500;
 }
 
-/* AI-Q Progress Bar */
+/* AI-Q Progress Bar - Compact */
 .aiq-bar-container {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .aiq-bar-background {
     width: 100%;
-    height: 200px;
-    background: linear-gradient(to top, #1e293b 0%, #475569 100%);
-    border-radius: 25px;
+    height: 80px;
+    background: linear-gradient(to top, #e2e8f0 0%, #f1f5f9 100%);
+    border-radius: 15px;
     position: relative;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #e2e8f0;
 }
 
 .aiq-bar-fill {
@@ -267,347 +246,95 @@ body {
     left: 0;
     right: 0;
     background: linear-gradient(to top, #10b981 0%, #34d399 50%, #6ee7b7 100%);
-    border-radius: 0 0 23px 23px;
+    border-radius: 0 0 14px 14px;
     transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    min-height: 4px;
-}
-
-.aiq-bar-glow {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: barGlow 2s ease-in-out infinite;
-}
-
-@keyframes barGlow {
-    0% { left: -100%; }
-    50% { left: 100%; }
-    100% { left: 100%; }
+    min-height: 2px;
 }
 
 .aiq-bar-labels {
     display: flex;
     justify-content: space-between;
-    margin-top: 8px;
-    font-size: 12px;
+    margin-top: 5px;
+    font-size: 10px;
     color: #94a3b8;
 }
 
-/* Achievement Stats */
+/* Achievement Stats - Compact */
 .aiq-achievements {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
 .aiq-stat {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 6px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .aiq-stat i {
-    color: #fbbf24;
-    font-size: 16px;
-    width: 20px;
+    color: #f59e0b;
+    font-size: 12px;
+    width: 14px;
     text-align: center;
 }
 
 .aiq-stat-value {
-    font-weight: 700;
-    font-size: 16px;
-    color: white;
-    min-width: 30px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #374151;
+    min-width: 20px;
 }
 
 .aiq-stat-label {
-    font-size: 12px;
-    color: #94a3b8;
+    font-size: 10px;
+    color: #6b7280;
     flex: 1;
 }
 
-/* Quick Actions */
+/* Quick Actions - Compact */
 .aiq-quick-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
 }
 
 .aiq-action-btn {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
     color: white;
     border: none;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 10px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     justify-content: center;
 }
 
 .aiq-action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
 }
 
-.aiq-action-btn.secondary {
-    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+.aiq-action-btn i {
+    font-size: 10px;
 }
 
-.aiq-action-btn.secondary:hover {
-    box-shadow: 0 5px 15px rgba(107, 114, 128, 0.4);
-}
-
-/* Right Column: Content Section */
-.aiq-content-section {
-    padding: 20px 0;
-}
-
-.aiq-content-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.aiq-main-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text-color);
-    margin: 0 0 15px 0;
-    line-height: 1.2;
-}
-
-.aiq-main-subtitle {
-    font-size: 16px;
-    color: #6b7280;
-    line-height: 1.5;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Level Cards Grid */
-.aiq-level-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 25px;
-    margin: 0 auto;
-}
-
-/* Individual Level Card */
-.aiq-level-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border: 2px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 0;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.aiq-level-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-/* Card States */
-.aiq-level-card.locked {
-    opacity: 0.6;
-    pointer-events: none;
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    border-color: #cbd5e1;
-}
-
-.aiq-level-card.unlocked:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    border-color: #3b82f6;
-}
-
-.aiq-level-card.unlocked:hover::before {
-    transform: scaleX(1);
-}
-
-.aiq-level-card.completed {
-    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-    border-color: #10b981;
-}
-
-.aiq-level-card.completed::before {
-    transform: scaleX(1);
-    background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
-}
-
-/* Card Header */
-.aiq-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 25px 15px 25px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.aiq-card-number {
-    font-size: 12px;
-    font-weight: 600;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.aiq-card-status i {
-    font-size: 18px;
-    color: #94a3b8;
-}
-
-.aiq-level-card.unlocked .aiq-card-status i {
-    color: #3b82f6;
-}
-
-.aiq-level-card.completed .aiq-card-status i {
-    color: #10b981;
-}
-
-/* Card Content */
-.aiq-card-content {
-    padding: 20px 25px;
-}
-
-.aiq-card-icon {
-    font-size: 28px;
-    margin-bottom: 15px;
-    display: inline-block;
-}
-
-.aiq-card-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    color: var(--text-color);
-    line-height: 1.3;
-}
-
-.aiq-card-subtitle {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.aiq-card-description {
-    font-size: 14px;
-    color: #374151;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-/* Card Meta Information */
-.aiq-card-meta {
-    padding: 0 25px 20px 25px;
-}
-
-.aiq-card-stats {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.aiq-card-time,
-.aiq-card-difficulty {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    color: #6b7280;
-    background: #f1f5f9;
-    padding: 6px 10px;
-    border-radius: 6px;
-}
-
-.aiq-card-reward {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #7c3aed;
-    background: #f3f4f6;
-    padding: 8px 12px;
-    border-radius: 8px;
-    justify-content: center;
-}
-
-.aiq-card-reward i {
-    color: #8b5cf6;
-}
-
-/* Card Progress Bar */
-.aiq-card-progress {
-    padding: 0 25px 25px 25px;
-}
-
-.aiq-progress-bar {
-    width: 100%;
-    height: 6px;
-    background: #e5e7eb;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 8px;
-}
-
-.aiq-progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    border-radius: 3px;
-    transition: width 0.6s ease;
-}
-
-.aiq-progress-text {
-    font-size: 12px;
-    color: #6b7280;
-    text-align: center;
-    display: block;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .aiq-dashboard {
-        grid-template-columns: 280px 1fr;
-        gap: 20px;
-    }
-    
-    .aiq-level-cards {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
+/* Responsive Design - Mobile First */
 @media (max-width: 768px) {
     .aiq-dashboard {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
         padding: 0 15px;
     }
     
@@ -615,18 +342,46 @@ body {
         position: relative;
         top: auto;
         order: 2;
+        padding: 12px;
     }
     
     .aiq-content-section {
         order: 1;
     }
     
-    .aiq-main-title {
-        font-size: 26px;
+    .aiq-score-display {
+        width: 50px;
+        height: 50px;
     }
     
-    .aiq-level-cards {
-        grid-template-columns: 1fr;
+    .aiq-score-number {
+        font-size: 14px;
+    }
+    
+    .aiq-bar-background {
+        height: 60px;
+    }
+}
+
+/* Adjust main content margin for smaller AI-Q panel */
+.aiq-dashboard {
+    margin-left: 60px; /* Account for Living Margin + some spacing */
+}
+
+/* For text-heavy pages (like student workbook) */
+body:not(.aiq-dashboard-page) {
+    margin-left: 70px; /* Account for Living Margin + padding */
+    max-width: calc(65ch + 70px); /* Maintain optimal reading width */
+}
+
+@media (max-width: 768px) {
+    .aiq-dashboard {
+        margin-left: 40px;
+    }
+    
+    body:not(.aiq-dashboard-page) {
+        margin-left: 50px;
+        max-width: calc(65ch + 50px);
     }
 }
 
