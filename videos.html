@@ -24,16 +24,31 @@
         <a href="https://bkubzhds.manus.space/" target="_blank">Θεμέλιον</a>
   </div>
 
-  <main class="player-container">
-    <h1>■ Curated AI Video Library</h1>
-    <iframe id="main-player" class="playlist-iframe" allowfullscreen></iframe>
+  <!-- Theme Switcher Button -->
+  <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch Theme">
+    <span class="theme-icon">◐</span>
+  </button>
+
+  <main class="video-library-container">
+    <h1>■ Επιμελημένη Βιβλιοθήκη Βίντεο ΤΝ</h1>
+    
+    <div class="video-library-layout">
+      <!-- Left Section: Dynamic Video Details Display -->
+      <div class="video-details-section">
+        <div id="video-details-display" class="video-details-content">
+          <!-- Content will be dynamically populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Right Section: Video Playlist -->
+      <aside class="playlist-container">
+        <div class="playlist-header">Επιμελημένη Λίστα</div>
+        <div class="playlist" id="playlist"></div>
+      </aside>
+    </div>
   </main>
 
-  <aside class="playlist-container">
-    <div class="playlist-header">Curated Playlist</div>
-    <div class="playlist" id="playlist"></div>
-  </aside>
-
   <script src="playlist.js" defer></script>
+  <script src="theme-toggle.js" defer></script>
 </body>
 </html>
