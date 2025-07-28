@@ -46,7 +46,7 @@
 <body>
     <!-- Navigation -->
     <div class="nav-menu">
-        <a href="index.html">Εστία</a>
+        <a href="index.html"><strong>← Κύριο Μενού</strong></a>
         <a href="main-book.html">Βιβλίον</a>
         <a href="student_workbook_enhanced.html">Τετράδιον Εργασιών</a>
         <a href="quick_reference_guide.html">Εγκόλπιον</a>
@@ -1516,9 +1516,30 @@
             <p>Τώρα είστε έτοιμοι να μετατρέψετε την Τεχνητή Νοημοσύνη από τεχνολογία σε ανταγωνιστικό πλεονέκτημα.</p>
             <p style="margin-top: 20px;"><strong>Καλή επιτυχία στο ταξίδι σας!</strong></p>
         </div>
+
+        <!-- Completion Section -->
+        <div class="completion-section">
+            <h3>🎓 Έτοιμοι για το Επόμενο Επίπεδο;</h3>
+            <p>Ολοκληρώσατε επιτυχώς το πρώτο επίπεδο του προγράμματος! Τώρα μπορείτε να προχωρήσετε στο <strong>Εγκόλπιον</strong> - τον οδηγό γρήγορης αναφοράς με τις βασικότερες τεχνικές και εργαλεία.</p>
+            
+            <button id="complete-level-btn" class="completion-button" 
+                    data-unlocks="level_1" 
+                    data-section-id="alfavitarion">
+                ✓ Ολοκλήρωσα το Αλφαβητάριον - Ξεκλειδώστε το Εγκόλπιον!
+            </button>
+            
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                Πατώντας αυτό το κουμπί θα ξεκλειδώσετε το επόμενο επίπεδο και θα επιστρέψετε στο κύριο μενού.
+            </p>
+        </div>
     </main>
 
-    <!-- Theme switcher auto-loads -->
+    <!-- Back to Dashboard -->
+    <a href="index.html" class="back-to-dashboard">← Επιστροφή στο Κύριο Μενού</a>
+
+    <!-- Scripts -->
+    <script src="learning-path.js"></script>
+    <script src="progress-tracker.js"></script>
     <script src="theme-switcher.js"></script>
     <script src="mobile-nav.js"></script>
 </body>
