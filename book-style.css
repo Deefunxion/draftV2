@@ -50,34 +50,16 @@ body {
    ================================= */
 
 /* ===== PROFESSIONAL SCRIBBLING SYSTEM ===== */
-/* Living Margin Canvas - SIDE MARGIN IMPLEMENTATION (Original Working Version) */
-#living-margin-canvas {
+/* Full-screen overlay canvas for doodling */
+#scribble-canvas {
     position: fixed;
-    left: 15px;           /* Left margin positioning */
-    top: 10px;
-    bottom: 10px;
-    width: 80px;          /* Side margin width */
-    z-index: 998;
-    cursor: crosshair;
-    pointer-events: auto; /* Always active for drawing */
-    background: rgba(0, 0, 0, 0.02); /* Subtle background to show area */
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-    touch-action: none;
-}
-
-/* Right margin canvas */
-#living-margin-canvas-right {
-    position: fixed;
-    right: 15px;          /* Right margin positioning */
-    top: 10px;
-    bottom: 10px;
-    width: 80px;          /* Side margin width */
-    z-index: 998;
-    cursor: crosshair;
-    pointer-events: auto; /* Always active for drawing */
-    background: rgba(0, 0, 0, 0.02); /* Subtle background to show area */
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    touch-action: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 990;
+    pointer-events: none;
+    background: transparent;
 }
 
 /* Remove the old right canvas CSS since we're going full-screen */
@@ -137,52 +119,7 @@ body {
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
 }
 
-/* Responsive adjustments for Living Margin */
-@media (max-width: 768px) {
-    #living-margin-canvas {
-        left: 15px; /* Adjusted for mobile margins */
-        width: 50px; /* Smaller width on mobile */
-        top: 10px;
-        bottom: 10px;
-    }
-    
-    #living-margin-canvas-right {
-        right: 15px; /* Adjusted for mobile margins */
-        width: 50px; /* Smaller width on mobile */
-        top: 10px;
-        bottom: 10px;
-    }
-    
-    #clear-doodles-btn {
-        right: 15px; /* Updated position */
-        bottom: 15px;
-        width: 35px;
-        height: 35px;
-        font-size: 12px;
-    }
-}
 
-/* Canvas fade-in animation */
-#living-margin-canvas, #living-margin-canvas-right {
-    opacity: 0;
-    animation: canvasFadeIn 1s ease-out 0.5s forwards;
-}
-
-@keyframes canvasFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Adjust main content to account for Living Margin */
-.aiq-dashboard {
-    margin-left: 60px; /* Make room for the canvas */
-}
-
-@media (max-width: 768px) {
-    .aiq-dashboard {
-        margin-left: 40px;
-    }
-}
 
 /* =================================
    LEARNING PATH TABLE STYLES
