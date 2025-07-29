@@ -49,25 +49,39 @@ body {
    LIVING MARGIN CANVAS SYSTEM
    ================================= */
 
-/* The Creative Edge - Left Margin Canvas */
+/* ===== PROFESSIONAL SCRIBBLING SYSTEM ===== */
+/* Living Margin Canvas - SIDE MARGIN IMPLEMENTATION (Original Working Version) */
 #living-margin-canvas {
     position: fixed;
-    left: 0;
-    top: 0;
-    width: 60px;
-    height: 100vh;
-    z-index: 998; /* Below AI-Q profile but above content */
+    left: 15px;           /* Left margin positioning */
+    top: 10px;
+    bottom: 10px;
+    width: 80px;          /* Side margin width */
+    z-index: 998;
     cursor: crosshair;
-    background: linear-gradient(to right, 
-        rgba(255, 255, 255, 0.02) 0%, 
-        rgba(255, 255, 255, 0.01) 50%, 
-        transparent 100%);
-    border-right: 1px solid rgba(0, 0, 0, 0.03);
-    pointer-events: auto;
-    touch-action: none; /* Prevent default scrolling on touch */
+    pointer-events: auto; /* Always active for drawing */
+    background: rgba(0, 0, 0, 0.02); /* Subtle background to show area */
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    touch-action: none;
 }
 
-/* Clear Doodles Button */
+/* Right margin canvas */
+#living-margin-canvas-right {
+    position: fixed;
+    right: 15px;          /* Right margin positioning */
+    top: 10px;
+    bottom: 10px;
+    width: 80px;          /* Side margin width */
+    z-index: 998;
+    cursor: crosshair;
+    pointer-events: auto; /* Always active for drawing */
+    background: rgba(0, 0, 0, 0.02); /* Subtle background to show area */
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    touch-action: none;
+}
+
+/* Remove the old right canvas CSS since we're going full-screen */
+/* Clear Doodles Button - Professional Positioning */
 #clear-doodles-btn {
     position: fixed;
     left: 15px;
@@ -100,14 +114,47 @@ body {
     transform: scale(0.95);
 }
 
+/* Dynamic contrast for text under drawing */
+.content-under-drawing {
+    transition: all 0.2s ease-in-out;
+}
+
+.content-under-drawing.ink-overlay {
+    color: #ffffff !important;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+}
+
+.content-under-drawing.ink-overlay a {
+    color: #ffeb3b !important;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.content-under-drawing.ink-overlay h1,
+.content-under-drawing.ink-overlay h2,
+.content-under-drawing.ink-overlay h3 {
+    color: #ffffff !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
+}
+
 /* Responsive adjustments for Living Margin */
 @media (max-width: 768px) {
     #living-margin-canvas {
-        width: 40px; /* Smaller on mobile */
+        left: 15px; /* Adjusted for mobile margins */
+        width: 50px; /* Smaller width on mobile */
+        top: 10px;
+        bottom: 10px;
+    }
+    
+    #living-margin-canvas-right {
+        right: 15px; /* Adjusted for mobile margins */
+        width: 50px; /* Smaller width on mobile */
+        top: 10px;
+        bottom: 10px;
     }
     
     #clear-doodles-btn {
-        left: 10px;
+        right: 15px; /* Updated position */
         bottom: 15px;
         width: 35px;
         height: 35px;
@@ -116,7 +163,7 @@ body {
 }
 
 /* Canvas fade-in animation */
-#living-margin-canvas {
+#living-margin-canvas, #living-margin-canvas-right {
     opacity: 0;
     animation: canvasFadeIn 1s ease-out 0.5s forwards;
 }
@@ -496,10 +543,11 @@ body {
     margin-left: 60px; /* Account for Living Margin + some spacing */
 }
 
-/* For text-heavy pages (like student workbook) */
+/* For text-heavy pages (like student workbook) - Centered with equal margins */
 body:not(.aiq-dashboard-page) {
-    margin-left: 70px; /* Account for Living Margin + padding */
-    max-width: calc(65ch + 70px); /* Maintain optimal reading width */
+    margin-left: 120px; /* Equal space for left canvas */
+    margin-right: 120px; /* Equal space for right canvas */
+    max-width: 65ch; /* Maintain optimal reading width */
 }
 
 @media (max-width: 768px) {
@@ -508,8 +556,9 @@ body:not(.aiq-dashboard-page) {
     }
     
     body:not(.aiq-dashboard-page) {
-        margin-left: 50px;
-        max-width: calc(65ch + 50px);
+        margin-left: 80px; /* Smaller but equal margins on mobile */
+        margin-right: 80px;
+        max-width: 65ch;
     }
 }
 
@@ -2448,4 +2497,51 @@ input:focus, textarea:focus, select:focus {
     color: #6c757d;
     font-style: italic;
     line-height: 1.3;
+}
+
+/* ======================================================================================== */
+/* LIVING MARGIN CANVAS - DYNAMIC TEXT CONTRAST */
+/* ======================================================================================== */
+
+/* Enhanced styling for content under drawing */
+.content-under-drawing {
+    position: relative;
+    z-index: 1;
+}
+
+/* Dynamic ink overlay for better text readability */
+.ink-overlay {
+    background: rgba(255, 255, 255, 0.8) !important;
+    color: #000 !important;
+    border-radius: 2px;
+    padding: 1px 2px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(0.5px);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth transition back to normal after ink passes */
+.content-under-drawing:not(.ink-overlay) {
+    transition: all 0.5s ease;
+}
+
+/* Enhanced contrast for headers under ink */
+h1.ink-overlay, h2.ink-overlay, h3.ink-overlay, 
+h4.ink-overlay, h5.ink-overlay, h6.ink-overlay {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #1a1a1a !important;
+    font-weight: 700 !important;
+}
+
+/* Enhanced contrast for paragraph text under ink */
+p.ink-overlay, div.ink-overlay, span.ink-overlay {
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: #333 !important;
+}
+
+/* Enhanced contrast for links under ink */
+a.ink-overlay {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #0066cc !important;
+    text-decoration: underline !important;
 }

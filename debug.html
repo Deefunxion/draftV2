@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Page</title>
+    <link rel="stylesheet" href="book-style.css">
+    <style>
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: 2px solid red;
+            padding: 10px;
+            z-index: 9999;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        #test-canvas {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <div>Canvas exists: <span id="canvas-exists">?</span></div>
+        <div>Canvas rect: <span id="canvas-rect">?</span></div>
+        <div>Body margins: <span id="body-margins">?</span></div>
+        <div>Cursor on canvas: <span id="cursor-info">?</span></div>
+    </div>
+    
+    <canvas id="living-margin-canvas" resize></canvas>
+    
+    <h1>Debug Test Page</h1>
+    <p>This is a test to see what's happening with the canvas and layout.</p>
+    <p>The canvas should have a blue border and cursor should change to crosshair when hovering over it.</p>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('living-margin-canvas');
+            const body = document.body;
+            
+            // Update debug info
+            document.getElementById('canvas-exists').textContent = !!canvas;
+            
+            if (canvas) {
+                const rect = canvas.getBoundingClientRect();
+                document.getElementById('canvas-rect').textContent = 
+                    `${rect.width}x${rect.height} at (${rect.left}, ${rect.top})`;
+                    
+                canvas.addEventListener('mouseenter', () => {
+                    document.getElementById('cursor-info').textContent = 'HOVER';
+                });
+                
+                canvas.addEventListener('mouseleave', () => {
+                    document.getElementById('cursor-info').textContent = 'NOT HOVER';
+                });
+            }
+            
+            const bodyStyle = window.getComputedStyle(body);
+            document.getElementById('body-margins').textContent = 
+                `L:${bodyStyle.marginLeft} R:${bodyStyle.marginRight}`;
+        });
+    </script>
+</body>
+</html>
