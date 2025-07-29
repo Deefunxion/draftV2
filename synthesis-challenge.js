@@ -187,19 +187,25 @@ class SynthesisChallenge {
         const readingProgress = this.calculateReadingProgress();
         this.updateProgressDisplay(readingProgress);
 
-        // Award provisional points for reading
+        // Award provisional points for reading via AI-Q tracker
         if (checkbox.checked) {
+            if (window.aiqTracker) {
+                window.aiqTracker.addProvisionalPoints(1, 'reading_progress');
+            }
             this.provisionalPoints += 1;
-            this.updateProvisionalDisplay();
             
             // Trigger challenge unlock at threshold
             if (readingProgress >= this.readingProgressThreshold) {
                 this.unlockSynthesisChallenge();
             }
         } else {
+            if (window.aiqTracker) {
+                window.aiqTracker.addProvisionalPoints(-1, 'reading_progress');
+            }
             this.provisionalPoints = Math.max(0, this.provisionalPoints - 1);
-            this.updateProvisionalDisplay();
         }
+        
+        this.updateProvisionalDisplay();
     }
 
     /**
@@ -261,12 +267,13 @@ class SynthesisChallenge {
             return;
         }
 
-        // Convert provisional to committed points via AI-Q tracker
+        // Get current provisional points from AI-Q tracker
+        const provisionalPoints = window.aiqTracker ? window.aiqTracker.getProgress().provisionalPoints || 0 : 0;
         const commitmentPoints = 15; // Challenge completion bonus
-        const totalCommitted = this.provisionalPoints + commitmentPoints;
+        const totalCommitted = provisionalPoints + commitmentPoints;
 
         if (window.aiqTracker) {
-            window.aiqTracker.commitProvisionalPoints(this.provisionalPoints);
+            window.aiqTracker.commitProvisionalPoints(); // Commit all provisional points
             window.aiqTracker.addPoints(commitmentPoints, 'synthesis_challenge');
             window.aiqTracker.recordAchievement('completed_synthesis_challenge', {
                 response: response,
@@ -285,6 +292,9 @@ class SynthesisChallenge {
      */
     skipChallenge() {
         if (confirm('Σίγουρα θέλετε να παραλείψετε την πρόκληση; Θα χάσετε τους προσωρινούς πόντους.')) {
+            if (window.aiqTracker) {
+                window.aiqTracker.clearProvisionalPoints();
+            }
             this.provisionalPoints = 0;
             this.updateProvisionalDisplay();
             this.hideChallengeContainer();

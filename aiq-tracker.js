@@ -334,12 +334,16 @@ class AIQTracker {
             iqRankElement.textContent = this.getCurrentRank();
         }
 
+        // Update provisional points display
+        this.updateProvisionalPointsDisplay();
+
         // Dispatch AI-Q update event for Living Margin Doodler
         document.dispatchEvent(new CustomEvent('aiq-updated', {
             detail: {
                 iq: this.progress.iq,
                 rank: this.getCurrentRank(),
-                totalPoints: this.progress.totalPoints
+                totalPoints: this.progress.totalPoints,
+                provisionalPoints: this.progress.provisionalPoints || 0
             }
         }));
 
@@ -383,6 +387,25 @@ class AIQTracker {
                 progressFill.style.width = '0%';
             }
         });
+    }
+
+    /**
+     * Update provisional points display in dashboard
+     */
+    updateProvisionalPointsDisplay() {
+        const provisionalSection = document.getElementById('provisional-points-section');
+        const provisionalValue = document.getElementById('provisional-points-value');
+        
+        const provisionalPoints = this.progress.provisionalPoints || 0;
+        
+        if (provisionalSection && provisionalValue) {
+            if (provisionalPoints > 0) {
+                provisionalSection.style.display = 'block';
+                provisionalValue.textContent = provisionalPoints;
+            } else {
+                provisionalSection.style.display = 'none';
+            }
+        }
     }
 
     /**
