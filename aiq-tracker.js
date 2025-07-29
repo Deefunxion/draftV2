@@ -12,6 +12,7 @@ class AIQTracker {
             unlockedLevels: ['level_0'], // Always start with level 0 unlocked
             completedLevels: [],        // Levels that have been completed
             totalPoints: 0,             // Total points earned
+            provisionalPoints: 0,       // Points earned but not yet committed
             achievements: [],           // Special achievements unlocked
             lastUpdated: Date.now()     // Timestamp of last progress update
         };
@@ -175,6 +176,97 @@ class AIQTracker {
                 this.progress.achievements.push(achievement);
             }
         });
+    }
+
+    /**
+     * Add provisional points (earned but not yet committed)
+     * Used by Synthesis Challenge system for reading progress
+     * @param {number} points - Points to add provisionally
+     * @param {string} source - Source of the points (for tracking)
+     */
+    addProvisionalPoints(points, source = 'reading') {
+        this.progress.provisionalPoints = (this.progress.provisionalPoints || 0) + points;
+        this.saveProgress();
+        this.updateUIDisplay();
+        console.log(`Added ${points} provisional AI-Q points from ${source}`);
+    }
+
+    /**
+     * Commit provisional points to permanent AI-Q score
+     * Called when user completes synthesis challenges
+     * @param {number} pointsToCommit - Points to commit (optional, defaults to all provisional)
+     */
+    commitProvisionalPoints(pointsToCommit = null) {
+        const toCommit = pointsToCommit || this.progress.provisionalPoints || 0;
+        
+        if (toCommit > 0) {
+            this.progress.iq += toCommit;
+            this.progress.totalPoints += toCommit;
+            this.progress.provisionalPoints = Math.max(0, (this.progress.provisionalPoints || 0) - toCommit);
+            
+            this.checkAchievements();
+            this.saveProgress();
+            this.updateUIDisplay();
+            
+            console.log(`Committed ${toCommit} provisional points to permanent AI-Q`);
+            return toCommit;
+        }
+        
+        return 0;
+    }
+
+    /**
+     * Add direct points (bypassing provisional system)
+     * @param {number} points - Points to add directly
+     * @param {string} source - Source of the points
+     */
+    addPoints(points, source = 'direct') {
+        this.progress.iq += points;
+        this.progress.totalPoints += points;
+        this.checkAchievements();
+        this.saveProgress();
+        this.updateUIDisplay();
+        console.log(`Added ${points} direct AI-Q points from ${source}`);
+    }
+
+    /**
+     * Clear all provisional points (used when user skips challenges)
+     */
+    clearProvisionalPoints() {
+        const cleared = this.progress.provisionalPoints || 0;
+        this.progress.provisionalPoints = 0;
+        this.saveProgress();
+        this.updateUIDisplay();
+        console.log(`Cleared ${cleared} provisional points`);
+        return cleared;
+    }
+
+    /**
+     * Record achievement with metadata
+     * @param {string} achievementId - ID of the achievement
+     * @param {object} metadata - Additional data about the achievement
+     */
+    recordAchievement(achievementId, metadata = {}) {
+        const achievement = {
+            id: achievementId,
+            timestamp: new Date().toISOString(),
+            metadata: metadata
+        };
+
+        if (!this.progress.achievements) {
+            this.progress.achievements = [];
+        }
+
+        // Check if achievement already exists
+        const existingIndex = this.progress.achievements.findIndex(a => 
+            typeof a === 'string' ? a === achievementId : a.id === achievementId
+        );
+
+        if (existingIndex === -1) {
+            this.progress.achievements.push(achievement);
+            this.saveProgress();
+            console.log(`Achievement recorded: ${achievementId}`, metadata);
+        }
     }
 
     /**
