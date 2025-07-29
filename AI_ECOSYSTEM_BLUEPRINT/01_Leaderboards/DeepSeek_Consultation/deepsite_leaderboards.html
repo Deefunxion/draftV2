@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Orchestrator's Ascent - Leaderboard Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cyber-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        .rank-up {
+            animation: pulseGreen 1.5s infinite;
+        }
+        .rank-down {
+            animation: pulseRed 1.5s infinite;
+        }
+        @keyframes pulseGreen {
+            0% { color: #4ade80; }
+            50% { color: #22c55e; }
+            100% { color: #4ade80; }
+        }
+        @keyframes pulseRed {
+            0% { color: #f87171; }
+            50% { color: #ef4444; }
+            100% { color: #f87171; }
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="cyber-gradient min-h-screen text-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-2">
+                        AI Orchestrator's Ascent
+                    </h1>
+                    <p class="text-lg text-gray-300">Leaderboard Architecture Blueprint</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-2">
+                        <span class="text-sm text-gray-400">Consultant:</span>
+                        <span class="font-medium text-blue-400">DeepSeek</span>
+                    </div>
+                    <div class="bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-2">
+                        <span class="text-sm text-gray-400">Version:</span>
+                        <span class="font-medium text-purple-400">1.0.0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="space-y-20">
+            <!-- Conceptual Framework Section -->
+            <section class="bg-gray-800/50 border border-gray-700 rounded-xl p-6 shadow-xl">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-500/20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-sitemap text-blue-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Conceptual Framework</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold text-blue-300 mb-4 flex items-center">
+                            <i class="fas fa-database mr-2"></i> Redis Sorted Sets
+                        </h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>O(log(N)) time complexity for insertions and rank lookups</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Built-in atomic operations for score updates</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Excellent for real-time leaderboards with millions of users</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-2"></i>
+                                <span>Limited query flexibility compared to SQL</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold text-purple-300 mb-4 flex items-center">
+                            <i class="fas fa-table mr-2"></i> SQL with Indexing
+                        </h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Familiar query language with complex filtering</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>Better for historical data analysis</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-2"></i>
+                                <span>O(N) time complexity for rank calculations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-2"></i>
+                                <span>Requires careful indexing to maintain performance</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-gray-900/70 border border-blue-500/30 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-cyan-300 mb-4 flex items-center">
+                        <i class="fas fa-lightbulb mr-2"></i> Recommendation
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        For the "Ascent Leaderboards", we recommend a <span class="font-medium text-blue-300">hybrid approach</span>:
+                        Use Redis sorted sets for real-time leaderboard operations (score updates, rank retrieval) 
+                        with a periodic (hourly/daily) synchronization to SQL for analytics and historical tracking. 
+                        This combines the speed of Redis with the durability and query flexibility of SQL.
+                    </p>
+                </div>
+            </section>
+
+            <!-- UI/UX Design Principles Section -->
+            <section class="bg-gray-800/50 border border-gray-700 rounded-xl p-6 shadow-xl">
+                <div class="flex items-center mb-6">
+                    <div class="bg-purple-500/20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-paint-brush text-purple-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">UI/UX Design Principles</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                        <div class="text-purple-400 text-3xl mb-3">
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Stable Layout</h3>
+                        <p class="text-gray-300 text-sm">
+                            Pre-calculate container heights and use skeleton loaders to prevent layout shifts during data loading.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                        <div class="text-blue-400 text-3xl mb-3">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Virtual Scrolling</h3>
+                        <p class="text-gray-300 text-sm">
+                            Implement windowing/virtual scrolling for the global leaderboard to handle millions of entries efficiently.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                        <div class="text-green-400 text-3xl mb-3">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Rank Change Indicators</h3>
+                        <p class="text-gray-300 text-sm">
+                            Use animated up/down arrows with color coding (green/red) to visualize rank changes at a glance.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                        <div class="text-yellow-400 text-3xl mb-3">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Position Anchoring</h3>
+                        <p class="text-gray-300 text-sm">
+                            Always show the user's current position with context (5 above, 5 below) for orientation.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                        <div class="text-red-400 text-3xl mb-3">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Performance Budget</h3>
+                        <p class="text-gray-300 text-sm">
+                            Limit leaderboard updates to 60fps and implement request throttling for smooth UX.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- UI Prototype -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                        <i class="fas fa-laptop-code mr-2 text-blue-400"></i> Leaderboard UI Prototype
+                    </h3>
+                    
+                    <div class="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
+                        <div class="p-4 border-b border-gray-700 bg-gray-800 flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-medium">Global Leaderboard</span>
+                                <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded">Live</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded transition">Daily</button>
+                                <button class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded transition">Weekly</button>
+                                <button class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded transition">All-Time</button>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-y-auto scrollbar-hide" style="max-height: 400px;">
+                            <table class="w-full">
+                                <thead class="bg-gray-800 text-gray-400 text-xs sticky top-0">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left w-12">Rank</th>
+                                        <th class="py-3 px-4 text-left">User</th>
+                                        <th class="py-3 px-4 text-right">Score</th>
+                                        <th class="py-3 px-4 text-right">Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaderboard-body" class="divide-y divide-gray-700">
+                                    <!-- Leaderboard rows will be inserted here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="p-4 border-t border-gray-700 bg-gray-800 flex justify-between items-center">
+                            <div class="text-sm text-gray-400">
+                                Showing <span class="text-white">1-10</span> of <span class="text-white">1,248,763</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded disabled:opacity-50" disabled>
+                                    <i class="fas fa-chevron-left text-xs"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center bg-blue-500/20 text-blue-300 rounded">
+                                    1
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded hover:bg-gray-600">
+                                    2
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded hover:bg-gray-600">
+                                    3
+                                </button>
+                                <span class="flex items-center px-2">...</span>
+                                <button class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded hover:bg-gray-600">
+                                    124
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded hover:bg-gray-600">
+                                    <i class="fas fa-chevron-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Logic & Code Section -->
+            <section class="bg-gray-800/50 border border-gray-700 rounded-xl p-6 shadow-xl">
+                <div class="flex items-center mb-6">
+                    <div class="bg-green-500/20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-code text-green-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Core Logic & Code</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-green-300 mb-4">Redis Leaderboard Operations</h3>
+                        <div class="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
+                            <div class="px-4 py-2 bg-gray-800 border-b border-gray-700 flex justify-between items-center">
+                                <span class="text-sm font-mono text-gray-300">leaderboard.py</span>
+                                <button id="copy-code" class="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded flex items-center">
+                                    <i class="fas fa-copy mr-1"></i> Copy
+                                </button>
+                            </div>
+                            <pre id="code-block" class="p-4 overflow-x-auto text-sm font-mono text-gray-300">
+import redis
+import asyncio
+from typing import Tuple, Optional, List
+
+class LeaderboardManager:
+    def __init__(self, redis_conn: redis.Redis):
+        self.redis = redis_conn
+        self.lock = asyncio.Lock()
+    
+    async def update_score(
+        self, 
+        leaderboard_key: str, 
+        user_id: str, 
+        score_delta: float
+    ) -> Tuple[int, float, int]:
+        """
+        Atomically updates a user's score and returns their new rank and score.
+        
+        Args:
+            leaderboard_key: Redis key for the sorted set
+            user_id: Unique identifier for the user
+            score_delta: Amount to increment the score by
+            
+        Returns:
+            Tuple of (new_rank, new_score, total_players)
+        """
+        async with self.lock:
+            # Use Redis pipeline for atomic operations
+            pipe = self.redis.pipeline()
+            
+            # Increment the user's score
+            pipe.zincrby(leaderboard_key, score_delta, user_id)
+            
+            # Get the user's new score
+            pipe.zscore(leaderboard_key, user_id)
+            
+            # Get the user's new rank (0-based)
+            pipe.zrevrank(leaderboard_key, user_id)
+            
+            # Get total players
+            pipe.zcard(leaderboard_key)
+            
+            # Execute all commands atomically
+            _, new_score, new_rank, total_players = pipe.execute()
+            
+            # Convert 0-based rank to 1-based
+            new_rank = new_rank + 1 if new_rank is not None else None
+            
+            return new_rank, float(new_score), total_players
+    
+    async def get_rivals(
+        self, 
+        leaderboard_key: str, 
+        user_id: str, 
+        context_size: int = 2
+    ) -> List[Tuple[int, str, float]]:
+        """
+        Gets the user's position along with surrounding rivals.
+        
+        Args:
+            leaderboard_key: Redis key for the sorted set
+            user_id: User to get rivals for
+            context_size: Number of players to return above and below
+            
+        Returns:
+            List of (rank, user_id, score) tuples
+        """
+        # Get user's rank (0-based)
+        rank = await self.redis.zrevrank(leaderboard_key, user_id)
+        if rank is None:
+            return []
+            
+        # Calculate range to fetch
+        start = max(0, rank - context_size)
+        end = rank + context_size
+        
+        # Get the range from Redis
+        results = await self.redis.zrevrange(
+            leaderboard_key, 
+            start, 
+            end, 
+            withscores=True
+        )
+        
+        # Convert to (rank, user_id, score) tuples
+        return [
+            (start + idx + 1, user_id, float(score))
+            for idx, (user_id, score) in enumerate(results)
+        ]</pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-4">Implementation Notes</h3>
+                        <div class="space-y-6">
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-yellow-400 mb-2 flex items-center">
+                                    <i class="fas fa-bolt mr-2"></i> Performance Optimizations
+                                </h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Uses Redis pipelines to minimize round trips</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Asyncio lock prevents race conditions</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Batch operations for rival retrieval</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-blue-400 mb-2 flex items-center">
+                                    <i class="fas fa-shield-alt mr-2"></i> Error Handling
+                                </h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Gracefully handles missing users</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Type hints for better IDE support</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Context manager for Redis connection</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-purple-400 mb-2 flex items-center">
+                                    <i class="fas fa-expand-arrows-alt mr-2"></i> Scaling Considerations
+                                </h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Shard leaderboards by region/time period</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Consider Redis Cluster for >100M users</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                        <span>Cache top 1000 positions in memory</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Artisan Path Integration Section -->
+            <section class="bg-gray-800/50 border border-gray-700 rounded-xl p-6 shadow-xl">
+                <div class="flex items-center mb-6">
+                    <div class="bg-yellow-500/20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-users-cog text-yellow-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Artisan Path Integration</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-4">Guild Leaderboard Data Model</h3>
+                        
+                        <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5 mb-6">
+                            <h4 class="font-semibold text-white mb-3">Redis Key Structure</h4>
+                            <div class="space-y-3 font-mono text-sm">
+                                <div class="text-cyan-300">guild:{guild_id}:info</div>
+                                <div class="text-gray-400 ml-4">Hash containing guild metadata (name, description, etc.)</div>
+                                
+                                <div class="text-purple-300">guild:{guild_id}:members</div>
+                                <div class="text-gray-400 ml-4">Set of member user IDs</div>
+                                
+                                <div class="text-green-300">guild:{guild_id}:leaderboard:{metric}</div>
+                                <div class="text-gray-400 ml-4">Sorted set for each custom guild metric</div>
+                                
+                                <div class="text-blue-300">user:{user_id}:guilds</div>
+                                <div class="text-gray-400 ml-4">Set of guild IDs the user belongs to</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                            <h4 class="font-semibold text-white mb-3">SQL Schema (Complementary)</h4>
+                            <pre class="text-gray-300 text-sm font-mono overflow-x-auto">
+CREATE TABLE guilds (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    creator_id VARCHAR(36) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_public BOOLEAN DEFAULT TRUE,
+    custom_metrics JSONB DEFAULT '[]'
+);
+
+CREATE TABLE guild_members (
+    guild_id VARCHAR(36) REFERENCES guilds(id),
+    user_id VARCHAR(36) NOT NULL,
+    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (guild_id, user_id)
+);
+
+CREATE INDEX idx_guild_members_user ON guild_members(user_id);</pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-orange-300 mb-4">Implementation Strategy</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-orange-400 mb-2">Custom Metric Support</h4>
+                                <p class="text-gray-300 text-sm">
+                                    Guild creators can define their own scoring metrics (e.g., "code contributions", 
+                                    "tutorial completions"). Each metric gets its own Redis sorted set for real-time 
+                                    leaderboard functionality.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-blue-400 mb-2">Access Control</h4>
+                                <p class="text-gray-300 text-sm">
+                                    Implement guild visibility rules (public/private) and member permissions. 
+                                    Private guild leaderboards should only be accessible to members.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-green-400 mb-2">Data Synchronization</h4>
+                                <p class="text-gray-300 text-sm">
+                                    Use Redis Streams to propagate guild score updates to SQL for analytics. 
+                                    This ensures real-time leaderboards while maintaining durable storage.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-purple-400 mb-2">Example Guild Leaderboard</h4>
+                                <div class="flex flex-col space-y-2">
+                                    <div class="flex items-center justify-between bg-gray-800/50 px-3 py-2 rounded">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="font-medium text-yellow-400">1</span>
+                                            <span class="font-medium">QuantumCoders</span>
+                                        </div>
+                                        <span class="text-green-400">1,248 pts</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-800/50 px-3 py-2 rounded">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="font-medium text-gray-400">2</span>
+                                            <span class="font-medium">NeuralArtisans</span>
+                                        </div>
+                                        <span class="text-blue-400">982 pts</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-800/50 px-3 py-2 rounded">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="font-medium text-amber-600">3</span>
+                                            <span class="font-medium">DataAlchemists</span>
+                                        </div>
+                                        <span class="text-purple-400">756 pts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monetization & Marketplace Logic Section -->
+            <section class="bg-gray-800/50 border border-gray-700 rounded-xl p-6 shadow-xl">
+                <div class="flex items-center mb-6">
+                    <div class="bg-red-500/20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-coins text-red-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Monetization & Marketplace Logic</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-red-300 mb-4">Sponsored Tournament API</h3>
+                        
+                        <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5 mb-6">
+                            <h4 class="font-semibold text-white mb-3">Required Endpoints</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="font-mono text-sm text-green-300">POST /api/tournaments</div>
+                                    <div class="text-gray-400 text-xs ml-4">Create a new sponsored tournament</div>
+                                </div>
+                                <div>
+                                    <div class="font-mono text-sm text-blue-300">POST /api/tournaments/{id}/join</div>
+                                    <div class="text-gray-400 text-xs ml-4">Join a tournament (with entry fee)</div>
+                                </div>
+                                <div>
+                                    <div class="font-mono text-sm text-purple-300">GET /api/tournaments/{id}/leaderboard</div>
+                                    <div class="text-gray-400 text-xs ml-4">Get current tournament standings</div>
+                                </div>
+                                <div>
+                                    <div class="font-mono text-sm text-yellow-300">POST /api/tournaments/{id}/finalize</div>
+                                    <div class="text-gray-400 text-xs ml-4">Admin endpoint to finalize results</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                            <h4 class="font-semibold text-white mb-3">Tournament Data Model</h4>
+                            <pre class="text-gray-300 text-sm font-mono overflow-x-auto">
+{
+  "id": "tournament_abc123",
+  "sponsor_id": "company_xyz",
+  "title": "Quantum Coding Challenge",
+  "description": "Sponsored by TechCorp",
+  "start_time": "2023-07-15T00:00:00Z",
+  "end_time": "2023-07-22T00:00:00Z",
+  "entry_fee": 10.00, // in platform currency
+  "prize_pool": 5000.00,
+  "participants": ["user1", "user2", ...],
+  "custom_metric": "quantum_challenges_completed",
+  "status": "active", // scheduled, active, completed
+  "winner": null, // populated after completion
+  "terms_hash": "a1b2c3..." // for legal compliance
+}</pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-pink-300 mb-4">Prize Distribution Flow</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-pink-400 mb-2">1. Tournament Creation</h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li>Sponsor deposits prize pool to escrow</li>
+                                    <li>Smart contract validates terms</li>
+                                    <li>Tournament leaderboard initialized</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-blue-400 mb-2">2. Participation Period</h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li>Users pay entry fee (in platform currency)</li>
+                                    <li>Real-time leaderboard updates via Redis</li>
+                                    <li>Countdown timer displayed in UI</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-purple-400 mb-2">3. Finalization</h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li>Admin triggers finalization after end time</li>
+                                    <li>System verifies no last-minute changes</li>
+                                    <li>Winner receives prize (80%), runners-up split remainder</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-5">
+                                <h4 class="font-semibold text-green-400 mb-2">Security Considerations</h4>
+                                <ul class="text-gray-300 text-sm space-y-2">
+                                    <li>Use blockchain for prize escrow (optional)</li>
+                                    <li>Require 2FA for admin finalization</li>
+                                    <li>Log all score changes for audit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-20 pt-8 border-t border-gray-700/50">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2023 AI Orchestrator's Ascent. All rights reserved.
+                    </p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Generate sample leaderboard data
+        const generateLeaderboardData = () => {
+            const users = [
+                "QuantumCoder", "NeuralNova", "TensorTitan", "ByteBard", 
+                "AlgorithmAce", "DataDruid", "FunctionFury", "LambdaLegend",
+                "MatrixMaven", "RecursionRanger"
+            ];
+            
+            const data = [];
+            let lastScore = 10000;
+            
+            for (let i = 0; i < users.length; i++) {
+                const score = lastScore - Math.floor(Math.random() * 500);
+                lastScore = score;
+                
+                const change = Math.floor(Math.random() * 5) - 2;
+                const changeType = change > 0 ? 'up' : change < 0 ? 'down' : 'same';
+                
+                data.push({
+                    rank: i + 1,
+                    username: users[i],
+                    score: score.toLocaleString(),
+                    change,
+                    changeType,
+                    isCurrentUser: i === 3 // Mark one as the current user
+                });
+            }
+            
+            return data;
+        };
+        
+        // Render leaderboard
+        const renderLeaderboard = () => {
+            const data = generateLeaderboardData();
+            const container = document.getElementById('leaderboard-body');
+            
+            container.innerHTML = data.map(user => {
+                let changeElement = '';
+                
+                if (user.changeType === 'up') {
+                    changeElement = `
+                        <span class="rank-up flex items-center justify-end">
+                            <i class="fas fa-arrow-up mr-1"></i>
+                            ${Math.abs(user.change)}
+                        </span>
+                    `;
+                } else if (user.changeType === 'down') {
+                    changeElement = `
+                        <span class="rank-down flex items-center justify-end">
+                            <i class="fas fa-arrow-down mr-1"></i>
+                            ${Math.abs(user.change)}
+                        </span>
+                    `;
+                } else {
+                    changeElement = `
+                        <span class="text-gray-400">-</span>
+                    `;
+                }
+                
+                const userClass = user.isCurrentUser ? 'bg-blue-900/20 border-l-4 border-blue-500' : '';
+                
+                return `
+                    <tr class="${userClass}">
+                        <td class="py-3 px-4 font-mono text-gray-300">${user.rank}</td>
+                        <td class="py-3 px-4">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-sm text-gray-400"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">${user.username}</div>
+                                    <div class="text-xs text-gray-400">Level ${Math.floor(Math.random() * 100) + 1}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4 text-right font-mono">${user.score}</td>
+                        <td class="py-3 px-4 text-right">
+                            ${changeElement}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        };
+        
+        // Copy code button functionality
+        document.getElementById('copy-code').addEventListener('click', () => {
+            const code = document.getElementById('code-block').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const button = document.getElementById('copy-code');
+                button.innerHTML = '<i class="fas fa-check mr-1"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy mr-1"></i> Copy';
+                }, 2000);
+            });
+        });
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLeaderboard();
+        });
+    </script>
+</body>
+</html>

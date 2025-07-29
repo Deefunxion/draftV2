@@ -1,0 +1,1188 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Orchestrator&#39;s Ascent: Prosumer Economy Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #8B5CF6;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --neutral: #1F2937;
+            --base-100: #FFFFFF;
+            --base-200: #F8FAFC;
+            --base-300: #E2E8F0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--neutral);
+            overflow-x: hidden;
+        }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+        
+        .bento-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .currency-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .citation {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--primary);
+        }
+        
+        .citation:hover {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--base-300), transparent);
+            margin: 4rem 0;
+        }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Different mermaid diagram background colors */
+        .mermaid-theme-default { background: #ffffff; }
+        .mermaid-theme-light { background: #f8fafc; }
+        .mermaid-theme-dark { background: #1e293b; }
+        .mermaid-theme-blue { background: #eff6ff; }
+        .mermaid-theme-purple { background: #faf5ff; }
+
+        /* Ensure proper contrast for different themes */
+        .mermaid-theme-dark .mermaid svg {
+            background: #1e293b;
+        }
+        
+        .mermaid-theme-dark .mermaid .node rect,
+        .mermaid-theme-dark .mermaid .node circle,
+        .mermaid-theme-dark .mermaid .node ellipse,
+        .mermaid-theme-dark .mermaid .node polygon {
+            fill: #334155;
+            stroke: #64748b;
+        }
+        
+        .mermaid-theme-dark .mermaid .node .label,
+        .mermaid-theme-dark .mermaid .edgeLabel {
+            color: #e2e8f0;
+        }
+        
+        .mermaid-theme-dark .mermaid .edgePath .path {
+            stroke: #64748b;
+        }
+        
+        /* Responsive controls for smaller screens */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .toc-fixed {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Added for mermaid controls on small screens */
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .hero-section .text-xl {
+                font-size: 1.125rem;
+            }
+            .hero-section .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .bento-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+  </head>
+
+  <body class="bg-gray-50">
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="text-white">
+        <h3 class="text-lg font-bold mb-6 text-white">Blueprint Contents</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="#conceptual-framework" class="block hover:text-yellow-200 transition-colors">1. Conceptual Framework</a>
+          </li>
+          <li>
+            <a href="#ui-ux-principles" class="block hover:text-yellow-200 transition-colors">2. UI/UX Design Principles</a>
+          </li>
+          <li>
+            <a href="#transaction-logic" class="block hover:text-yellow-200 transition-colors">3. Core Transaction Logic</a>
+          </li>
+          <li>
+            <a href="#artisan-integration" class="block hover:text-yellow-200 transition-colors">4. Artisan Path Integration</a>
+          </li>
+          <li>
+            <a href="#economic-stability" class="block hover:text-yellow-200 transition-colors">5. Economic Stability &amp; Governance</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container mx-auto px-8 py-16">
+          <div class="hero-grid">
+            <div class="bento-card">
+              <h1 class="serif text-5xl font-bold text-gray-800 mb-6 leading-tight">
+                <em class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                  AI Orchestrator&#39;s Ascent
+                </em>
+              </h1>
+              <h2 class="text-2xl text-gray-600 mb-8">Prosumer Economy Blueprint</h2>
+              <p class="text-lg text-gray-700 leading-relaxed">
+                A comprehensive economic framework balancing Patron and Artisan paths through a sophisticated dual-currency system, designed for professionals who value quality, sophistication, and fair economic participation.
+              </p>
+            </div>
+            <div class="space-y-4">
+              <div class="bento-card">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-coins text-yellow-500 mr-3"></i>
+                  <h3 class="font-semibold">Dual Currency System</h3>
+                </div>
+                <p class="text-sm text-gray-600">AI-Q Points (earned) and Chroma Credits (purchased) - strictly non-convertible</p>
+              </div>
+              <div class="bento-card">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-balance-scale text-purple-500 mr-3"></i>
+                  <h3 class="font-semibold">Balanced Ecosystem</h3>
+                </div>
+                <p class="text-sm text-gray-600">Patron and Artisan paths coexist with distinct value propositions</p>
+              </div>
+              <div class="bento-card">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-users text-blue-500 mr-3"></i>
+                  <h3 class="font-semibold">Target Demographic</h3>
+                </div>
+                <p class="text-sm text-gray-600">Professionals aged 28-50 seeking sophisticated digital experiences</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: Conceptual Framework -->
+      <section id="conceptual-framework" class="py-16 px-8">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="serif text-4xl font-bold text-gray-800 mb-8">1. Conceptual Framework: Balancing Patron and Artisan Paths</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+              The AI Orchestrator&#39;s Ascent platform is built upon a <strong>&#34;Prosumer Economy&#34; model</strong>, designed to empower users to either acquire digital goods directly through the &#34;Patron Path&#34; or to learn, create, and sell their own items via the &#34;Artisan Path.&#34;
+            </p>
+
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg mb-8">
+              <h3 class="serif text-2xl font-semibold mb-4">Core Economic Principles</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-star text-purple-500 mr-3 mt-1"></i>
+                  <div>
+                    <strong>Value Differentiation:</strong> Patron items emphasize exclusivity and polish, while Artisan items showcase creativity and diversity
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-star text-purple-500 mr-3 mt-1"></i>
+                  <div>
+                    <strong>Accessibility Balance:</strong> Low barrier to entry for creative expression with significant rewards for skilled creators
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-star text-purple-500 mr-3 mt-1"></i>
+                  <div>
+                    <strong>Circular Economy:</strong> Artisans can use earned AI-Q Points to purchase from other Artisans, fostering community-driven marketplace
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <h3 class="serif text-2xl font-semibold mb-6">The Dual-Currency System</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="currency-card">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-brain text-2xl mr-3"></i>
+                  <h4 class="text-xl font-bold">AI-Q Points</h4>
+                </div>
+                <ul class="space-y-2 text-sm">
+                  <li>• <strong>Exclusively earned</strong> through in-platform activities</li>
+                  <li>• Represents learning, skill development, and participation</li>
+                  <li>• Measures &#34;AI Quotient&#34; or mastery level</li>
+                  <li>• <strong>Cannot be purchased</strong> with real money</li>
+                </ul>
+              </div>
+
+              <div class="currency-card bg-gradient-to-br from-pink-500 to-red-500">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-gem text-2xl mr-3"></i>
+                  <h4 class="text-xl font-bold">Chroma Credits</h4>
+                </div>
+                <ul class="space-y-2 text-sm">
+                  <li>• <strong>Purchased</strong> with real-world money</li>
+                  <li>• Currency of financial support and convenience</li>
+                  <li>• Used for premium platform-issued items</li>
+                  <li>• Supports platform development and creators</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="border-l-4 border-purple-500 pl-6 py-4 bg-purple-50 rounded-r-lg mb-8">
+              <p class="text-lg font-medium text-gray-800">
+                &#34;The <strong>strict separation of these currencies is non-negotiable</strong>, as it underpins the fairness and balance of the entire economic model.&#34;
+              </p>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 2: UI/UX Design Principles -->
+      <section id="ui-ux-principles" class="py-16 px-8">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="serif text-4xl font-bold text-gray-800 mb-8">2. UI/UX Design Principles for the Marketplace</h2>
+
+          <div class="mb-12">
+            <img src="https://kimi-web-img.moonshot.cn/img/cdn.80.lv/103d2baceefb101ca374205be806026f0a8ee57f.jpg" alt="Cyberpunk user interface design with neon accents and clean layout" class="w-full h-64 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" color="blue" style="photo" query="cyberpunk ui design" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            <p class="text-sm text-gray-600 text-center">Nielsen/Norman meets Cyberpunk: Clean usability meets sophisticated high-tech aesthetics</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <div class="text-purple-500 text-3xl mb-4">
+                <i class="fas fa-tags"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-3">Distinct Branding</h3>
+              <p class="text-gray-600">Clear visual distinction between Patron and Artisan items using premium branding and creator individuality</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <div class="text-blue-500 text-3xl mb-4">
+                <i class="fas fa-store"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-3">Personal Storefronts</h3>
+              <p class="text-gray-600">Professional storefronts for Artisans with customizable branding and social engagement features</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <div class="text-pink-500 text-3xl mb-4">
+                <i class="fas fa-search"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-3">Intelligent Discovery</h3>
+              <p class="text-gray-600">Advanced filtering, search, and recommendation systems for efficient marketplace navigation</p>
+            </div>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">Nielsen/Norman Principles Implementation</h3>
+
+          <div class="bg-gray-50 p-6 rounded-lg mb-8">
+            <p class="mb-4">
+              The marketplace UI adheres to established usability heuristics while infusing cyberpunk aesthetics. Key principles include:
+            </p>
+            <div class="grid md:grid-cols-2 gap-4">
+              <ul class="space-y-2">
+                <li>• <a href="https://thestory.is/en/journal/how-to-design-website/" class="citation">Visibility of system status</a>
+                </li>
+                <li>• Match between system and real world</li>
+                <li>• <a href="https://www.nngroup.com/articles/ecommerce-product-pages/" class="citation">Comprehensive product information</a>
+                </li>
+                <li>• User control and freedom</li>
+              </ul>
+              <ul class="space-y-2">
+                <li>• Consistency and standards</li>
+                <li>• Error prevention</li>
+                <li>• Recognition rather than recall</li>
+                <li>• <a href="https://uxplanet.org/9-filtering-design-best-practices-to-improve-e-commerce-ux-edac50560f94" class="citation">Flexible filtering systems</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 3: Core Transaction Logic -->
+      <section id="transaction-logic" class="py-16 px-8">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="serif text-4xl font-bold text-gray-800 mb-8">3. Core Transaction Logic &amp; Pseudo-code</h2>
+
+          <div class="bg-gray-900 text-green-400 p-6 rounded-lg mb-8 overflow-x-auto">
+            <pre class="text-sm"><code>function purchaseItem(user_id, item_id, currency_type):
+    # 1. Validate Inputs
+    if user_id is not valid or item_id is not valid or currency_type is not in [&#39;AIQ&#39;, &#39;CHROMA&#39;]:
+        return {&#34;status&#34;: &#34;error&#34;, &#34;message&#34;: &#34;Invalid input parameters.&#34;}
+
+    # 2. Retrieve User and Item Details
+    user = getUserById(user_id) # Fetches user details including balances
+    item = getItemById(item_id) # Fetches item details including price and seller
+    if user is None or item is None:
+        return {&#34;status&#34;: &#34;error&#34;, &#34;message&#34;: &#34;User or item not found.&#34;}
+
+    # 3. Check Item Availability and Seller Status
+    if not item.is_available_for_sale or item.seller_id is None or item.seller_account_status != &#39;ACTIVE&#39;:
+        return {&#34;status&#34;: &#34;error&#34;, &#34;message&#34;: &#34;Item is not available for purchase.&#34;}
+
+    # 4. Check if User is Trying to Buy Their Own Item
+    if user_id == item.seller_id:
+        return {&#34;status&#34;: &#34;error&#34;, &#34;message&#34;: &#34;Cannot purchase your own item.&#34;}
+
+    # 5. Determine Price and Currency
+    if currency_type == &#39;AIQ&#39;:
+        price = item.price_aiq
+        user_balance = user.aiq_balance
+    else: # currency_type == &#39;CHROMA&#39;
+        price = item.price_chroma
+        user_balance = user.chroma_balance
+
+    # 6. Check User Balance
+    if user_balance &lt; price:
+        return {&#34;status&#34;: &#34;error&#34;, &#34;message&#34;: &#34;Insufficient balance.&#34;}
+
+    # 7. Apply Platform Commission and Calculate Creator Payout
+    if currency_type == &#39;AIQ&#39;:
+        # For AI-Q Points, a &#34;fee&#34; might be a percentage burned or a flat fee
+        platform_fee_aiq = calculatePlatformFeeAIQ(price) # e.g., 5% of price
+        creator_payout_aiq = price - platform_fee_aiq
+        platform_fee_chroma = 0
+        creator_payout_chroma = 0
+    else: # currency_type == &#39;CHROMA&#39;
+        # For Chroma Credits, a percentage commission is typical
+        platform_commission_rate = getPlatformCommissionRate() # e.g., 0.30 for 30%
+        platform_fee_chroma = price * platform_commission_rate
+        creator_payout_chroma = price - platform_fee_chroma
+        platform_fee_aiq = 0
+        creator_payout_aiq = 0
+
+    # 8. Perform Balance Deduction and Transfer (Atomic Operation)
+    transaction_result = executeTransaction(
+        user_id=user_id,
+        seller_id=item.seller_id,
+        item_id=item_id,
+        currency_type=currency_type,
+        price=price,
+        platform_fee_aiq=platform_fee_aiq,
+        platform_fee_chroma=platform_fee_chroma,
+        creator_payout_aiq=creator_payout_aiq,
+        creator_payout_chroma=creator_payout_chroma
+    )
+
+    # 9. Handle Transaction Result
+    if transaction_result == &#34;success&#34;:
+        # Grant item ownership to user
+        grantItemOwnership(user_id, item_id)
+        # Send notifications to buyer and seller
+        sendPurchaseConfirmationToBuyer(user_id, item_id)
+        sendSaleConfirmationToSeller(item.seller_id, item_id, currency_type, creator_payout_aiq, creator_payout_chroma)
+        return {&#34;status&#34;: &#34;success&#34;, &#34;message&#34;: &#34;Item purchased successfully.&#34;}
+    else:
+        # Log detailed error for internal review
+        logError(&#34;Transaction failed for user &#34; + user_id + &#34; item &#34; + item_id + &#34;: &#34; + transaction_result)
+        return {&#34;status&#34;: &#34;error&#34;, &#34;message&#34;: &#34;Transaction failed. Please try again later.&#34;}</code></pre>
+          </div>
+
+          <div class="bg-blue-50 p-6 rounded-lg">
+            <h4 class="font-semibold text-lg mb-4">Key Transaction Features</h4>
+            <ul class="space-y-2">
+              <li><strong>Atomic Operations:</strong> All balance changes and ownership transfers happen simultaneously to prevent race conditions</li>
+              <li><strong>Currency Separation:</strong> Strict handling of AI-Q Points vs. Chroma Credits with different fee structures</li>
+              <li><strong>Comprehensive Validation:</strong> Multiple checks before transaction execution</li>
+              <li><strong>Transparent Fees:</strong> Clear commission structures for both currency types</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 4: Artisan Path Integration -->
+      <section id="artisan-integration" class="py-16 px-8">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="serif text-4xl font-bold text-gray-800 mb-8">4. &#34;Artisan Path&#34; Integration: Creator Lifecycle</h2>
+
+          <div class="mb-8">
+            <img src="https://kimi-web-img.moonshot.cn/img/wauwai.com/f87452ce5ea6f06488c218087ed0dd3a91783f2a.webp" alt="Creative workspace with design tools and computer for digital content creation" class="w-full h-48 object-cover rounded-lg shadow-lg mb-4" size="medium" aspect="wide" style="photo" query="digital creator workspace" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">Creator Journey Flow</h3>
+
+          <div class="mermaid-container mermaid-theme-purple">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid" id="creator-journey-diagram">
+              graph TD
+              A[&#34;New User&#34;] --&gt; B[&#34;AI-Q Level 1&#34;]
+              B --&gt; C[&#34;Complete Tutorials&#34;]
+              C --&gt; D[&#34;Reach AI-Q Level 5&#34;]
+              D --&gt; E[&#34;Identity Verification&#34;]
+              E --&gt; F[&#34;Artisan Unlocked&#34;]
+              F --&gt; G[&#34;Create First Item&#34;]
+              G --&gt; H[&#34;Submit for Review&#34;]
+              H --&gt; I[&#34;Approval Process&#34;]
+              I --&gt; J[&#34;Set Pricing&#34;]
+              J --&gt; K[&#34;Item Published&#34;]
+              K --&gt; L[&#34;Earn Revenue&#34;]
+
+              style A fill:#e1f5fe
+              style F fill:#e8f5e8
+              style L fill:#fff3e0
+            </div>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">Unlocking Selling Privileges</h3>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-lg">
+              <h4 class="font-semibold text-lg mb-4">AI-Q Level Requirements</h4>
+              <ul class="space-y-2 text-sm">
+                <li>• Complete creation tutorials</li>
+                <li>• <a href="https://support.steampowered.com/kb/8860-WOSX-7503/dota-2-account-preparation-for-workshop-item-submission" class="citation">Reach minimum AI-Q Level (e.g., Level 5)</a>
+                </li>
+                <li>• Understand platform policies and aesthetics</li>
+                <li>• Contribute positively rated free items</li>
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-lg">
+              <h4 class="font-semibold text-lg mb-4">Verification Process</h4>
+              <ul class="space-y-2 text-sm">
+                <li>• Identity confirmation</li>
+                <li>• <a href="https://help.steampowered.com/en/faqs/view/0CCF-571A-4430-0130" class="citation">Tax and payment information</a>
+                </li>
+                <li>• Terms of service agreement</li>
+                <li>• Copyright and IP guidelines</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">Item Submission &amp; Review Process</h3>
+
+          <div class="bg-white border border-gray-200 p-6 rounded-lg mb-8">
+            <p class="mb-4">
+              <a href="https://docs.smartlydressedgames.com/en/latest/about/steam-workshop.html" class="citation">Inspired by Steam Workshop processes</a>, the submission system requires:
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3">Submission Requirements</h4>
+                <ul class="space-y-2 text-sm">
+                  <li>• Clear, descriptive title</li>
+                  <li>• Detailed description with features</li>
+                  <li>• High-quality preview images/videos</li>
+                  <li>• Relevant tags for discoverability</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Review Process</h4>
+                <ul class="space-y-2 text-sm">
+                  <li>• <a href="https://www.gamedeveloper.com/game-platforms/valve-turns-to-hands-on-moderation-to-solve-steam-workshop-woes" class="citation">Automated compliance checks</a>
+                  </li>
+                  <li>• Human moderation for quality</li>
+                  <li>• Technical soundness verification</li>
+                  <li>• Policy adherence confirmation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">Commission &amp; Fee Structure</h3>
+
+          <div class="overflow-x-auto mb-8">
+            <table class="w-full bg-white rounded-lg shadow-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left font-semibold">Feature</th>
+                  <th class="px-6 py-4 text-left font-semibold">Chroma Credit Sales</th>
+                  <th class="px-6 py-4 text-left font-semibold">AI-Q Point Sales</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 font-medium">Platform Commission</td>
+                  <td class="px-6 py-4">~30% (70% to Artisan)</td>
+                  <td class="px-6 py-4">No direct monetary commission</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="px-6 py-4 font-medium">Fee Mechanism</td>
+                  <td class="px-6 py-4">Percentage of sale price</td>
+                  <td class="px-6 py-4">Small fixed fee or percentage burned</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 font-medium">Primary Purpose</td>
+                  <td class="px-6 py-4">Platform sustainability</td>
+                  <td class="px-6 py-4">AI-Q economy management</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="px-6 py-4 font-medium">Payout Currency</td>
+                  <td class="px-6 py-4">Chroma Credits (real currency)</td>
+                  <td class="px-6 py-4">AI-Q Points</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 5: Economic Stability &amp; Governance -->
+      <section id="economic-stability" class="py-16 px-8">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="serif text-4xl font-bold text-gray-800 mb-8">5. Economic Stability &amp; Governance</h2>
+
+          <div class="mb-8">
+            <img src="https://kimi-web-img.moonshot.cn/img/www.forwardpathway.com/37a0ad6497d7edf2f69ebd4b91d097e69b47eb6c.jpg" alt="Abstract representation of economic stability mechanisms" class="w-full h-48 object-cover rounded-lg shadow-lg mb-4" size="medium" aspect="wide" query="abstract economic stability concept" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">AI-Q Point Economy Management</h3>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-green-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-lg mb-4 flex items-center">
+                <i class="fas fa-plus-circle text-green-500 mr-2"></i>
+                AI-Q Sources (Earning)
+              </h4>
+              <ul class="space-y-2 text-sm">
+                <li>• Complete educational modules</li>
+                <li>• Achieve Scribble Saga milestones</li>
+                <li>• Participate in community challenges</li>
+                <li>• Contribute valuable feedback</li>
+                <li>• Create high-quality content</li>
+              </ul>
+            </div>
+
+            <div class="bg-red-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-lg mb-4 flex items-center">
+                <i class="fas fa-minus-circle text-red-500 mr-2"></i>
+                AI-Q Sinks (Spending)
+              </h4>
+              <ul class="space-y-2 text-sm">
+                <li>• Purchase Artisan cosmetic items</li>
+                <li>• Access advanced creation tools</li>
+                <li>• Enter competitive events</li>
+                <li>• <a href="https://aaltodoc.aalto.fi/bitstreams/d2ea659c-cc18-49b9-b98a-58f9f98817a1/download" class="citation">Transaction fees (inspired by Path of Exile)</a>
+                </li>
+                <li>• Listing fees for Artisans</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+            <h4 class="font-semibold text-lg mb-3">Inflation Prevention Mechanisms</h4>
+            <p class="mb-3">
+              To maintain AI-Q Point value and prevent devaluation through oversupply:
+            </p>
+            <ul class="space-y-2 text-sm">
+              <li>• Dynamic calibration of earning rates based on economic analysis</li>
+              <li>• Portion of AI-Q Points &#34;burned&#34; in transactions (5-10%)</li>
+              <li>• High-value items with significant AI-Q Point costs</li>
+              <li>• Regular economic reports and transparency dashboards</li>
+            </ul>
+          </div>
+
+          <h3 class="serif text-2xl font-semibold mb-6">Governance &amp; Dispute Resolution</h3>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <div class="text-blue-500 text-2xl mb-4">
+                <i class="fas fa-copyright"></i>
+              </div>
+              <h4 class="font-semibold mb-3">Copyright Protection</h4>
+              <ul class="text-sm space-y-1">
+                <li>• DMCA takedown process</li>
+                <li>• Original content affirmation</li>
+                <li>• Repeat infringer policy</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <div class="text-purple-500 text-2xl mb-4">
+                <i class="fas fa-gavel"></i>
+              </div>
+              <h4 class="font-semibold mb-3">Dispute Resolution</h4>
+              <ul class="text-sm space-y-1">
+                <li>• Clear transaction terms</li>
+                <li>• Dedicated support channel</li>
+                <li>• Evidence-based decisions</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <div class="text-red-500 text-2xl mb-4">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4 class="font-semibold mb-3">Fraud Prevention</h4>
+              <ul class="text-sm space-y-1">
+                <li>• Two-factor authentication</li>
+                <li>• Suspicious activity monitoring</li>
+                <li>• Account verification</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-gray-100 p-6 rounded-lg">
+            <h4 class="font-semibold text-lg mb-4">Content Moderation Framework</h4>
+            <p class="mb-4">
+              <a href="https://wiki.teamfortress.com/wiki/Steam_Workshop" class="citation">Inspired by Steam Workshop moderation systems</a>, our approach includes:
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-semibold mb-2">Pre-Publication Review</h5>
+                <ul class="text-sm space-y-1">
+                  <li>• Functionality testing</li>
+                  <li>• Technical specification compliance</li>
+                  <li>• Content guideline adherence</li>
+                  <li>• Quality baseline assessment</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-semibold mb-2">Ongoing Moderation</h5>
+                <ul class="text-sm space-y-1">
+                  <li>• User reporting system</li>
+                  <li>• <a href="https://getflowbox.com/guide/user-generated-content/" class="citation">Clear UGC guidelines</a>
+                  </li>
+                  <li>• Responsive moderation team</li>
+                  <li>• Regular marketplace audits</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section class="py-16 px-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+        <div class="container mx-auto max-w-4xl text-center">
+          <h2 class="serif text-4xl font-bold mb-6">Building the Future of Prosumer Economies</h2>
+          <p class="text-xl mb-8 max-w-3xl mx-auto">
+            The AI Orchestrator&#39;s Ascent Prosumer Economy Blueprint represents a sophisticated approach to digital marketplace design, balancing the needs of creators and consumers through a carefully crafted dual-currency system that respects both effort and financial contribution.
+          </p>
+          <div class="grid md:grid-cols-3 gap-6 text-left">
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+              <h3 class="font-semibold text-lg mb-3">For Professionals</h3>
+              <p class="text-sm">Sophisticated tools and fair economic participation for users who value quality and integrity</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+              <h3 class="font-semibold text-lg mb-3">For Creators</h3>
+              <p class="text-sm">Robust creator lifecycle with clear pathways from learning to monetization</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+              <h3 class="font-semibold text-lg mb-3">For the Platform</h3>
+              <p class="text-sm">Sustainable economic model with built-in stability and governance mechanisms</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+        // Initialize Mermaid with custom configuration
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#8B5CF6',
+                primaryTextColor: '#FFFFFF',
+                primaryBorderColor: '#7C3AED',
+                lineColor: '#6B7280',
+                sectionBkgColor: '#F8FAFC',
+                altSectionBkgColor: '#FFFFFF',
+                gridColor: '#E2E8F0',
+                secondaryColor: '#06B6D4',
+                tertiaryColor: '#F59E0B',
+                background: '#FFFFFF',
+                mainBkg: '#8B5CF6',
+                secondBkg: '#06B6D4',
+                tertiaryBkg: '#F59E0B',
+                // Enhanced contrast colors for different node types
+                nodeBkg: '#8B5CF6',
+                nodeTextColor: '#FFFFFF',
+                clusterBkg: '#F8FAFC',
+                clusterTextColor: '#1F2937',
+                // Specific node colors with good contrast
+                primaryTextColor: '#FFFFFF',
+                secondaryTextColor: '#FFFFFF',
+                tertiaryTextColor: '#1F2937',
+                // Edge and line styling
+                edgeLabelBackground: '#FFFFFF',
+                edgeLabelText: '#1F2937'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            // Set default font family
+            fontFamily: 'Inter, sans-serif',
+            // Ensure proper sizing
+            maxWidth: '100%',
+            maxHeight: '100%'
+        });
+        
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the controls when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeMermaidControls);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+                const id = section.getAttribute('id');
+                const link = document.querySelector(`a[href="#${id}"]`);
+
+                if (scrollPos >= top && scrollPos < bottom) {
+                    document.querySelectorAll('.toc-fixed a').forEach(a => a.classList.remove('text-yellow-200'));
+                    if (link) link.classList.add('text-yellow-200');
+                }
+            });
+        });
+    </script>
+  
+
+</body></html>
