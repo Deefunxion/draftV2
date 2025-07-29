@@ -10,6 +10,13 @@
   <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
 </head>
 <body>
+<!-- Living Margin Canvas - The Creative Edge for Reading -->
+<canvas id="living-margin-canvas"></canvas>
+
+<!-- Clear Doodles Button -->
+<button id="clear-doodles-btn" title="Καθαρισμός Σκίτσων">
+    <i class="fa-solid fa-eraser"></i>
+</button>
 <div class="nav-menu">
       <a href="index.html"><strong>← Κύριο Μενού</strong></a>
       <a href="main-book.html">Βιβλίον</a>
@@ -321,16 +328,31 @@ style="text-align: left;"><code>"Here is the beginning of the text I want you to
         Πατώντας αυτό το κουμπί θα ξεκλειδώσετε το επόμενο επίπεδο.
     </p>
 </div>
+<!-- AI-Q Completion Section -->
+<div class="aiq-completion-section">
+    <h3><i class="fa-solid fa-brain"></i> Ολοκληρώσατε το Εγκόλπιον</h3>
+    <p>Μπράβο! Έχετε ολοκληρώσει το γρήγορο εγχειρίδιο αναφοράς και είστε έτοιμοι για προχωρημένες εφαρμογές.</p>
+    
+    <button class="aiq-completion-btn" 
+            data-milestone-id="level_4" 
+            data-iq-points="15">
+        <i class="fa-solid fa-brain"></i> 
+        Ολοκλήρωσα το Εγκόλπιον (+15 AI-Q)
+    </button>
+    
+    <p style="margin-top: 15px; font-size: 14px; color: #047857; font-weight: 500;">
+        🎯 Θα κερδίσετε +15 AI-Q πόντους και θα ξεκλειδώσετε τον <strong>Οδηγό Εκπαιδευτή</strong>
+    </p>
+</div>
 
 <div class="back-link">
     <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στην Αρχική</a>
 </div>
 
-<!-- Back to Dashboard -->
-<a href="index.html" class="back-to-dashboard"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στο Κύριο Μενού</a>
-
 <!-- Scripts -->
 <script src="learning-path.js"></script>
+<script src="aiq-tracker.js"></script>
+<script src="doodler.js"></script>
 <script src="progress-tracker.js"></script>
 <script src="theme-switcher.js"></script>
 
