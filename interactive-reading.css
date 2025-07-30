@@ -2,8 +2,8 @@
 
 #reading-content-wrapper {
     position: relative;
-    padding-left: 20px; /* Make space for the icon */
     z-index: 10; /* Ensure it's above the canvas */
+    /* Removed conflicting padding-left - handled by main layout */
 }
 
 /* Interaction Container for proper hover zones */
@@ -11,6 +11,8 @@
     position: relative;
     margin: 1em 0;
     padding-right: 80px; /* Space for button */
+    width: 100%; /* Ensure full width within content container */
+    max-width: 100%; /* Prevent overflow */
 }
 
 /* Commit Button Styles */

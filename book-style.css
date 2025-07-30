@@ -3,93 +3,242 @@
 /* REMOVED: Dark mode - adds complexity without clear user benefit for documentation */
 /* REMOVED: Smooth transitions - distracting and serve no functional purpose */
 
-/* Core Variables for Maximum Clarity */
+/* =================================
+   CORE VARIABLES FOR CLARITY
+   ================================= */
 :root {
-    --text-color: #000000;          /* High contrast black text */
-    --background: #ffffff;          /* Pure white background for maximum readability */
-    --link-color: #333333;          /* Professional dark gray for links */
-    --visited-link: #666666;        /* Medium gray for visited links */
-    --nav-border: #000000;          /* Strong border for clear separation */
-    --table-border: #000000;        /* Black borders for table clarity */
-}
-
-/* REMOVED: Complex font fallbacks - single, system-standard font for consistency */
-body {
-    max-width: 65ch;                /* Optimal line length for readability (45-75 chars) */
-    margin: 0 auto;
-    padding: 20px;                  /* Generous padding for comfortable reading */
-    font-family: Georgia, serif;    /* Single, highly readable serif font */
-    font-size: 16px;               /* Minimum 16px for accessibility compliance */
-    line-height: 1.5;              /* 1.5x line height for optimal readability */
-    color: var(--text-color);
-    background-color: var(--background);
+    --text-color: #000000;
+    --background: #ffffff;
+    --link-color: #333333;
+    --visited-link: #666666;
+    --nav-border: #000000;
+    --table-border: #000000;
 }
 
 /* =================================
-   RESPONSIVE DESIGN FIXES
+   FOUNDATIONAL LAYOUT - MOBILE FIRST
+   Classic A4-Style Reading Experience
    ================================= */
 
-/* Tablet and mobile responsive layout */
-@media (max-width: 1024px) {
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base font size for rem calculations */
+}
+
+body {
+    /* Mobile-first base styles */
+    margin: 0;
+    padding: 1rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: calc(16px + 0.25vw); /* Fluid typography */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background);
+    
+    /* Critical: Remove any width constraints that cause narrow columns */
+    width: 100% !important;
+    max-width: none !important;
+    
+    /* Ensure proper text flow */
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
+/* Main content container - the reading area */
+#reading-content-wrapper,
+main,
+.main-content {
+    /* Classic centered layout */
+    max-width: 80ch; /* Optimal reading width */
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+    
+    /* Ensure content flows naturally */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    
+    /* Prevent any accidental width constraints */
+    min-width: 0;
+    flex: 1;
+}
+
+/* Ensure all direct children respect the layout */
+#reading-content-wrapper > *,
+main > *,
+.main-content > * {
+    max-width: 100%;
+}
+
+/* =================================
+   RESPONSIVE BREAKPOINTS
+   Mobile-First Approach
+   ================================= */
+
+/* Small screens (phones) - Base styles above apply */
+
+/* Medium screens (tablets) */
+@media (min-width: 768px) {
     body {
-        max-width: 90vw;
-        padding: 15px;
+        font-size: calc(16px + 0.3vw);
+        padding: 1.5rem;
+    }
+    
+    #reading-content-wrapper,
+    main,
+    .main-content {
+        padding: 2rem 2rem;
+        max-width: 75ch;
     }
 }
 
-@media (max-width: 768px) {
+/* Large screens (desktops) */
+@media (min-width: 1024px) {
     body {
-        max-width: 95vw;
-        padding: 12px;
-        font-size: 15px;
+        font-size: calc(16px + 0.4vw);
+        padding: 2rem;
     }
     
+    #reading-content-wrapper,
+    main,
+    .main-content {
+        padding: 3rem 4rem;
+        max-width: 80ch;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px; /* Cap the fluid scaling */
+    }
+    
+    #reading-content-wrapper,
+    main,
+    .main-content {
+        padding: 4rem 5rem;
+        max-width: 85ch;
+    }
+}
+
+/* Small mobile optimization */
+@media (max-width: 480px) {
+    body {
+        font-size: 16px; /* Minimum readable size */
+        padding: 0.5rem;
+    }
+    
+    #reading-content-wrapper,
+    main,
+    .main-content {
+        padding: 1rem 0.75rem;
+    }
+}
+
+/* =================================
+   NAVIGATION RESPONSIVE DESIGN
+   ================================= */
+
+.nav-menu {
+    max-width: 80ch;
+    margin: 0 auto 2rem auto; /* Center navigation like content */
+    padding: 1rem;
+    border-bottom: 2px solid var(--nav-border);
+    text-align: left;
+}
+
+.nav-menu a {
+    color: var(--link-color);
+    text-decoration: underline;
+    margin-right: 1.5rem;
+    font-size: 0.9rem; /* Slightly smaller than body text */
+    font-weight: normal;
+    display: inline-block;
+    padding: 0.5rem 0;
+    line-height: 1.4;
+}
+
+/* Navigation responsive behavior */
+@media (max-width: 768px) {
     .nav-menu {
-        margin-bottom: 20px;
-        padding: 15px 0;
         text-align: center;
+        padding: 1rem 0.5rem;
+        margin-bottom: 1.5rem;
     }
     
     .nav-menu a {
         display: block;
-        margin: 8px 0;
-        padding: 8px;
-        font-size: 16px;
+        margin: 0.5rem 0;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+    }
+    
+    .nav-menu a:hover {
+        background-color: #f5f5f5;
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        max-width: 98vw;
-        padding: 8px;
-        font-size: 14px;
+@media (min-width: 1024px) {
+    .nav-menu {
+        padding: 1.5rem 4rem;
+        max-width: 85ch;
     }
     
     .nav-menu a {
-        margin: 5px 0;
-        padding: 10px;
-        font-size: 15px;
+        margin-right: 2rem;
     }
 }
 
-/* REMOVED: Complex navigation background and borders - visual noise without function */
-/* Navigation must be simple and obvious */
-.nav-menu {
-    margin-bottom: 40px;            /* Clear separation from content */
-    padding: 20px 0;               /* Generous touch targets */
-    border-bottom: 2px solid var(--nav-border);  /* Clear visual separation */
-    text-align: left;              /* Left-aligned for scanning efficiency */
+/* =================================
+   TYPOGRAPHY HIERARCHY
+   ================================= */
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
 }
 
-/* REMOVED: Pipe separators - create visual clutter */
-.nav-menu a {
-    color: var(--link-color);       /* Professional dark gray links */
-    text-decoration: underline;     /* Always underlined - no ambiguity */
-    margin-right: 20px;            /* Reduced spacing for more links */
-    font-size: 15px;               /* Slightly smaller for better fit */
-    font-weight: normal;           /* REMOVED: Bold styling - unnecessary emphasis */
-    display: inline-block;         /* Better click targets */
-    padding: 5px 0;               /* Larger touch targets */
+h1 {
+    font-size: 2.25rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.875rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1.25rem;
+    max-width: none; /* Remove any width constraints on paragraphs */
+}
+
+/* Responsive typography scaling */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.875rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
 }
 
 /* =================================
