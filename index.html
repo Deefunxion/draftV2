@@ -7,18 +7,34 @@
     <link rel="stylesheet" href="book-style.css">
     <link rel="stylesheet" href="theme-switcher.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="svg-marginalia.css">
     
-    <!-- Paper.js for Professional Drawing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
 </head>
 <body class="aiq-dashboard-page">
-    <!-- Living Margin Canvas - Professional Full-Screen Implementation -->
-    <canvas id="living-margin-canvas" resize></canvas>
-    
-    <!-- Clear Doodles Button -->
-    <button id="clear-doodles-btn" title="Καθαρισμός Σκίτσων">
-        <i class="fa-solid fa-eraser"></i>
-    </button>
+    <!-- SVG Filter Definitions for AI-Q Effects -->
+    <div class="svg-filters">
+        <svg width="0" height="0" style="position: absolute;">
+            <defs>
+                <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge> 
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/> 
+                    </feMerge>
+                </filter>
+                <filter id="master-glow-filter" x="-100%" y="-100%" width="300%" height="300%">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feOffset dx="0" dy="0" result="offsetBlur"/>
+                    <feFlood flood-color="currentColor" flood-opacity="0.3"/>
+                    <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"/>
+                    <feMerge>
+                        <feMergeNode in="offsetBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
+    </div>
 
     <!-- AI-Q Dashboard Layout -->
     <div class="aiq-dashboard">
@@ -223,7 +239,7 @@
     <!-- Scripts -->
     <script src="learning-path.js"></script>
     <script src="aiq-tracker.js"></script>
-    <script src="professional-doodler.js"></script>
+    <script src="svg-marginalia.js"></script>
     <script src="theme-switcher.js"></script>
     <script src="mobile-nav.js"></script>
     

@@ -49,77 +49,20 @@ body {
    LIVING MARGIN CANVAS SYSTEM
    ================================= */
 
-/* ===== PROFESSIONAL SCRIBBLING SYSTEM ===== */
-/* Full-screen overlay canvas for doodling */
-#scribble-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 990;
-    pointer-events: none;
-    background: transparent;
+/* =================================
+   ΝΕΟΣ SUPERIOR SCRIBBLING SYSTEM
+   ================================= */
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .aiq-dashboard {
+        margin-left: 40px;
+    }
 }
-
-/* Remove the old right canvas CSS since we're going full-screen */
-/* Clear Doodles Button - Professional Positioning */
-#clear-doodles-btn {
-    position: fixed;
-    left: 15px;
-    bottom: 20px;
-    z-index: 999;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    font-size: 14px;
-    color: #6b7280;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-#clear-doodles-btn:hover {
-    background: rgba(239, 68, 68, 0.9);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
-}
-
-#clear-doodles-btn:active {
-    transform: scale(0.95);
-}
-
-/* Dynamic contrast for text under drawing */
-.content-under-drawing {
-    transition: all 0.2s ease-in-out;
-}
-
-.content-under-drawing.ink-overlay {
-    color: #ffffff !important;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-    font-weight: 600;
-}
-
-.content-under-drawing.ink-overlay a {
-    color: #ffeb3b !important;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-}
-
-.content-under-drawing.ink-overlay h1,
-.content-under-drawing.ink-overlay h2,
-.content-under-drawing.ink-overlay h3 {
-    color: #ffffff !important;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
-}
-
-
 
 /* =================================
    LEARNING PATH TABLE STYLES
@@ -258,10 +201,10 @@ body {
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: 20px;
-    margin: 20px auto;
+    margin: 0; /* Remove auto margins that create white space */
     max-width: 1400px;
     min-height: 100vh;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 /* Left Column: AI-Q Profile Section - Compact */
@@ -475,9 +418,10 @@ body {
     }
 }
 
-/* Adjust main content margin for smaller AI-Q panel */
+/* Proper layout for AI-Q Dashboard */
 .aiq-dashboard {
-    margin-left: 60px; /* Account for Living Margin + some spacing */
+    margin: 0; /* No margins for dashboard layout */
+    padding: 20px;
 }
 
 /* For text-heavy pages (like student workbook) - Centered with equal margins */
@@ -487,15 +431,13 @@ body:not(.aiq-dashboard-page) {
     max-width: 65ch; /* Maintain optimal reading width */
 }
 
-@media (max-width: 768px) {
-    .aiq-dashboard {
-        margin-left: 40px;
-    }
-    
-    body:not(.aiq-dashboard-page) {
-        margin-left: 80px; /* Smaller but equal margins on mobile */
-        margin-right: 80px;
-        max-width: 65ch;
+@media (max-width: 768px) {    
+    #clear-doodles-btn {
+        left: 15px;
+        bottom: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
     }
 }
 

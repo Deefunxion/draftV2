@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Orchestrator Documentation - Live Theme Demo</title>
     <link rel="stylesheet" href="theme-switcher.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="svg-marginalia.css">
     <style>
         /* Demo-specific styles */
         .demo-banner {
@@ -63,6 +65,30 @@
     </style>
 </head>
 <body>
+<!-- SVG Filter Definitions for AI-Q Effects -->
+<div class="svg-filters">
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/> 
+                </feMerge>
+            </filter>
+            <filter id="master-glow-filter" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feOffset dx="0" dy="0" result="offsetBlur"/>
+                <feFlood flood-color="currentColor" flood-opacity="0.3"/>
+                <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"/>
+                <feMerge>
+                    <feMergeNode in="offsetBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+</div>
     <div class="demo-banner">
         <h1>◇ AI Orchestrator - Live Theme Demo</h1>
         <p>Experience 12 different design themes in real-time! Use the switcher on the right →</p>
@@ -259,5 +285,6 @@ document.addEventListener('themeChanged', (e) => {
         `;
         document.head.appendChild(style);
     </script>
+    <script src="svg-marginalia.js"></script>
 </body>
 </html>

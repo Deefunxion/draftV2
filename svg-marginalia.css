@@ -1,0 +1,293 @@
+/**
+ * SVG Marginalia CSS - AI Orchestrator's Ascent
+ * 
+ * Professional styling for document-anchored annotation system
+ * Constitution Article 2: Nielsen/Norman clarity + Cyberpunk sophistication
+ */
+
+/* =================================
+   SVG MARGINALIA FOUNDATION
+   ================================= */
+
+/* SVG Overlay - Document Flow Integration */
+#marginalia-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: visible;
+}
+
+/* Margin Zone Visual Indicators (Development/Debug) */
+.show-margins .margin-zone-left,
+.show-margins .margin-zone-right {
+    position: fixed;
+    top: 0;
+    width: 120px;
+    height: 100vh;
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px dashed rgba(59, 130, 246, 0.2);
+    pointer-events: none;
+    z-index: 999;
+}
+
+.show-margins .margin-zone-left {
+    left: 0;
+    border-right: 2px dashed rgba(59, 130, 246, 0.3);
+}
+
+.show-margins .margin-zone-right {
+    right: 0;
+    border-left: 2px dashed rgba(59, 130, 246, 0.3);
+}
+
+/* =================================
+   MARGINALIA CONTROL BUTTONS
+   ================================= */
+
+/* Clear Button - Professional Design */
+.marginalia-control-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    
+    /* Constitution Article 2: Nielsen/Norman Clarity */
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    
+    /* Cyberpunk Sophistication */
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    color: #e5e7eb;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    /* Professional Transitions (Article 2) */
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+    
+    /* Font Awesome 7 Icon Styling (Article 4) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.marginalia-control-btn:hover {
+    /* Cyberpunk Hover State */
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 8px 32px rgba(239, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.marginalia-control-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive Controls */
+@media (max-width: 768px) {
+    .marginalia-control-btn {
+        width: 44px;
+        height: 44px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 16px;
+    }
+}
+
+/* =================================
+   AI-Q PROGRESSION VISUAL EFFECTS
+   ================================= */
+
+/* SVG Filter Definitions for AI-Q Progression */
+#marginalia-svg defs {
+    display: none;
+}
+
+/* Glow Filter for Έμπειρος Level (AI-Q 90-109) */
+.svg-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* CSS-based glow effects for different AI-Q levels */
+#marginalia-svg path[stroke="#7c3aed"] {
+    filter: drop-shadow(0 0 3px rgba(124, 58, 237, 0.4));
+}
+
+#marginalia-svg path[stroke="#059669"] {
+    filter: drop-shadow(0 0 5px rgba(5, 150, 105, 0.6));
+}
+
+/* =================================
+   DRAWING INTERACTION CURSORS
+   ================================= */
+
+/* Margin Zone Cursor */
+body.marginalia-active {
+    cursor: crosshair;
+}
+
+/* Content Area Cursor (no drawing allowed) */
+.marginalia-content-zone {
+    cursor: text;
+}
+
+/* Drawing Active State */
+body.marginalia-drawing {
+    cursor: crosshair;
+    user-select: none;
+}
+
+/* =================================
+   RESPONSIVE MARGIN ZONES
+   ================================= */
+
+/* Desktop Margin Zones */
+@media (min-width: 1024px) {
+    :root {
+        --margin-zone-width: 120px;
+        --fade-zone-width: 200px;
+    }
+}
+
+/* Tablet Adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --margin-zone-width: 100px;
+        --fade-zone-width: 150px;
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 767px) {
+    :root {
+        --margin-zone-width: 80px;
+        --fade-zone-width: 120px;
+    }
+    
+    /* Ensure content doesn't overlap margins */
+    body:not(.aiq-dashboard-page) {
+        margin-left: 90px;
+        margin-right: 90px;
+    }
+}
+
+/* =================================
+   TEXT CONTRAST ENHANCEMENTS
+   ================================= */
+
+/* Enhanced text readability under faded ink */
+.marginalia-text-under-ink {
+    position: relative;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1px 2px;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.marginalia-text-under-ink:hover {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* =================================
+   THEME INTEGRATION
+   ================================= */
+
+/* Dark Theme Support */
+[data-theme="futuristic"] .marginalia-control-btn {
+    background: linear-gradient(135deg, #00D4FF 0%, #1A202C 100%);
+    color: #E0E6ED;
+    box-shadow: 
+        0 4px 20px rgba(0, 212, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="futuristic"] .marginalia-control-btn:hover {
+    background: linear-gradient(135deg, #FF6B9D 0%, #C9FFDC 100%);
+    box-shadow: 
+        0 8px 32px rgba(255, 107, 157, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Light Theme Variants */
+[data-theme="apple"] .marginalia-control-btn {
+    background: linear-gradient(135deg, #F5F5F7 0%, #E5E5EA 100%);
+    color: #1D1D1F;
+    border: 1px solid #D2D2D7;
+}
+
+[data-theme="apple"] .marginalia-control-btn:hover {
+    background: linear-gradient(135deg, #0071e3 0%, #005bb5 100%);
+    color: white;
+}
+
+/* =================================
+   ACCESSIBILITY FEATURES
+   ================================= */
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+    .marginalia-control-btn {
+        border: 2px solid #000;
+        background: #fff;
+        color: #000;
+    }
+    
+    .marginalia-control-btn:hover {
+        background: #000;
+        color: #fff;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .marginalia-control-btn,
+    #marginalia-svg path,
+    .marginalia-text-under-ink {
+        transition: none !important;
+    }
+}
+
+/* Focus Indicators for Keyboard Navigation */
+.marginalia-control-btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* =================================
+   PRINT STYLES
+   ================================= */
+
+@media print {
+    #marginalia-svg {
+        display: block !important;
+    }
+    
+    .marginalia-control-btn {
+        display: none !important;
+    }
+    
+    /* Ensure annotations print with content */
+    #marginalia-svg path {
+        stroke: #000 !important;
+        opacity: 0.7 !important;
+    }
+}
