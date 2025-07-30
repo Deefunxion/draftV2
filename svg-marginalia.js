@@ -288,9 +288,19 @@ class SVGMarginalia {
     }
     
     /**
-     * Get document coordinates from event
+     * Get document coordinates from event with proper SVG coordinate mapping
      */
     getDocumentPoint(e) {
+        // Get the SVG's bounding rectangle
+        const svgRect = this.svg.getBoundingClientRect();
+        
+        // Calculate coordinates relative to SVG's coordinate system
+        const point = {
+            x: e.clientX - svgRect.left,
+            y: e.clientY - svgRect.top + window.scrollY
+        };
+        
+        // For absolute positioned SVG, use direct client coordinates
         return {
             x: e.clientX,
             y: e.clientY + window.scrollY

@@ -6,12 +6,19 @@
     z-index: 10; /* Ensure it's above the canvas */
 }
 
+/* Interaction Container for proper hover zones */
+.paragraph-interaction-container {
+    position: relative;
+    margin: 1em 0;
+    padding-right: 80px; /* Space for button */
+}
+
 /* Commit Button Styles */
 .commit-button {
     position: absolute;
     right: -50px; /* Start off-screen */
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    transform: translateY(0);
     width: 44px;
     height: 44px;
     background-color: #10B981; /* A vibrant green */
@@ -32,12 +39,12 @@
 
 .commit-button.visible {
     opacity: 1;
-    right: 20px; /* Slide in */
+    right: 10px; /* Slide in closer */
     pointer-events: auto;
 }
 
 .commit-button:hover {
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(0) scale(1.1);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
@@ -47,23 +54,148 @@
 
 @keyframes micro-effect {
     0% {
-        transform: translateY(-50%) scale(1);
+        transform: translateY(0) scale(1);
+        background: #10B981;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    25% {
+        transform: translateY(0) scale(1.2);
+        background: radial-gradient(circle, #10B981 0%, #059669 100%);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.4);
     }
     50% {
-        transform: translateY(-50%) scale(1.4);
-        opacity: 0.5;
+        transform: translateY(0) scale(1.6);
+        background: radial-gradient(circle, #34D399 0%, #10B981 100%);
+        opacity: 0.8;
+        box-shadow: 0 0 30px rgba(52, 211, 153, 1), 0 0 60px rgba(16, 185, 129, 0.6);
+    }
+    75% {
+        transform: translateY(0) scale(1.2);
+        background: radial-gradient(circle, #A7F3D0 0%, #34D399 100%);
+        opacity: 0.4;
     }
     100% {
-        transform: translateY(-50%) scale(0);
+        transform: translateY(0) scale(0);
         opacity: 0;
+        background: #A7F3D0;
     }
 }
 
 
-/* Paragraph Styles */
+/* =================================
+   LIVING DOCUMENT TYPOGRAPHY TIERS
+   The Aesthetics of Mastery System
+   ================================= */
+
+/* Base Committed Paragraph Styles */
 .p-committed {
     background-color: #F0FDF4; /* A very light green */
-    transition: background-color 0.5s ease;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 16px 0;
+}
+
+/* =================================
+   TIER 0: AI-Q < 100 - Baseline
+   ================================= */
+.p-committed.level-0 {
+    /* Inherits base styles only */
+    background-color: #F0FDF4;
+}
+
+/* =================================
+   TIER 1: AI-Q 100-119 - Clarity & Justification
+   ================================= */
+.p-committed.level-1 {
+    background-color: #ECFDF5; /* Slightly deeper green */
+    text-align: justify;
+    line-height: 1.7;
+    padding: 10px 16px;
+    border-left: 3px solid #10B981;
+}
+
+/* =================================
+   TIER 2: AI-Q 120-139 - Intentional Indentation
+   ================================= */
+.p-committed.level-2 {
+    background-color: #D1FAE5; /* More sophisticated green */
+    text-align: justify;
+    line-height: 1.7;
+    text-indent: 2em;
+    padding: 12px 20px;
+    border-left: 4px solid #059669;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+}
+
+/* =================================
+   TIER 3: AI-Q 140-159 - Typographic Sophistication
+   ================================= */
+.p-committed.level-3 {
+    background-color: #A7F3D0; /* Rich, confident green */
+    text-align: justify;
+    line-height: 1.75;
+    text-indent: 2em;
+    font-family: "Georgia", "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 16.5px;
+    padding: 14px 24px;
+    border-left: 5px solid #047857;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.15);
+}
+
+/* =================================
+   TIER 4: AI-Q 160+ - The Polished Manuscript
+   ================================= */
+.p-committed.level-4 {
+    background: linear-gradient(135deg, #6EE7B7 0%, #A7F3D0 100%);
+    text-align: justify;
+    line-height: 1.8;
+    text-indent: 2em;
+    font-family: "Georgia", "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    padding: 16px 28px;
+    border-left: 6px solid #065F46;
+    border-radius: 8px;
+    box-shadow: 
+        0 6px 12px rgba(16, 185, 129, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    position: relative;
+}
+
+/* Elegant flourish for maximum tier */
+.p-committed.level-4::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #047857, #10B981, #047857);
+    border-radius: 8px 8px 0 0;
+}
+
+/* Responsive adjustments for typography tiers */
+@media (max-width: 768px) {
+    .p-committed.level-1,
+    .p-committed.level-2,
+    .p-committed.level-3,
+    .p-committed.level-4 {
+        text-indent: 1.5em;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    .p-committed.level-3,
+    .p-committed.level-4 {
+        font-size: 16px;
+    }
+    
+    .p-committed.level-4 {
+        letter-spacing: 0.3px;
+    }
 }
 
 /* Icon Styles */
@@ -119,5 +251,91 @@
     100% {
         transform: scale(30);
         opacity: 0;
+    }
+}
+
+/* New particle travel animation */
+@keyframes particle-travel {
+    0% {
+        transform: translate(var(--start-x), var(--start-y)) scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(var(--end-x), var(--end-y)) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(var(--end-x), var(--end-y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Celebration burst at AI-Q bar */
+@keyframes celebration-burst {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
+        box-shadow: 0 0 10px currentColor;
+    }
+    50% {
+        transform: scale(2) translate(
+            calc(var(--burst-x, 0px) * 0.5),
+            calc(var(--burst-y, 0px) * 0.5)
+        );
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0) translate(
+            var(--burst-x, 0px),
+            var(--burst-y, 0px)
+        );
+        opacity: 0;
+        box-shadow: 0 0 20px currentColor;
+    }
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+   ================================= */
+
+@media (max-width: 768px) {
+    .paragraph-interaction-container {
+        padding-right: 60px; /* Reduced space for smaller button */
+    }
+    
+    .commit-button {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .commit-button.visible {
+        right: 5px;
+    }
+    
+    .status-icon {
+        font-size: 14px;
+        left: -2px;
+    }
+}
+
+@media (max-width: 480px) {
+    #reading-content-wrapper {
+        padding-left: 15px;
+    }
+    
+    .paragraph-interaction-container {
+        padding-right: 50px;
+    }
+    
+    .commit-button {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .status-icon {
+        font-size: 12px;
+        left: -5px;
     }
 }
