@@ -3,415 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Διευθυντής Τεχνητής Νοημοσύνης - Πρόγραμμα Εκπαίδευσης</title>
-    <link rel="stylesheet" href="book-style.css">
-    <link rel="stylesheet" href="theme-switcher.css">
+    <title>AI Orchestrator's Journey - The Four States of Mind</title>
+    <link rel="stylesheet" href="dashboard-style.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="svg-marginalia.css">
-    
+    <link rel="stylesheet" href="theme-switcher.css">
 </head>
-<body class="aiq-dashboard-page">
-    <!-- SVG Filter Definitions for AI-Q Effects -->
-    <div class="svg-filters">
-        <svg width="0" height="0" style="position: absolute;">
-            <defs>
-                <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                    <feMerge> 
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/> 
-                    </feMerge>
-                </filter>
-                <filter id="master-glow-filter" x="-100%" y="-100%" width="300%" height="300%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feOffset dx="0" dy="0" result="offsetBlur"/>
-                    <feFlood flood-color="currentColor" flood-opacity="0.3"/>
-                    <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"/>
-                    <feMerge>
-                        <feMergeNode in="offsetBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
-            </defs>
-        </svg>
-    </div>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <header class="dashboard-header">
+            <h1>⬟ AI Orchestrator's Journey</h1>
+            <p class="tagline">The Four States of Mind</p>
+        </header>
 
-    <!-- AI-Q Dashboard Layout -->
-    <div class="aiq-dashboard">
-        <!-- Left Column: AI-Q Profile & Progress -->
-        <div class="aiq-profile-section">
-            <div class="aiq-profile-header">
-                <h2 class="aiq-title">Η Πρόοδός μου</h2>
-                <div class="aiq-subtitle">AI-Q Score</div>
-            </div>
+        <!-- Tutorial Component Placeholder -->
+        <!-- Tutorial Component will be inserted here -->
+
+        <!-- Main Dashboard States -->
+        <main class="states-container">
             
-            <!-- AI-Q Score Display -->
-            <div class="aiq-score-container">
-                <div class="aiq-score-display">
-                    <span class="aiq-score-number" id="iq-score">85</span>
-                    <span class="aiq-score-label">AI-Q</span>
-                </div>
-                <div class="aiq-score-description" id="iq-description">
-                    Αρχάριος Στρατηγός
-                </div>
-            </div>
-            
-            <!-- AI-Q Progress Bar -->
-            <div class="aiq-bar-container">
-                <div class="aiq-bar-background">
-                    <div class="aiq-bar-fill" id="iq-bar-fill" style="height: 15%;">
-                        <div class="aiq-bar-glow"></div>
+            <!-- State 1: The Novice -->
+            <section class="state-section">
+                <a href="main-book.html" class="state-card unlocked">
+                    <div class="state-title">
+                        <h2>Αλφαβητάριον</h2>
+                        <span class="state-level">Level 1: The Novice</span>
                     </div>
-                </div>
-                <div class="aiq-bar-labels">
-                    <span class="aiq-bar-min">50</span>
-                    <span class="aiq-bar-max">200</span>
-                </div>
-            </div>
-            
-            <!-- Achievement Status -->
-            <div class="aiq-achievements">
-                <div class="aiq-stat">
-                    <i class="fa-solid fa-trophy"></i>
-                    <span class="aiq-stat-value" id="completed-levels">0</span>
-                    <span class="aiq-stat-label">Επίπεδα</span>
-                </div>
-                <div class="aiq-stat">
-                    <i class="fa-solid fa-star"></i>
-                    <span class="aiq-stat-value" id="total-points">0</span>
-                    <span class="aiq-stat-label">Πόντοι</span>
-                </div>
-                <div class="aiq-stat">
-                    <i class="fa-solid fa-brain"></i>
-                    <span class="aiq-stat-value" id="iq-rank">Νεόφυτος</span>
-                    <span class="aiq-stat-label">Βαθμίδα</span>
-                </div>
-            </div>
-            
-            <!-- Provisional Points Display -->
-            <div class="provisional-points-display" id="provisional-points-section" style="display: none;">
-                <div class="provisional-header">
-                    <i class="fa-solid fa-hourglass-half"></i>
-                    <span class="provisional-label">Προσωρινοί Πόντοι</span>
-                </div>
-                <div class="provisional-value" id="provisional-points-value">0</div>
-                <div class="provisional-note">Ολοκληρώστε προκλήσεις για να τους κάνετε μόνιμους</div>
-            </div>
-            
-            <!-- Quick Actions -->
-            <div class="aiq-quick-actions">
-                <button class="aiq-action-btn" onclick="toggleProgressDetails()">
-                    <i class="fa-solid fa-chart-line"></i>
-                    Λεπτομέρειες Προόδου
-                </button>
-                <button class="aiq-action-btn secondary" onclick="resetProgress()">
-                    <i class="fa-solid fa-refresh"></i>
-                    Επανεκκίνηση
-                </button>
-            </div>
-        </div>
+                    <div class="state-visual">
+                        <!-- PNG background image visible through card -->
+                    </div>
+                    <div class="state-description">
+                        <p class="description-main">Tools από δωμάτιο, 1 PC</p>
+                        <p class="description-sub">Βασικά εργαλεία AI σε απλό περιβάλλον</p>
+                    </div>
+                </a>
+            </section>
 
-        <!-- Right Column: Learning Path & Content -->
-        <div class="aiq-content-section">
-            <div class="aiq-content-header">
-                <h1 class="aiq-main-title">Διευθυντής Τεχνητής Νοημοσύνης</h1>
-                <p class="aiq-main-subtitle">
-                    Ολοκληρωμένο πρόγραμμα εκπαίδευσης σε στρατηγική και υλοποίηση Τεχνητής Νοημοσύνης.<br>
-                    <strong>Προχωρήστε στα επίπεδα με τη σειρά για να αυξήσετε το AI-Q σας.</strong>
-                </p>
+            <!-- State 2: The Apprentice -->
+            <section class="state-section">
+                <a href="#" class="state-card locked">
+                    <div class="state-title">
+                        <h2>Βιβλίον Ασκήσεων</h2>
+                        <span class="state-level">Level 2: The Apprentice</span>
+                    </div>
+                    <div class="state-visual">
+                        <!-- PNG background image visible through card -->
+                    </div>
+                    <div class="state-description">
+                        <p class="description-main">AI tools, σύγχρονο δωμάτιο, ωραίος εξοπλισμός</p>
+                        <p class="description-sub">Εξελιγμένα εργαλεία σε επαγγελματικό χώρο</p>
+                    </div>
+                </a>
+            </section>
+
+            <!-- State 3: The Journeyman -->
+            <section class="state-section">
+                <a href="#" class="state-card locked">
+                    <div class="state-title">
+                        <h2>Neo Monday Protocol</h2>
+                        <span class="state-level">Level 3: The Journeyman</span>
+                    </div>
+                    <div class="state-visual">
+                        <!-- PNG background image visible through card -->
+                    </div>
+                    <div class="state-description">
+                        <p class="description-main">Δικτύωση εγκεφάλων με πολλά τερματικά</p>
+                        <p class="description-sub">Συνδεδεμένα συστήματα και συλλογική νοημοσύνη</p>
+                    </div>
+                </a>
+            </section>
+
+            <!-- State 4: The Orchestrator -->
+            <section class="state-section">
+                <a href="#" class="state-card locked">
+                    <div class="state-title">
+                        <h2>Orchestrator's Ascent</h2>
+                        <span class="state-level">Level 4: The Orchestrator</span>
+                    </div>
+                    <div class="state-visual">
+                        <!-- PNG background image visible through card -->
+                    </div>
+                    <div class="state-description">
+                        <p class="description-main">Το μυαλό περιλαμβάνει όλα τα εργαλεία και τις εφαρμογές</p>
+                        <p class="description-sub">Ολοκληρωμένη ενορχήστρωση AI συστημάτων</p>
+                    </div>
+                </a>
+            </section>
+
+        </main>
+
+        <!-- Footer with progress indicator -->
+        <footer class="dashboard-footer">
+            <div class="progress-indicator">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <p>Journey Progress: 1/4 States Unlocked</p>
             </div>
-
-            <!-- Learning Path Table -->
-            <div class="learning-path-table">
-                <h3><i class="fa-solid fa-map-location-dot"></i> Μαθησιακή Διαδρομή</h3>
-                <table class="levels-table">
-                    <thead>
-                        <tr>
-                            <th>Επίπεδο</th>
-                            <th>Τίτλος</th>
-                            <th>Περιγραφή</th>
-                            <th>AI-Q Πόντοι</th>
-                            <th>Κατάσταση</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="level-unlocked">
-                            <td><i class="fa-solid fa-play"></i> 0</td>
-                            <td><a href="ai-smart-dummies-guide.html">Αλφαβητάριον - Πρώτα Βήματα</a></td>
-                            <td>Εισαγωγή στη στρατηγική σκέψη για την ΤΝ</td>
-                            <td>+8</td>
-                            <td><span class="status-available">Διαθέσιμο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-clipboard-list"></i> 1</td>
-                            <td><a href="student_workbook_enhanced.html">Τετράδιον Εργασιών</a></td>
-                            <td>Εφαρμοσμένες ασκήσεις και αναστοχασμός</td>
-                            <td>+10</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-video"></i> 2</td>
-                            <td><a href="videos.html">Βιντεοθήκη</a></td>
-                            <td>Οπτικοακουστικό εκπαιδευτικό υλικό</td>
-                            <td>+15</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-book"></i> 3</td>
-                            <td><a href="main-book.html">Κύριο Βιβλίο</a></td>
-                            <td>Θεωρητική θεμελίωση και στρατηγική</td>
-                            <td>+20</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-bookmark"></i> 4</td>
-                            <td><a href="quick_reference_guide.html">Εγκόλπιον</a></td>
-                            <td>Γρήγορη αναφορά και εργαλεία</td>
-                            <td>+15</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-chalkboard-user"></i> 5</td>
-                            <td><a href="instructor_implementation_guide_parts_1_2.html">Οδηγός Εκπαιδευτή</a></td>
-                            <td>Προχωρημένη υλοποίηση και διδασκαλία</td>
-                            <td>+25</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-folder-open"></i> 6</td>
-                            <td><a href="digital_assets/index.html">Εποπτικά Μέσα</a></td>
-                            <td>Ψηφιακά εργαλεία και πόροι</td>
-                            <td>+15</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-building-columns"></i> 7</td>
-                            <td><a href="neo/index.html">Έδρα</a></td>
-                            <td>Προχωρημένα θέματα και έρευνα</td>
-                            <td>+30</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-globe"></i> 8</td>
-                            <td><a href="https://deefunxion.github.io/AILEADER/" target="_blank">Αγωγή</a></td>
-                            <td>Εξωτερικοί πόροι και κοινότητα</td>
-                            <td>+20</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                        <tr class="level-locked">
-                            <td><i class="fa-solid fa-graduation-cap"></i> 9</td>
-                            <td><a href="didaskalia.html">Διδασκαλία</a></td>
-                            <td>Μάστερ κλάση και πιστοποίηση</td>
-                            <td>+50</td>
-                            <td><span class="status-locked">Κλειδωμένο</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-        <!-- Legacy Navigation (Hidden by default) -->
-        <div class="nav-menu" style="display: none;" id="legacy-nav">
-            <a href="index.html">Εστία</a>
-            <a href="main-book.html">Βιβλίον</a>
-            <a href="student_workbook_enhanced.html">Τετράδιον Εργασιών</a>
-            <a href="quick_reference_guide.html">Εγκόλπιον</a>
-            <a href="instructor_implementation_guide_parts_1_2.html">Οδηγός</a>
-            <a href="ai-smart-dummies-guide.html">Αλφαβητάριον</a>
-            <a href="digital_assets/index.html">Εποπτικά Μέσα</a>
-            <a href="videos.html">Βιντεοθήκη</a>
-            <a href="neo/index.html">Έδρα</a>
-            <a href="https://deefunxion.github.io/AILEADER/" target="_blank">Αγωγή</a>
-            <a href="didaskalia.html">Διδασκαλία</a>
-            <a href="themelion.html">Θεμέλιον</a>
-        </div>
-
-        <!-- Debug Controls (Hidden by default) -->
-        <div style="margin-top: 40px; padding: 20px; border: 1px solid #ccc; background: #f9f9f9; display: none;" id="debug-controls">
-            <h3>Εργαλεία Διαχείρισης (Για Δοκιμές)</h3>
-            <button onclick="window.progressTracker?.resetProgress()" style="margin-right: 10px;">Επανεκκίνηση Προόδου</button>
-            <button onclick="toggleLegacyNav()" style="margin-right: 10px;">Εμφάνιση Κλασικής Πλοήγησης</button>
-            <button onclick="console.log(window.progressTracker?.getProgressInfo())">Εμφάνιση Πληροφοριών Προόδου</button>
-        </div>
+        </footer>
     </div>
 
     <!-- Scripts -->
-    <script src="learning-path.js"></script>
-    <script src="aiq-tracker.js"></script>
-    <script src="svg-marginalia.js"></script>
     <script src="theme-switcher.js"></script>
-    <script src="mobile-nav.js"></script>
-    
-    <script>
-        // Dashboard initialization
-        document.addEventListener('DOMContentLoaded', function() {
-            generateLevelCards();
-            
-            // Show debug controls in development (you can remove this)
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                document.getElementById('debug-controls').style.display = 'block';
-            }
-        });
-
-        function generateLevelCards() {
-            const container = document.getElementById('level-cards-container');
-            const allLevels = LearningPathUtils.getAllLevels();
-            
-            allLevels.forEach((level, index) => {
-                const card = createLevelCard(level, index);
-                container.appendChild(card);
-            });
-        }
-
-        function createLevelCard(level, index) {
-            const card = document.createElement('a');
-            card.href = level.entry_point;
-            card.className = 'aiq-level-card locked'; // Start as locked
-            card.setAttribute('data-level', level.key);
-            
-            // External links should open in new tab
-            if (level.entry_point.startsWith('http')) {
-                card.target = '_blank';
-            }
-            
-            // Calculate level number for display
-            const levelNumber = index;
-            
-            card.innerHTML = `
-                <div class="aiq-card-header">
-                    <div class="aiq-card-number">ΕΠΙΠΕΔΟ ${levelNumber}</div>
-                    <div class="aiq-card-status" data-status="locked">
-                        <i class="fa-solid fa-lock"></i>
-                    </div>
-                </div>
-                <div class="aiq-card-content">
-                    <div class="aiq-card-icon" style="color: ${level.color}">${level.icon}</div>
-                    <div class="aiq-card-title">${level.title}</div>
-                    <div class="aiq-card-subtitle">${level.subtitle}</div>
-                    <div class="aiq-card-description">${level.description}</div>
-                </div>
-                <div class="aiq-card-meta">
-                    <div class="aiq-card-stats">
-                        <span class="aiq-card-time">
-                            <i class="fa-solid fa-clock"></i> ${level.estimated_time}
-                        </span>
-                        <span class="aiq-card-difficulty">
-                            <i class="fa-solid fa-chart-line"></i> ${level.difficulty}
-                        </span>
-                    </div>
-                    <div class="aiq-card-reward">
-                        <i class="fa-solid fa-brain"></i>
-                        <span class="aiq-points">+${getIQPointsForLevel(index)} AI-Q</span>
-                    </div>
-                </div>
-                <div class="aiq-card-progress">
-                    <div class="aiq-progress-bar">
-                        <div class="aiq-progress-fill" style="width: 0%"></div>
-                    </div>
-                    <span class="aiq-progress-text">Κλειδωμένο</span>
-                </div>
-            `;
-            
-            return card;
-        }
-
-        // Helper function to calculate IQ points for each level
-        function getIQPointsForLevel(levelIndex) {
-            const basePoints = 5;
-            const bonusPoints = Math.floor(levelIndex / 2) * 2;
-            return basePoints + bonusPoints;
-        }
-
-        function toggleLegacyNav() {
-            const legacyNav = document.getElementById('legacy-nav');
-            legacyNav.style.display = legacyNav.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Update card states when progress changes
-        function updateCardStates() {
-            if (!window.aiqTracker) return;
-            
-            const progress = window.aiqTracker.getProgress();
-            const unlockedLevels = progress.unlockedLevels || ['level_0'];
-            const completedLevels = progress.completedLevels || [];
-            
-            // Update table rows based on progress
-            const rows = document.querySelectorAll('.levels-table tbody tr');
-            
-            // Level mapping
-            const levelMapping = {
-                0: 'level_0',  // Αλφαβητάριον - πρώτη ανάγνωση
-                1: 'level_1',  // Τετράδιον Εργασιών
-                2: 'level_2',  // Βιντεοθήκη
-                3: 'level_3',  // Κύριο Βιβλίο
-                4: 'level_4',  // Εγκόλπιον
-                5: 'level_5',  // Οδηγός Εκπαιδευτή
-                6: 'level_6',  // Εποπτικά Μέσα
-                7: 'level_7',  // Έδρα
-                8: 'level_8',  // Αγωγή
-                9: 'level_9'   // Διδασκαλία
-            };
-            
-            rows.forEach((row, index) => {
-                const levelKey = levelMapping[index];
-                const statusSpan = row.querySelector('span[class*="status-"]');
-                
-                if (completedLevels.includes(levelKey)) {
-                    // Completed state
-                    row.className = 'level-completed';
-                    statusSpan.className = 'status-completed';
-                    statusSpan.textContent = 'Ολοκληρωμένο';
-                } else if (unlockedLevels.includes(levelKey)) {
-                    // Unlocked state
-                    row.className = 'level-unlocked';
-                    statusSpan.className = 'status-available';
-                    statusSpan.textContent = 'Διαθέσιμο';
-                } else {
-                    // Locked state
-                    row.className = 'level-locked';
-                    statusSpan.className = 'status-locked';
-                    statusSpan.textContent = 'Κλειδωμένο';
-                }
-            });
-        }
-
-        // Additional helper functions for AI-Q system
-        function toggleProgressDetails() {
-            // Show detailed progress modal or expand panel
-            const progress = window.aiqTracker?.getProgress();
-            if (progress) {
-                alert(`Λεπτομέρειες Προόδου:\n\nAI-Q Score: ${progress.iq}\nΞεκλειδωμένα Επίπεδα: ${progress.unlockedLevels.length}\nΟλοκληρωμένα Επίπεδα: ${progress.completedLevels.length}\nΣυνολικοί Πόντοι: ${progress.totalPoints || 0}`);
-            }
-        }
-
-        function resetProgress() {
-            if (confirm('Είστε σίγουροι ότι θέλετε να επανεκκινήσετε την πρόοδό σας;')) {
-                window.aiqTracker?.resetProgress();
-                location.reload();
-            }
-        }
-
-        // Listen for progress updates
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize AI-Q tracker first
-            if (window.aiqTracker) {
-                window.aiqTracker.updateUIDisplay();
-            }
-            
-            // Update card states after AI-Q tracker initializes
-            setTimeout(updateCardStates, 100);
-            
-            // Re-update whenever the page becomes visible (in case progress changed in another tab)
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden) {
-                    if (window.aiqTracker) {
-                        window.aiqTracker.updateUIDisplay();
-                    }
-                    setTimeout(updateCardStates, 100);
-                }
-            });
-        });
-    </script>
+    <script src="aiq-tracker.js"></script>
 </body>
 </html>
