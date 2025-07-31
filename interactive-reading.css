@@ -147,6 +147,48 @@
     }
 }
 
+/* Electrical synapse animations */
+@keyframes electrical-current {
+    0% {
+        opacity: 0;
+        stroke-dasharray: 0 1000;
+    }
+    30% {
+        opacity: 1;
+        stroke-dasharray: 50 950;
+    }
+    70% {
+        opacity: 0.8;
+        stroke-dasharray: 100 900;
+    }
+    100% {
+        opacity: 0;
+        stroke-dasharray: 1000 0;
+    }
+}
+
+@keyframes electrical-spark-travel {
+    0% {
+        left: var(--spark-start-x);
+        top: var(--spark-start-y);
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow: 0 0 12px #00FFFF, 0 0 24px #0080FF;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.9;
+        box-shadow: 0 0 20px #00FFFF, 0 0 40px #0080FF;
+    }
+    100% {
+        left: var(--spark-end-x);
+        top: var(--spark-end-y);
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+        box-shadow: 0 0 30px #00FFFF, 0 0 60px #0080FF;
+    }
+}
+
 
 /* =================================
    LIVING DOCUMENT TYPOGRAPHY TIERS

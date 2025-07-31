@@ -118,16 +118,27 @@ document.addEventListener('DOMContentLoaded', function() {
         brainCell.innerHTML = '🧠';
         brainCell.title = `Active Brain Cell (+${getElementXP(element)} XP)`;
         
-        // Add sparkling animation
-        brainCell.style.position = 'relative';
+        // Position at top-left corner of element
+        brainCell.style.position = 'absolute';
+        brainCell.style.left = '0px';
+        brainCell.style.top = '0px';
+        brainCell.style.transform = 'translate(-50%, -50%)';
+        brainCell.style.zIndex = '1001';
         brainCell.style.display = 'inline-block';
         
-        element.insertBefore(brainCell, element.firstChild);
+        // Ensure element has relative positioning for absolute brain cell
+        if (getComputedStyle(element).position === 'static') {
+            element.style.position = 'relative';
+        }
+        
+        element.appendChild(brainCell);
         
         // Create sparkling particles around brain cell (delayed for initial load)
         setTimeout(() => {
             createSparklingParticles(brainCell);
         }, 200);
+        
+        return brainCell;
     }
     
     /**
@@ -168,6 +179,116 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✨ Brain cell sparkling activated!');
     }
     
+    /**
+     * Create electrical synapse animation from commit button to brain cell
+     * @param {HTMLElement} fromElement - The commit button
+     * @param {HTMLElement} toElement - The brain cell
+     */
+    function createElectricalSynapseAnimation(fromElement, toElement) {
+        const fromRect = fromElement.getBoundingClientRect();
+        const toRect = toElement.getBoundingClientRect();
+        
+        // Calculate positions
+        const fromX = fromRect.left + fromRect.width / 2;
+        const fromY = fromRect.top + fromRect.height / 2;
+        const toX = toRect.left + toRect.width / 2;
+        const toY = toRect.top + toRect.height / 2;
+        
+        // Create SVG for electrical line
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        `;
+        
+        // Create electrical path with zigzag pattern
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const distance = Math.sqrt(Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2));
+        const numZigzags = Math.floor(distance / 20);
+        
+        let pathData = `M ${fromX} ${fromY}`;
+        for (let i = 1; i <= numZigzags; i++) {
+            const progress = i / numZigzags;
+            const x = fromX + (toX - fromX) * progress;
+            const y = fromY + (toY - fromY) * progress;
+            const offset = (i % 2 === 0 ? 1 : -1) * 8;
+            const perpX = -(toY - fromY) / distance * offset;
+            const perpY = (toX - fromX) / distance * offset;
+            pathData += ` L ${x + perpX} ${y + perpY}`;
+        }
+        pathData += ` L ${toX} ${toY}`;
+        
+        path.setAttribute('d', pathData);
+        path.setAttribute('stroke', '#00FFFF');
+        path.setAttribute('stroke-width', '3');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('opacity', '0');
+        path.style.filter = 'drop-shadow(0 0 6px #00FFFF)';
+        
+        svg.appendChild(path);
+        document.body.appendChild(svg);
+        
+        // Animate electrical current
+        setTimeout(() => {
+            path.style.animation = 'electrical-current 0.8s ease-out forwards';
+        }, 100);
+        
+        // Create travelling spark
+        setTimeout(() => {
+            createTravellingElectricalSpark(fromX, fromY, toX, toY);
+        }, 200);
+        
+        // Clean up
+        setTimeout(() => {
+            svg.remove();
+        }, 1500);
+        
+        console.log('⚡ Electrical synapse animation: button → brain cell');
+    }
+    
+    /**
+     * Create travelling electrical spark along the synapse path
+     * @param {number} fromX - Start X coordinate
+     * @param {number} fromY - Start Y coordinate  
+     * @param {number} toX - End X coordinate
+     * @param {number} toY - End Y coordinate
+     */
+    function createTravellingElectricalSpark(fromX, fromY, toX, toY) {
+        const spark = document.createElement('div');
+        spark.style.cssText = `
+            position: fixed;
+            left: ${fromX}px;
+            top: ${fromY}px;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #00FFFF 0%, #0080FF 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 12px #00FFFF, 0 0 24px #0080FF;
+            z-index: 9999;
+            pointer-events: none;
+        `;
+        
+        spark.style.setProperty('--spark-start-x', `${fromX}px`);
+        spark.style.setProperty('--spark-start-y', `${fromY}px`);
+        spark.style.setProperty('--spark-end-x', `${toX}px`);
+        spark.style.setProperty('--spark-end-y', `${toY}px`);
+        
+        document.body.appendChild(spark);
+        
+        // Animate spark travel
+        setTimeout(() => {
+            spark.style.animation = 'electrical-spark-travel 0.6s ease-out forwards';
+        }, 50);
+        
+        // Remove spark
+        setTimeout(() => spark.remove(), 700);
+    }
+    
     // =================================
     // TOUCH DEVICE DETECTION & INTERACTION
     // =================================
@@ -197,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let confirmationTimeout = null;
     let touchStartTime = 0;
     let isScrolling = false;
-    let scrollThreshold = 10; // pixels
+    let scrollThreshold = 25; // pixels - increased for better touch sensitivity
     
     // Two-phase touch system variables
     let pendingConfirmation = false;
@@ -308,6 +429,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 dismissTouchButton(true); // Slide away with sound
             }
         }, 2000);
+    }
+    
+    /**
+     * Update popup position to follow element during scroll
+     */
+    function updatePopupPosition() {
+        if (activeTouchButton && currentPopupElement) {
+            const elementRect = currentPopupElement.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const buttonFromTop = elementRect.top + (elementRect.height / 2) - 22;
+            
+            // Ensure button stays within comfortable reach
+            const maxTop = viewportHeight - 100; // 100px from bottom
+            const minTop = 60; // 60px from top
+            const finalTop = Math.max(minTop, Math.min(maxTop, buttonFromTop));
+            
+            // Update button position relative to element's current position
+            activeTouchButton.style.top = `${finalTop - elementRect.top}px`;
+            
+            console.log('🔄 Updated popup position during scroll');
+        }
     }
     
     /**
@@ -460,7 +602,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Create sparkling brain cell instead of simple staged icon
-            createSparklingBrainCell(element);
+            const brainCell = createSparklingBrainCell(element);
+            
+            // Create electrical synapse animation from button to brain cell
+            if (commitButton && brainCell) {
+                createElectricalSynapseAnimation(commitButton, brainCell);
+            }
 
             // Calculate XP based on element type
             const xpValue = getElementXP(element);
@@ -536,21 +683,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     const deltaX = Math.abs(currentTouch.clientX - touchStartPos.x);
                     const deltaY = Math.abs(currentTouch.clientY - touchStartPos.y);
                     
-                    // If significant movement detected, it's scrolling
+                    // If significant movement detected, mark as scrolling but keep popup visible
                     if (deltaY > scrollThreshold || deltaX > scrollThreshold * 2) {
                         isScrollingDetected = true;
-                        if (activeTouchButton === commitButton && !pendingConfirmation) {
-                            dismissTouchButton();
-                            console.log('📜 Scrolling detected - dismissed popup');
+                        console.log('📜 Scrolling detected - popup stays visible, follows element');
+                        
+                        // Update popup position to follow the element during scroll
+                        if (activeTouchButton === commitButton) {
+                            updatePopupPosition();
                         }
                     }
                 }
             }, { passive: true });
             
             element.addEventListener('touchend', (e) => {
-                // Phase 2: If not scrolling, make popup persistent with 2s timeout
-                if (touchStartPos && !isScrollingDetected && activeTouchButton === commitButton) {
-                    console.log('🔒 Touch lifted - popup now persistent for 2s');
+                // Phase 2: Always make popup persistent with 2s timeout (both scroll and static touch)
+                if (touchStartPos && activeTouchButton === commitButton) {
+                    const actionType = isScrollingDetected ? 'after scroll' : 'static touch';
+                    console.log(`🔒 Touch lifted ${actionType} - popup now persistent for 2s`);
                     showCommitButton(true, true); // Make persistent
                 }
                 
