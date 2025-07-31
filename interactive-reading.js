@@ -324,6 +324,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let pendingConfirmation = false;
     let currentPopupElement = null;
 
+    let hoverTimeout;
+
     const paragraphs = contentWrapper.querySelectorAll('p');
     console.log('Found ' + paragraphs.length + ' paragraphs to make interactive');
     
@@ -340,6 +342,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let hoverTimeout;
 
+    // Global touch event handlers for dismissing buttons
+    if (isTouch) {
+        let initialTouchY = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            initialTouchY = e.touches[0].clientY;
+            isScrolling = false;
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', (e) => {
+            const currentTouchY = e.touches[0].clientY;
+            const deltaY = Math.abs(currentTouchY - initialTouchY);
+            
+            if (deltaY > scrollThreshold) {
+                isScrolling = true;
+                // Dismiss any active touch button when scrolling
+                if (activeTouchButton) {
+                    dismissTouchButton();
+                }
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchend', (e) => {
+            // Dismiss button if touching outside of paragraph or button
+            if (activeTouchButton && !isScrolling) {
+                const touch = e.changedTouches[0];
+                const element = document.elementFromPoint(touch.clientX, touch.clientY);
+                
+                // Check if touch ended on the paragraph or the button
+                const touchedParagraph = element?.closest('p');
+                const touchedButton = element?.closest('.commit-button');
+                const activeParagraph = activeTouchButton.parentElement?.querySelector('p');
+                
+                if (touchedParagraph !== activeParagraph && !touchedButton) {
+                    dismissTouchButton();
+                }
+            }
+            
+            setTimeout(() => {
+                isScrolling = false;
+            }, 100);
+        }, { passive: true });
+    }
+    
     // Global touch event handlers for dismissing buttons
     if (isTouch) {
         let initialTouchY = 0;

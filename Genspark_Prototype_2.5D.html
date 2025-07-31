@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.5D Interactive Room - Prototype</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --room-width: 800px;
+            --room-height: 600px;
+            --primary-color: #3B82F6;
+            --secondary-color: #1E293B;
+            --accent-color: #10B981;
+            --danger-color: #EF4444;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            color: #F1F5F9;
+            overflow: hidden;
+        }
+
+        /* Main room container */
+        .room-container {
+            position: relative;
+            width: var(--room-width);
+            height: var(--room-height);
+            margin: 50px auto;
+            background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #94A3B8 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: perspective(800px) rotateX(15deg) rotateY(-5deg);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Floor */
+        .floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(45deg, #8B5A2B 0%, #A0612D 50%, #8B5A2B 100%);
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.1) 20px, rgba(0,0,0,0.1) 40px);
+        }
+
+        /* Back wall */
+        .back-wall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);
+        }
+
+        /* Desk area */
+        .desk {
+            position: absolute;
+            bottom: 15%;
+            left: 15%;
+            width: 35%;
+            height: 25%;
+            background: linear-gradient(145deg, #6B7280 0%, #4B5563 100%);
+            border-radius: 8px;
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: perspective(300px) rotateX(45deg);
+        }
+
+        /* PC on desk */
+        .pc {
+            position: absolute;
+            top: -60%;
+            right: 20%;
+            width: 40%;
+            height: 80%;
+            background: linear-gradient(145deg, #1F2937 0%, #111827 100%);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .pc::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Wall poster */
+        .poster {
+            position: absolute;
+            top: 15%;
+            right: 20%;
+            width: 20%;
+            height: 30%;
+            background: linear-gradient(145deg, #7C3AED 0%, #5B21B6 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 4px solid #FFFFFF;
+        }
+
+        .poster::before {
+            content: '🎯';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+        }
+
+        /* Cat */
+        .cat {
+            position: absolute;
+            bottom: 18%;
+            right: 25%;
+            width: 8%;
+            height: 12%;
+            background: linear-gradient(145deg, #F59E0B 0%, #D97706 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cat::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 20%;
+            width: 20%;
+            height: 20%;
+            background: inherit;
+            border-radius: 50%;
+            box-shadow: 30px 0 0 inherit;
+        }
+
+        .cat::after {
+            content: '😸';
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+        }
+
+        /* Hotspot areas (invisible by default) */
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px dashed transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .hotspot:hover {
+            background: rgba(59, 130, 246, 0.4);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .hotspot.debug {
+            background: rgba(255, 0, 0, 0.3);
+            border: 2px solid red;
+        }
+
+        /* Hotspot positioning */
+        .hotspot-desk {
+            bottom: 10%;
+            left: 12%;
+            width: 40%;
+            height: 35%;
+        }
+
+        .hotspot-poster {
+            top: 12%;
+            right: 18%;
+            width: 24%;
+            height: 35%;
+        }
+
+        .hotspot-cat {
+            bottom: 15%;
+            right: 22%;
+            width: 12%;
+            height: 18%;
+        }
+
+        /* Context menus (Level 2) */
+        .context-menu {
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            min-width: 200px;
+        }
+
+        .context-menu.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: all;
+        }
+
+        .context-menu h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .menu-button {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: linear-gradient(145deg, var(--primary-color), #2563EB);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .menu-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .menu-button.danger {
+            background: linear-gradient(145deg, var(--danger-color), #DC2626);
+        }
+
+        .menu-button.danger:hover {
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover {
+            color: #F1F5F9;
+        }
+
+        /* Full-screen modals (Level 3) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 30;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: linear-gradient(145deg, #1E293B, #0F172A);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #94A3B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger-color);
+        }
+
+        /* PC Build interface */
+        .motherboard {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(145deg, #059669, #047857);
+            border-radius: 12px;
+            margin: 20px auto;
+            position: relative;
+            border: 2px solid #10B981;
+        }
+
+        .component-slot {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed #6B7280;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #CBD5E1;
+            transition: all 0.3s ease;
+        }
+
+        .component-slot:hover {
+            border-color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .cpu-slot { top: 50px; left: 50px; width: 100px; height: 100px; }
+        .ram-slot { top: 50px; right: 50px; width: 80px; height: 20px; }
+        .gpu-slot { bottom: 50px; left: 50px; width: 200px; height: 40px; }
+
+        /* Animations */
+        @keyframes collectXP {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); background: var(--accent-color); }
+            100% { transform: scale(1); }
+        }
+
+        .collecting-xp {
+            animation: collectXP 0.5s ease-in-out;
+        }
+
+        /* Debug mode toggle */
+        .debug-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 40;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .room-container {
+                width: 90vw;
+                height: 60vh;
+                margin: 20px auto;
+            }
+            
+            .context-menu {
+                min-width: 150px;
+                padding: 15px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Debug toggle -->
+    <button id="debugToggle" class="debug-toggle">
+        <i class="fas fa-bug"></i> Debug Mode
+    </button>
+
+    <!-- Level 1: Macro View - Main Room -->
+    <div id="roomContainer" class="room-container">
+        <!-- Room elements -->
+        <div class="back-wall"></div>
+        <div class="floor"></div>
+        <div class="desk">
+            <div class="pc"></div>
+        </div>
+        <div class="poster"></div>
+        <div class="cat"></div>
+
+        <!-- Invisible hotspots -->
+        <div id="hotspotDesk" class="hotspot hotspot-desk" data-hotspot="desk"></div>
+        <div id="hotspotPoster" class="hotspot hotspot-poster" data-hotspot="poster"></div>
+        <div id="hotspotCat" class="hotspot hotspot-cat" data-hotspot="cat"></div>
+
+        <!-- Level 2: Context Menus -->
+        <div id="contextMenuDesk" class="context-menu" style="bottom: 50%; left: 15%;">
+            <button class="close-button">&times;</button>
+            <h3><i class="fas fa-desktop"></i> PC Station</h3>
+            <button class="menu-button" data-action="collectXP">
+                <i class="fas fa-star"></i> Collect Idle XP
+            </button>
+            <button class="menu-button" data-action="upgradePC">
+                <i class="fas fa-cogs"></i> Upgrade PC
+            </button>
+        </div>
+
+        <div id="contextMenuPoster" class="context-menu" style="top: 20%; right: 10%;">
+            <button class="close-button">&times;</button>
+            <h3><i class="fas fa-image"></i> Motivation Poster</h3>
+            <button class="menu-button" data-action="readPoster">
+                <i class="fas fa-book-reader"></i> Read Quote
+            </button>
+            <button class="menu-button" data-action="changePoster">
+                <i class="fas fa-sync-alt"></i> Change Poster
+            </button>
+        </div>
+
+        <div id="contextMenuCat" class="context-menu" style="bottom: 40%; right: 15%;">
+            <button class="close-button">&times;</button>
+            <h3><i class="fas fa-cat"></i> Coding Cat</h3>
+            <button class="menu-button" data-action="petCat">
+                <i class="fas fa-heart"></i> Pet Cat
+            </button>
+            <button class="menu-button" data-action="feedCat">
+                <i class="fas fa-fish"></i> Feed Cat
+            </button>
+        </div>
+    </div>
+
+    <!-- Level 3: Full-screen Modals -->
+    
+    <!-- PC Build Modal -->
+    <div id="modalUpgradePC" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-microchip"></i> PC Build Station</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-300 mb-6">Drag and drop components onto the motherboard to upgrade your system.</p>
+                
+                <div class="motherboard">
+                    <div class="component-slot cpu-slot">CPU Socket</div>
+                    <div class="component-slot ram-slot">RAM Slot</div>
+                    <div class="component-slot gpu-slot">GPU Slot</div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4 mt-6">
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <i class="fas fa-microchip text-2xl text-blue-400 mb-2"></i>
+                        <p class="text-sm">Intel i7-12700K</p>
+                        <p class="text-xs text-gray-400">$350</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <i class="fas fa-memory text-2xl text-green-400 mb-2"></i>
+                        <p class="text-sm">32GB DDR4</p>
+                        <p class="text-xs text-gray-400">$120</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <i class="fas fa-tv text-2xl text-purple-400 mb-2"></i>
+                        <p class="text-sm">RTX 4070</p>
+                        <p class="text-xs text-gray-400">$599</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Poster Modal -->
+    <div id="modalPoster" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-quote-left"></i> Daily Motivation</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="text-6xl mb-6">🎯</div>
+                <blockquote class="text-2xl font-light italic text-blue-300 mb-4">
+                    "The best way to predict the future is to create it."
+                </blockquote>
+                <p class="text-gray-400">- Peter Drucker</p>
+                
+                <div class="mt-8">
+                    <button class="menu-button" onclick="generateNewQuote()">
+                        <i class="fas fa-refresh"></i> New Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cat Modal -->
+    <div id="modalCat" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-paw"></i> Cat Care Center</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="text-8xl mb-6">😸</div>
+                <h3 class="text-xl mb-4">Mr. Whiskers</h3>
+                <p class="text-gray-300 mb-6">Your coding companion needs attention!</p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-700 p-6 rounded-lg">
+                        <i class="fas fa-heart text-red-400 text-3xl mb-2"></i>
+                        <p class="text-lg font-semibold">Happiness</p>
+                        <div class="w-full bg-gray-600 rounded-full h-3 mt-2">
+                            <div class="bg-red-400 h-3 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 p-6 rounded-lg">
+                        <i class="fas fa-drumstick-bite text-orange-400 text-3xl mb-2"></i>
+                        <p class="text-lg font-semibold">Hunger</p>
+                        <div class="w-full bg-gray-600 rounded-full h-3 mt-2">
+                            <div class="bg-orange-400 h-3 rounded-full" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 2.5D Interactive Room Prototype
+         * Main JavaScript logic for three-level zoom interaction model
+         */
+
+        class InteractiveRoom {
+            constructor() {
+                this.currentLevel = 1; // 1: Macro, 2: Interaction, 3: Mechanics
+                this.activeContextMenu = null;
+                this.debugMode = false;
+                this.init();
+            }
+
+            init() {
+                console.log('🏠 Initializing Interactive Room...');
+                this.setupEventListeners();
+                this.setupDebugMode();
+                console.log('✅ Room ready for interaction!');
+            }
+
+            setupEventListeners() {
+                // Hotspot event listeners
+                document.querySelectorAll('.hotspot').forEach(hotspot => {
+                    hotspot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.handleHotspotClick(hotspot.dataset.hotspot);
+                    });
+                });
+
+                // Context menu close buttons
+                document.querySelectorAll('.context-menu .close-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.hideContextMenus();
+                    });
+                });
+
+                // Menu buttons
+                document.querySelectorAll('.menu-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.handleMenuAction(button.dataset.action);
+                    });
+                });
+
+                // Modal close buttons
+                document.querySelectorAll('.modal-close').forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.hideAllModals();
+                    });
+                });
+
+                // Click outside to close menus
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.context-menu') && !e.target.closest('.hotspot')) {
+                        this.hideContextMenus();
+                    }
+                });
+
+                // Modal overlay clicks
+                document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) {
+                            this.hideAllModals();
+                        }
+                    });
+                });
+
+                // Escape key handler
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.hideAllModals();
+                        this.hideContextMenus();
+                    }
+                });
+            }
+
+            setupDebugMode() {
+                const debugToggle = document.getElementById('debugToggle');
+                debugToggle.addEventListener('click', () => {
+                    this.debugMode = !this.debugMode;
+                    this.toggleDebugMode();
+                });
+            }
+
+            toggleDebugMode() {
+                const hotspots = document.querySelectorAll('.hotspot');
+                hotspots.forEach(hotspot => {
+                    hotspot.classList.toggle('debug', this.debugMode);
+                });
+                
+                console.log(this.debugMode ? '🐛 Debug mode ON' : '🐛 Debug mode OFF');
+            }
+
+            /**
+             * Level 1 → Level 2: Handle hotspot clicks
+             */
+            handleHotspotClick(hotspotType) {
+                console.log(`🎯 Hotspot clicked: ${hotspotType}`);
+                
+                // Hide any existing context menus first
+                this.hideContextMenus();
+                
+                // Show appropriate context menu
+                const contextMenuId = `contextMenu${hotspotType.charAt(0).toUpperCase() + hotspotType.slice(1)}`;
+                const contextMenu = document.getElementById(contextMenuId);
+                
+                if (contextMenu) {
+                    contextMenu.classList.add('active');
+                    this.activeContextMenu = contextMenu;
+                    this.currentLevel = 2;
+                    console.log(`📋 Context menu opened for ${hotspotType}`);
+                }
+            }
+
+            /**
+             * Level 2 → Level 1: Hide context menus
+             */
+            hideContextMenus() {
+                document.querySelectorAll('.context-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+                
+                this.activeContextMenu = null;
+                this.currentLevel = 1;
+                console.log('📋 Context menus closed, returning to macro view');
+            }
+
+            /**
+             * Level 2 → Level 3: Handle menu button actions
+             */
+            handleMenuAction(action) {
+                console.log(`⚡ Menu action triggered: ${action}`);
+                
+                switch (action) {
+                    case 'collectXP':
+                        this.collectIdleXP();
+                        break;
+                    case 'upgradePC':
+                        this.openModal('modalUpgradePC');
+                        break;
+                    case 'readPoster':
+                        this.openModal('modalPoster');
+                        break;
+                    case 'changePoster':
+                        this.changePoster();
+                        break;
+                    case 'petCat':
+                        this.petCat();
+                        break;
+                    case 'feedCat':
+                        this.openModal('modalCat');
+                        break;
+                    default:
+                        console.warn(`Unknown action: ${action}`);
+                }
+            }
+
+            /**
+             * Level 3: Open full-screen modal
+             */
+            openModal(modalId) {
+                this.hideContextMenus(); // Hide level 2 first
+                
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    this.currentLevel = 3;
+                    console.log(`🔍 Modal opened: ${modalId}`);
+                }
+            }
+
+            /**
+             * Level 3 → Level 1: Hide all modals and return to macro view
+             */
+            hideAllModals() {
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                
+                this.currentLevel = 1;
+                console.log('🔍 All modals closed, returning to macro view');
+            }
+
+            /**
+             * Action implementations with satisfying animations
+             */
+            collectIdleXP() {
+                const button = event.target;
+                const originalText = button.innerHTML;
+                
+                // Animate button
+                button.classList.add('collecting-xp');
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Collecting...';
+                button.disabled = true;
+                
+                // Simulate XP collection
+                setTimeout(() => {
+                    button.classList.remove('collecting-xp');
+                    button.innerHTML = '<i class="fas fa-check"></i> +250 XP Collected!';
+                    button.style.background = 'var(--accent-color)';
+                    
+                    console.log('💫 XP Collected! +250 points');
+                    
+                    // Reset button after delay
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                        button.style.background = '';
+                    }, 2000);
+                }, 1500);
+            }
+
+            changePoster() {
+                const posters = ['🎯', '💡', '🚀', '⚡', '🎨', '🌟'];
+                const currentPoster = document.querySelector('.poster::before');
+                const randomPoster = posters[Math.floor(Math.random() * posters.length)];
+                
+                // Update poster content via CSS custom property
+                document.documentElement.style.setProperty('--poster-content', `"${randomPoster}"`);
+                
+                console.log(`🖼️ Poster changed to: ${randomPoster}`);
+                
+                // Show feedback
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Poster Updated!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 1500);
+            }
+
+            petCat() {
+                const cat = document.querySelector('.cat');
+                const button = event.target;
+                const originalText = button.innerHTML;
+                
+                // Animate cat
+                cat.style.transform = 'scale(1.1) rotate(5deg)';
+                cat.style.transition = 'transform 0.3s ease';
+                
+                // Update button
+                button.innerHTML = '<i class="fas fa-heart"></i> Purr... 😊';
+                button.style.background = 'var(--accent-color)';
+                
+                console.log('🐱 Cat petted! Happiness +10');
+                
+                // Reset after animation
+                setTimeout(() => {
+                    cat.style.transform = '';
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                }, 1500);
+            }
+
+            /**
+             * Generate new motivational quote
+             */
+            generateNewQuote() {
+                const quotes = [
+                    { text: "Code is poetry written in logic.", author: "Anonymous" },
+                    { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
+                    { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
+                    { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
+                    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" }
+                ];
+                
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                
+                document.querySelector('#modalPoster blockquote').textContent = `"${randomQuote.text}"`;
+                document.querySelector('#modalPoster .modal-body p').textContent = `- ${randomQuote.author}`;
+                
+                console.log(`💬 New quote generated: ${randomQuote.text}`);
+            }
+
+            /**
+             * Get current interaction state info
+             */
+            getStateInfo() {
+                return {
+                    currentLevel: this.currentLevel,
+                    activeContextMenu: this.activeContextMenu?.id || null,
+                    debugMode: this.debugMode
+                };
+            }
+        }
+
+        // Initialize the interactive room when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.interactiveRoom = new InteractiveRoom();
+            
+            // Global function for quote generation (called from modal)
+            window.generateNewQuote = () => {
+                window.interactiveRoom.generateNewQuote();
+            };
+            
+            // Expose room instance for debugging
+            console.log('🏠 Interactive Room initialized');
+            console.log('💡 Try clicking on the desk, poster, or cat!');
+            console.log('🐛 Enable debug mode to see hotspot areas');
+        });
+
+        // Add some extra polish
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add dynamic poster content styling
+            const style = document.createElement('style');
+            style.textContent = `
+                .poster::before {
+                    content: var(--poster-content, '🎯');
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
