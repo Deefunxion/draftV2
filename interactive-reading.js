@@ -108,6 +108,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    /**
+     * Create sparkling brain cell animation for committed element
+     * @param {HTMLElement} element - The committed element
+     */
+    function createSparklingBrainCell(element) {
+        const brainCell = document.createElement('span');
+        brainCell.className = 'status-icon brain-cell-active';
+        brainCell.innerHTML = '🧠';
+        brainCell.title = `Active Brain Cell (+${getElementXP(element)} XP)`;
+        
+        // Add sparkling animation
+        brainCell.style.position = 'relative';
+        brainCell.style.display = 'inline-block';
+        
+        element.insertBefore(brainCell, element.firstChild);
+        
+        // Create sparkling particles around brain cell (delayed for initial load)
+        setTimeout(() => {
+            createSparklingParticles(brainCell);
+        }, 200);
+    }
+    
+    /**
+     * Create sparkling particle effects around brain cell
+     * @param {HTMLElement} brainCell - The brain cell element
+     */
+    function createSparklingParticles(brainCell) {
+        const numParticles = 8;
+        const rect = brainCell.getBoundingClientRect();
+        
+        for (let i = 0; i < numParticles; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'spark-particle';
+            particle.innerHTML = '✨';
+            particle.style.cssText = `
+                position: fixed;
+                left: ${rect.left + rect.width/2}px;
+                top: ${rect.top + rect.height/2}px;
+                font-size: 12px;
+                pointer-events: none;
+                z-index: 9999;
+                animation: sparkle-burst 1.5s ease-out forwards;
+                animation-delay: ${i * 0.1}s;
+            `;
+            
+            // Random direction for each particle
+            const angle = (Math.PI * 2 * i) / numParticles;
+            const distance = 30 + Math.random() * 20;
+            particle.style.setProperty('--spark-x', `${Math.cos(angle) * distance}px`);
+            particle.style.setProperty('--spark-y', `${Math.sin(angle) * distance}px`);
+            
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => particle.remove(), 1500 + (i * 100));
+        }
+        
+        console.log('✨ Brain cell sparkling activated!');
+    }
+    
     // =================================
     // TOUCH DEVICE DETECTION & INTERACTION
     // =================================
@@ -133,9 +193,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Touch-specific variables
     let activeTouchButton = null;
+    let activeElement = null;
+    let confirmationTimeout = null;
     let touchStartTime = 0;
     let isScrolling = false;
     let scrollThreshold = 10; // pixels
+    
+    // Two-phase touch system variables
+    let pendingConfirmation = false;
+    let currentPopupElement = null;
 
     const paragraphs = contentWrapper.querySelectorAll('p');
     console.log('Found ' + paragraphs.length + ' paragraphs to make interactive');
@@ -198,17 +264,78 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
-     * Dismiss the currently active touch button
+     * Dismiss the currently active touch button with optional slide-away animation
      */
-    function dismissTouchButton() {
+    function dismissTouchButton(withSlideAway = false) {
         if (activeTouchButton) {
-            activeTouchButton.classList.remove('visible');
+            if (withSlideAway) {
+                // Slide away animation with sound effect
+                activeTouchButton.classList.add('slide-away');
+                playSlideAwaySound();
+                console.log('🌬️ Popup slid away - timeout expired');
+            } else {
+                activeTouchButton.classList.remove('visible');
+            }
+            
             setTimeout(() => {
                 if (activeTouchButton) {
                     activeTouchButton.remove();
                     activeTouchButton = null;
+                    currentPopupElement = null;
+                    pendingConfirmation = false;
                 }
-            }, 300);
+            }, withSlideAway ? 600 : 300);
+        }
+    }
+    
+    /**
+     * Clear any pending confirmation timeout
+     */
+    function clearConfirmationTimeout() {
+        if (confirmationTimeout) {
+            clearTimeout(confirmationTimeout);
+            confirmationTimeout = null;
+        }
+    }
+    
+    /**
+     * Start 2-second confirmation timeout for current popup
+     */
+    function startConfirmationTimeout() {
+        clearConfirmationTimeout();
+        confirmationTimeout = setTimeout(() => {
+            if (pendingConfirmation && activeTouchButton) {
+                dismissTouchButton(true); // Slide away with sound
+            }
+        }, 2000);
+    }
+    
+    /**
+     * Play slide-away sound effect
+     */
+    function playSlideAwaySound() {
+        // Create audio context for slide-away sound
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Sliding frequency sweep (high to low)
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.3);
+            
+            // Volume fade out
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            
+            oscillator.type = 'sine';
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        } catch (e) {
+            console.log('Audio not supported');
         }
     }
 
@@ -248,15 +375,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /**
-         * Create and show commit button with device-appropriate positioning
-         * @param {boolean} isTouch - Whether this is for touch interaction
+         * Create and show commit button with two-phase touch system
+         * @param {boolean} isTouchInteraction - Whether this is for touch interaction
+         * @param {boolean} isPersistent - Whether this popup should persist after touch lift
          */
-        function showCommitButton(isTouchInteraction = false) {
+        function showCommitButton(isTouchInteraction = false, isPersistent = false) {
             if (commitButton || element.classList.contains('element-committed') || element.classList.contains('element-pushed')) return;
             
-            // Dismiss any existing touch button first
-            if (isTouchInteraction && activeTouchButton && activeTouchButton !== commitButton) {
+            // Two-phase touch logic: dismiss previous popup if switching elements
+            if (isTouchInteraction && currentPopupElement && currentPopupElement !== element) {
                 dismissTouchButton();
+                clearConfirmationTimeout();
+            }
+            
+            // If same element is touched again during pending confirmation, just reset timeout
+            if (isTouchInteraction && currentPopupElement === element && pendingConfirmation) {
+                startConfirmationTimeout();
+                return;
             }
             
             createInteractionContainer();
@@ -280,11 +415,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 commitButton.style.top = `${finalTop - elementRect.top}px`;
                 commitButton.style.right = '10px'; // Closer for thumb reach
                 
-                // Set as active touch button
+                // Set as active touch button and current popup element
                 activeTouchButton = commitButton;
+                currentPopupElement = element;
                 
                 // Immediate visibility for touch
                 commitButton.classList.add('visible');
+                
+                // If persistent (after touch lift), start confirmation timeout
+                if (isPersistent) {
+                    pendingConfirmation = true;
+                    startConfirmationTimeout();
+                    console.log('💚 Popup persistent - waiting for confirmation within 2s');
+                }
             } else {
                 // For mouse: use existing positioning
                 const elementRect = element.getBoundingClientRect();
@@ -302,6 +445,10 @@ document.addEventListener('DOMContentLoaded', function() {
          * Handle commit button click - shared between touch and mouse
          */
         function handleCommitClick() {
+            // Clear any pending confirmation
+            clearConfirmationTimeout();
+            pendingConfirmation = false;
+            
             commitButton.classList.add('clicked');
             element.classList.add('element-committed');
             
@@ -312,10 +459,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 applyTypographyLevel(element, typographyLevel);
             }
             
-            const stagedIcon = document.createElement('span');
-            stagedIcon.className = 'status-icon icon-staged';
-            stagedIcon.innerHTML = '●';
-            element.insertBefore(stagedIcon, element.firstChild);
+            // Create sparkling brain cell instead of simple staged icon
+            createSparklingBrainCell(element);
 
             // Calculate XP based on element type
             const xpValue = getElementXP(element);
@@ -330,11 +475,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 timestamp: Date.now()
             }));
 
-            console.log(`Committed ${element.tagName.toLowerCase()}: ${element.id} (+${xpValue} XP)`);
+            console.log(`✨ Committed ${element.tagName.toLowerCase()}: ${element.id} (+${xpValue} XP) - Brain cell activated!`);
 
-            // Clear active touch button reference
+            // Clear active touch references
             if (activeTouchButton === commitButton) {
                 activeTouchButton = null;
+                currentPopupElement = null;
             }
 
             setTimeout(() => {
@@ -342,6 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 commitButton = null;
             }, 400);
         }
+        
 
         function hideCommitButton() {
             if (commitButton && !commitButton.classList.contains('clicked')) {
@@ -361,8 +508,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // =================================
         
         if (isTouch) {
-            // TOUCH DEVICE LOGIC
+            // TWO-PHASE TOUCH SYSTEM LOGIC
             let touchStartPos = null;
+            let isScrollingDetected = false;
             
             element.addEventListener('touchstart', (e) => {
                 if (element.classList.contains('element-committed') || element.classList.contains('element-pushed')) return;
@@ -373,11 +521,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     y: e.touches[0].clientY,
                     time: Date.now()
                 };
+                isScrollingDetected = false;
                 
-                console.log('Touch started on element:', element.id);
+                console.log('👆 Touch started on element:', element.id);
                 
-                // Show button immediately on touch start
-                showCommitButton(true);
+                // Phase 1: Show popup immediately on touch start
+                showCommitButton(true, false);
             }, { passive: true });
             
             element.addEventListener('touchmove', (e) => {
@@ -387,17 +536,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     const deltaX = Math.abs(currentTouch.clientX - touchStartPos.x);
                     const deltaY = Math.abs(currentTouch.clientY - touchStartPos.y);
                     
-                    // If significant movement detected, it's likely scrolling
+                    // If significant movement detected, it's scrolling
                     if (deltaY > scrollThreshold || deltaX > scrollThreshold * 2) {
-                        if (activeTouchButton === commitButton) {
+                        isScrollingDetected = true;
+                        if (activeTouchButton === commitButton && !pendingConfirmation) {
                             dismissTouchButton();
+                            console.log('📜 Scrolling detected - dismissed popup');
                         }
                     }
                 }
             }, { passive: true });
             
             element.addEventListener('touchend', (e) => {
+                // Phase 2: If not scrolling, make popup persistent with 2s timeout
+                if (touchStartPos && !isScrollingDetected && activeTouchButton === commitButton) {
+                    console.log('🔒 Touch lifted - popup now persistent for 2s');
+                    showCommitButton(true, true); // Make persistent
+                }
+                
                 touchStartPos = null;
+                isScrollingDetected = false;
             }, { passive: true });
             
         } else {
@@ -482,17 +640,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     }));
                 }
                 
-                const icon = document.createElement('span');
-                icon.className = 'status-icon';
-                element.insertBefore(icon, element.firstChild);
-
                 if (state === 'pushed') {
                     element.classList.add('element-pushed');
-                    icon.classList.add('icon-pushed');
+                    // Create pushed icon
+                    const icon = document.createElement('span');
+                    icon.className = 'status-icon icon-pushed';
                     icon.innerHTML = '✔';
+                    element.insertBefore(icon, element.firstChild);
                 } else {
-                    icon.classList.add('icon-staged');
-                    icon.innerHTML = '●';
+                    // Create sparkling brain cell for committed elements
+                    createSparklingBrainCell(element);
                 }
             }
         }
@@ -506,11 +663,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             committedElements.forEach(element => {
                 element.classList.add('element-pushed');
-                const stagedIcon = element.querySelector('.icon-staged');
-                if (stagedIcon) {
-                    stagedIcon.classList.remove('icon-staged');
-                    stagedIcon.classList.add('icon-pushed');
-                    stagedIcon.innerHTML = '✔';
+                
+                // Replace brain cell with pushed checkmark
+                const brainCell = element.querySelector('.brain-cell-active');
+                if (brainCell) {
+                    brainCell.classList.remove('brain-cell-active');
+                    brainCell.classList.add('icon-pushed');
+                    brainCell.innerHTML = '✔';
+                    brainCell.title = 'Pushed to AI-Q System';
                 }
                 
                 // Update localStorage with enhanced data format
