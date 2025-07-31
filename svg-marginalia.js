@@ -28,6 +28,10 @@ class SVGMarginalia {
         this.strokeCount = 0;
         this.lastPoint = null;
         
+        // Scroll lock state
+        this.scrollLocked = false;
+        this.savedScrollY = 0;
+        
         this.init();
     }
     
@@ -188,6 +192,9 @@ class SVGMarginalia {
         // Enable pointer events on SVG for drawing
         this.svg.style.pointerEvents = 'auto';
         
+        // Lock scroll to prevent accidental scrolling while drawing
+        this.lockScroll();
+        
         console.log('Started drawing from margin zone:', point);
     }
     
@@ -219,6 +226,9 @@ class SVGMarginalia {
         
         // Disable pointer events to restore text interaction
         this.svg.style.pointerEvents = 'none';
+        
+        // Unlock scroll to restore normal scrolling
+        this.unlockScroll();
         
         // Store completed path
         if (this.currentPath) {
@@ -438,6 +448,42 @@ class SVGMarginalia {
         clearBtn.addEventListener('click', () => this.clearCurrentPageAnnotations());
         
         document.body.appendChild(clearBtn);
+    }
+    
+    /**
+     * Lock scroll to prevent accidental scrolling while drawing
+     */
+    lockScroll() {
+        if (this.scrollLocked) return;
+        
+        this.savedScrollY = window.scrollY;
+        this.scrollLocked = true;
+        
+        // Prevent scrolling on touch devices
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.savedScrollY}px`;
+        document.body.style.width = '100%';
+        
+        console.log('Scroll locked for drawing');
+    }
+    
+    /**
+     * Unlock scroll to restore normal scrolling behavior
+     */
+    unlockScroll() {
+        if (!this.scrollLocked) return;
+        
+        this.scrollLocked = false;
+        
+        // Restore normal scrolling
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        
+        // Restore scroll position
+        window.scrollTo(0, this.savedScrollY);
+        
+        console.log('Scroll unlocked');
     }
     
     /**

@@ -75,18 +75,33 @@
     <!-- Living Margin Canvas - The Creative Edge for Reading -->
     <canvas id="living-margin-canvas"></canvas>
     
-    <!-- Clear Doodles Button -->
-    <button id="clear-doodles-btn" title="Καθαρισμός Σκίτσων">
-        <i class="fa-solid fa-eraser"></i>
-    </button>
-    
-    <!-- Navigation -->
-    <div class="nav-menu">
-        <a href="index.html"><strong>← Κύριο Μενού</strong></a>
-        <span style="color: var(--text-muted); font-style: italic;">Level 1: The Novice - Άλλα επίπεδα κλειδωμένα</span>
-    </div>
+    <!-- 
+      THE GREAT UNIFIER: This is the single parent container for ALL page content.
+      It will be centered on the page.
+    -->
+    <main class="main-content-column">
 
-    <main id="reading-content-wrapper">
+        <!-- 
+          ITEM 1: The navigation header.
+          It lives INSIDE the column.
+        -->
+        <header class="page-header">
+            <a href="index.html" class="back-button">← Κύριο Μενού</a>
+        </header>
+
+        <!-- 
+          ITEM 2: The user's level status box.
+          It also lives INSIDE the column.
+        -->
+        <div class="level-status-box">
+            Level 1: The Novice - Άλλα επίπεδα κλειδωμένα
+        </div>
+
+        <!-- 
+          ITEM 3: The main reading content wrapper.
+          This is the core text area, also INSIDE the column.
+        -->
+        <article id="reading-content-wrapper">
         <header>
             <h1>Ο Οδηγός του στρατηγικού νου για την ΤΝ</h1>
             <h2>Πότε, γιατί και αν πρέπει να χρησιμοποιήσετε την ΤΝ</h2>
@@ -1559,10 +1574,9 @@
                 🎯 Θα κερδίσετε +8 AI-Q πόντους και θα ξεκλειδώσετε το <strong>Εγκόλπιον</strong>
             </p>
         </div>
-    </main>
+        </article>
 
-    <!-- Back to Dashboard -->
-    <a href="index.html" class="back-to-dashboard"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στο Κύριο Μενού</a>
+    </main> <!-- End of the single content column -->
 
     <!-- Scripts -->
     <script src="learning-path.js"></script>

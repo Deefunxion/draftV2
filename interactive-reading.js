@@ -324,8 +324,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let pendingConfirmation = false;
     let currentPopupElement = null;
 
-    let hoverTimeout;
-
     const paragraphs = contentWrapper.querySelectorAll('p');
     console.log('Found ' + paragraphs.length + ' paragraphs to make interactive');
     
@@ -551,6 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let commitButton = null;
         let interactionContainer = null;
+        let elementHoverTimeout = null;
 
         // Create interaction container that includes both element and button area
         function createInteractionContainer() {
@@ -763,7 +762,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                hoverTimeout = setTimeout(() => {
+                elementHoverTimeout = setTimeout(() => {
                     console.log('HOVER TIMEOUT reached, showing button for:', element.id);
                     showCommitButton(false);
                 }, 500);
@@ -776,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return; // Don't hide if moving to button
                 }
                 
-                clearTimeout(hoverTimeout);
+                clearTimeout(elementHoverTimeout);
                 // Delay hiding to allow mouse movement to button
                 setTimeout(() => {
                     // Double-check if mouse is still not over button
