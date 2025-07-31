@@ -368,7 +368,7 @@ body {
 .theme-switcher {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 500; /* Lower than SVG marginalia (1000) to prevent drawing conflicts */
     background: rgba(250, 250, 250, 0.95);
     border: 1px solid #E0E0E0;

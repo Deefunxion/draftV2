@@ -18,6 +18,7 @@ class SVGMarginalia {
         this.currentAIQ = 85; // Default starting AI-Q
         this.annotations = new Map(); // Page-specific annotations storage
         this.currentPage = window.location.pathname;
+        this.debugMode = false; // Set to true for coordinate debugging
         
         // Zone definitions for smart interaction
         this.marginWidth = 120; // px from each edge
@@ -79,6 +80,14 @@ class SVGMarginalia {
      * Update SVG dimensions to match document
      */
     updateSVGDimensions() {
+        const docWidth = Math.max(
+            document.body.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.clientWidth,
+            document.documentElement.scrollWidth,
+            document.documentElement.offsetWidth
+        );
+        
         const docHeight = Math.max(
             document.body.scrollHeight,
             document.body.offsetHeight,
@@ -87,8 +96,14 @@ class SVGMarginalia {
             document.documentElement.offsetHeight
         );
         
+        // Update SVG size and viewBox to match document exactly
+        this.svg.style.width = docWidth + 'px';
         this.svg.style.height = docHeight + 'px';
-        this.svg.setAttribute('viewBox', `0 0 ${window.innerWidth} ${docHeight}`);
+        this.svg.setAttribute('width', docWidth);
+        this.svg.setAttribute('height', docHeight);
+        this.svg.setAttribute('viewBox', `0 0 ${docWidth} ${docHeight}`);
+        
+        console.log('SVG updated:', docWidth + 'x' + docHeight);
     }
     
     /**
@@ -291,11 +306,26 @@ class SVGMarginalia {
      * Get document coordinates from event with proper SVG coordinate mapping
      */
     getDocumentPoint(e) {
-        // For absolute positioned SVG that covers the entire document,
-        // we need to account for scroll position correctly
+        // Get the SVG element's bounding rectangle
+        const svgRect = this.svg.getBoundingClientRect();
+        
+        // Convert mouse coordinates to SVG coordinate system
+        const point = this.svg.createSVGPoint();
+        point.x = e.clientX;
+        point.y = e.clientY;
+        
+        // Transform the point to SVG coordinates
+        const svgPoint = point.matrixTransform(this.svg.getScreenCTM().inverse());
+        
+        if (this.debugMode) {
+            console.log('Mouse coordinates:', e.clientX, e.clientY);
+            console.log('SVG coordinates:', svgPoint.x, svgPoint.y);
+            console.log('SVG rect:', svgRect);
+        }
+        
         return {
-            x: e.clientX,
-            y: e.clientY + window.scrollY
+            x: svgPoint.x,
+            y: svgPoint.y
         };
     }
     
@@ -430,6 +460,16 @@ class SVGMarginalia {
 document.addEventListener('DOMContentLoaded', () => {
     window.svgMarginalia = new SVGMarginalia();
 });
+
+// Debug function to enable coordinate debugging
+window.debugSVGCoordinates = function() {
+    if (window.svgMarginalia) {
+        window.svgMarginalia.debugMode = true;
+        console.log('SVG coordinate debugging enabled. Draw something to see coordinates.');
+    } else {
+        console.log('SVG Marginalia not initialized yet.');
+    }
+};
 
 // Export for module use
 if (typeof module !== 'undefined' && module.exports) {

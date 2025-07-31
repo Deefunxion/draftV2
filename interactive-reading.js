@@ -1,11 +1,16 @@
+console.log('Interactive Reading JS file loaded');
+
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('interactive-reading.js loaded and running.');
+    console.log('Interactive Reading System Starting...');
+    console.log('Current page:', window.location.pathname);
 
     const contentWrapper = document.getElementById('reading-content-wrapper');
     console.log('Wrapper element found:', contentWrapper);
+    console.log('Wrapper tag name:', contentWrapper?.tagName);
 
     if (!contentWrapper) {
-        console.error('Error: Could not find the #reading-content-wrapper element.');
+        console.error('ERROR: Could not find reading-content-wrapper element');
+        console.log('Available elements with IDs:', Array.from(document.querySelectorAll('[id]')).map(el => el.id));
         return;
     }
     
@@ -67,20 +72,64 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(`Applied typography level ${level} to paragraph:`, paragraph.id);
     }
     
+    /**
+     * Calculate XP reward based on element type
+     * @param {HTMLElement} element - The interactive element
+     * @returns {number} XP value for this element
+     */
+    function getElementXP(element) {
+        const tagName = element.tagName.toLowerCase();
+        const textLength = element.textContent.trim().length;
+        
+        switch (tagName) {
+            case 'h1':
+                return 50; // Major section headers
+            case 'h2':
+                return 35; // Sub-section headers
+            case 'h3':
+                return 25; // Sub-sub-section headers
+            case 'h4':
+            case 'h5':
+            case 'h6':
+                return 15; // Minor headers
+            case 'p':
+                // Paragraphs get XP based on content length
+                if (textLength < 50) return 5;
+                if (textLength < 150) return 10;
+                if (textLength < 300) return 15;
+                return 20; // Long paragraphs
+            case 'li':
+                // List items based on content
+                if (textLength < 30) return 3;
+                if (textLength < 100) return 5;
+                return 8; // Detailed list items
+            default:
+                return 5; // Default for any other elements
+        }
+    }
+    
     // =================================
     // TOUCH DEVICE DETECTION & INTERACTION
     // =================================
     
     /**
-     * Detect if the user is on a touch-enabled device
-     * @returns {boolean} True if touch device
+     * Detect if the user is primarily using touch (mobile/tablet)
+     * @returns {boolean} True if primarily touch device
      */
     const isTouchDevice = () => {
-        return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // More accurate detection - check for mobile patterns
+        const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isSmallScreen = window.innerWidth <= 768;
+        
+        // Only use touch logic if it's actually a mobile device or small screen with touch
+        return hasTouch && (isMobile || isSmallScreen);
     }
     
     const isTouch = isTouchDevice();
     console.log('Touch device detected:', isTouch);
+    console.log('Screen width:', window.innerWidth);
+    console.log('User agent contains mobile:', /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     
     // Touch-specific variables
     let activeTouchButton = null;
@@ -89,7 +138,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let scrollThreshold = 10; // pixels
 
     const paragraphs = contentWrapper.querySelectorAll('p');
-    console.log('Found ' + paragraphs.length + ' paragraphs to attach listeners to.');
+    console.log('Found ' + paragraphs.length + ' paragraphs to make interactive');
+    
+    if (paragraphs.length > 0) {
+        console.log('First paragraph preview:', paragraphs[0].textContent.substring(0, 100) + '...');
+        console.log('Sample paragraph IDs:', Array.from(paragraphs).slice(0, 3).map(p => p.id || 'no-id'));
+    } else {
+        console.warn('WARNING: No paragraphs found in wrapper!');
+        console.log('Checking document structure...');
+        console.log('All paragraphs in document:', document.querySelectorAll('p').length);
+        console.log('Wrapper innerHTML length:', contentWrapper.innerHTML.length);
+        return;
+    }
 
     let hoverTimeout;
 
@@ -152,21 +212,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    paragraphs.forEach((p, index) => {
-        if (!p.id) {
-            p.id = `p-interactive-${index}`;
+    // RCSP System: Read-Commit-Stage-Push
+    const headings = contentWrapper.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const listItems = contentWrapper.querySelectorAll('li');
+    
+    console.log('RCSP System Elements Found:');
+    console.log('- Paragraphs:', paragraphs.length);
+    console.log('- Headings:', headings.length);
+    console.log('- List Items:', listItems.length);
+    console.log('- Total Interactive Elements:', paragraphs.length + headings.length + listItems.length);
+    
+    // Combine all interactive elements
+    const allElements = [...paragraphs, ...headings, ...listItems];
+    console.log('Setting up RCSP listeners for', allElements.length, 'elements...');
+    
+    allElements.forEach((element, index) => {
+        if (!element.id) {
+            const elementType = element.tagName.toLowerCase();
+            element.id = `${elementType}-interactive-${index}`;
         }
+        
+        console.log(`[${index + 1}/${allElements.length}] Setting up: ${element.id} (${element.tagName})`);
 
         let commitButton = null;
         let interactionContainer = null;
 
-        // Create interaction container that includes both paragraph and button area
+        // Create interaction container that includes both element and button area
         function createInteractionContainer() {
             if (!interactionContainer) {
                 interactionContainer = document.createElement('div');
-                interactionContainer.className = 'paragraph-interaction-container';
-                p.parentNode.insertBefore(interactionContainer, p);
-                interactionContainer.appendChild(p);
+                interactionContainer.className = 'element-interaction-container';
+                element.parentNode.insertBefore(interactionContainer, element);
+                interactionContainer.appendChild(element);
             }
         }
 
@@ -175,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
          * @param {boolean} isTouch - Whether this is for touch interaction
          */
         function showCommitButton(isTouchInteraction = false) {
-            if (commitButton || p.classList.contains('p-committed') || p.classList.contains('p-pushed')) return;
+            if (commitButton || element.classList.contains('element-committed') || element.classList.contains('element-pushed')) return;
             
             // Dismiss any existing touch button first
             if (isTouchInteraction && activeTouchButton && activeTouchButton !== commitButton) {
@@ -191,16 +268,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (isTouchInteraction) {
                 // For touch: position button in a more ergonomic, fixed location
-                const pRect = p.getBoundingClientRect();
+                const elementRect = element.getBoundingClientRect();
                 const viewportHeight = window.innerHeight;
-                const buttonFromTop = pRect.top + (pRect.height / 2) - 22;
+                const buttonFromTop = elementRect.top + (elementRect.height / 2) - 22;
                 
                 // Ensure button stays within comfortable reach
                 const maxTop = viewportHeight - 100; // 100px from bottom
                 const minTop = 60; // 60px from top
                 const finalTop = Math.max(minTop, Math.min(maxTop, buttonFromTop));
                 
-                commitButton.style.top = `${finalTop - pRect.top}px`;
+                commitButton.style.top = `${finalTop - elementRect.top}px`;
                 commitButton.style.right = '10px'; // Closer for thumb reach
                 
                 // Set as active touch button
@@ -210,8 +287,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 commitButton.classList.add('visible');
             } else {
                 // For mouse: use existing positioning
-                const pRect = p.getBoundingClientRect();
-                commitButton.style.top = `${(pRect.height / 2) - 22}px`;
+                const elementRect = element.getBoundingClientRect();
+                commitButton.style.top = `${(elementRect.height / 2) - 22}px`;
                 
                 setTimeout(() => {
                     commitButton.classList.add('visible');
@@ -226,25 +303,34 @@ document.addEventListener('DOMContentLoaded', function() {
          */
         function handleCommitClick() {
             commitButton.classList.add('clicked');
-            p.classList.add('p-committed');
+            element.classList.add('element-committed');
             
-            // Apply Living Document typography level
+            // Apply Living Document typography level (only for paragraphs)
             const currentAIQ = getCurrentAIQ();
             const typographyLevel = getUserLevel(currentAIQ);
-            applyTypographyLevel(p, typographyLevel);
+            if (element.tagName.toLowerCase() === 'p') {
+                applyTypographyLevel(element, typographyLevel);
+            }
             
             const stagedIcon = document.createElement('span');
             stagedIcon.className = 'status-icon icon-staged';
             stagedIcon.innerHTML = '●';
-            p.insertBefore(stagedIcon, p.firstChild);
+            element.insertBefore(stagedIcon, element.firstChild);
 
-            // Store enhanced progress data with typography level
-            localStorage.setItem(p.id, JSON.stringify({
+            // Calculate XP based on element type
+            const xpValue = getElementXP(element);
+            
+            // Store enhanced progress data with typography level and XP
+            localStorage.setItem(element.id, JSON.stringify({
                 state: 'committed',
                 level: typographyLevel,
                 aiq: currentAIQ,
+                xp: xpValue,
+                elementType: element.tagName.toLowerCase(),
                 timestamp: Date.now()
             }));
+
+            console.log(`Committed ${element.tagName.toLowerCase()}: ${element.id} (+${xpValue} XP)`);
 
             // Clear active touch button reference
             if (activeTouchButton === commitButton) {
@@ -278,8 +364,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // TOUCH DEVICE LOGIC
             let touchStartPos = null;
             
-            p.addEventListener('touchstart', (e) => {
-                if (p.classList.contains('p-committed') || p.classList.contains('p-pushed')) return;
+            element.addEventListener('touchstart', (e) => {
+                if (element.classList.contains('element-committed') || element.classList.contains('element-pushed')) return;
                 
                 // Store initial touch position
                 touchStartPos = {
@@ -288,13 +374,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     time: Date.now()
                 };
                 
-                console.log('Touch started on paragraph:', p.id);
+                console.log('Touch started on element:', element.id);
                 
                 // Show button immediately on touch start
                 showCommitButton(true);
             }, { passive: true });
             
-            p.addEventListener('touchmove', (e) => {
+            element.addEventListener('touchmove', (e) => {
                 // Check if this is intentional scrolling vs accidental movement
                 if (touchStartPos) {
                     const currentTouch = e.touches[0];
@@ -310,23 +396,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, { passive: true });
             
-            p.addEventListener('touchend', (e) => {
+            element.addEventListener('touchend', (e) => {
                 touchStartPos = null;
             }, { passive: true });
             
         } else {
             // DESKTOP/MOUSE LOGIC (Existing behavior)
-            p.addEventListener('mouseenter', (e) => {
-                console.log('Mouse entered paragraph:', e.target);
-                if (p.classList.contains('p-committed') || p.classList.contains('p-pushed')) return;
+            element.addEventListener('mouseenter', (e) => {
+                console.log('MOUSE ENTERED element:', element.id);
+                if (element.classList.contains('element-committed') || element.classList.contains('element-pushed')) {
+                    console.log('Element already committed/pushed, skipping');
+                    return;
+                }
 
                 hoverTimeout = setTimeout(() => {
-                    console.log('Pause detected on paragraph:', e.target);
+                    console.log('HOVER TIMEOUT reached, showing button for:', element.id);
                     showCommitButton(false);
                 }, 500);
             });
 
-            p.addEventListener('mouseleave', (e) => {
+            element.addEventListener('mouseleave', (e) => {
                 // Check if mouse is moving to the commit button
                 const relatedTarget = e.relatedTarget;
                 if (relatedTarget && (relatedTarget === commitButton || commitButton?.contains(relatedTarget))) {
@@ -345,9 +434,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    console.log('RCSP INTERACTIVE SYSTEM SETUP COMPLETE!');
+    console.log('INSTRUCTIONS: Hover over any element (paragraphs, headings, lists) for 500ms to see commit button');
+    console.log('MOBILE: tap any element to show button, tap button to commit');
+    console.log('XP SYSTEM: Elements award different XP based on type and content length');
+    console.log('STORAGE: Progress automatically saved to localStorage with XP tracking');
+
     // Load initial state from localStorage with Living Document support
-    paragraphs.forEach(p => {
-        const storedData = localStorage.getItem(p.id);
+    allElements.forEach(element => {
+        const storedData = localStorage.getItem(element.id);
         if (storedData) {
             let progressData;
             
@@ -366,29 +461,33 @@ document.addEventListener('DOMContentLoaded', function() {
             const { state, level } = progressData;
             
             if (state === 'committed' || state === 'pushed') {
-                p.classList.add('p-committed');
+                element.classList.add('element-committed');
                 
-                // Apply current AI-Q typography level (upgrades on reload!)
+                // Apply current AI-Q typography level (upgrades on reload!) - only for paragraphs
                 const currentAIQ = getCurrentAIQ();
                 const currentLevel = getUserLevel(currentAIQ);
-                applyTypographyLevel(p, currentLevel);
+                if (element.tagName.toLowerCase() === 'p') {
+                    applyTypographyLevel(element, currentLevel);
+                }
                 
                 // Update localStorage with current level if it's outdated
                 if (level !== currentLevel) {
-                    localStorage.setItem(p.id, JSON.stringify({
+                    localStorage.setItem(element.id, JSON.stringify({
                         state: state,
                         level: currentLevel,
                         aiq: currentAIQ,
+                        xp: getElementXP(element),
+                        elementType: element.tagName.toLowerCase(),
                         timestamp: Date.now()
                     }));
                 }
                 
                 const icon = document.createElement('span');
                 icon.className = 'status-icon';
-                p.insertBefore(icon, p.firstChild);
+                element.insertBefore(icon, element.firstChild);
 
                 if (state === 'pushed') {
-                    p.classList.add('p-pushed');
+                    element.classList.add('element-pushed');
                     icon.classList.add('icon-pushed');
                     icon.innerHTML = '✔';
                 } else {
@@ -403,11 +502,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const pushButton = document.querySelector('.aiq-completion-btn');
     if (pushButton) {
         pushButton.addEventListener('click', () => {
-            const committedParagraphs = contentWrapper.querySelectorAll('.p-committed:not(.p-pushed)');
+            const committedElements = contentWrapper.querySelectorAll('.element-committed:not(.element-pushed)');
             
-            committedParagraphs.forEach(p => {
-                p.classList.add('p-pushed');
-                const stagedIcon = p.querySelector('.icon-staged');
+            committedElements.forEach(element => {
+                element.classList.add('element-pushed');
+                const stagedIcon = element.querySelector('.icon-staged');
                 if (stagedIcon) {
                     stagedIcon.classList.remove('icon-staged');
                     stagedIcon.classList.add('icon-pushed');
@@ -417,10 +516,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update localStorage with enhanced data format
                 const currentAIQ = getCurrentAIQ();
                 const typographyLevel = getUserLevel(currentAIQ);
-                localStorage.setItem(p.id, JSON.stringify({
+                localStorage.setItem(element.id, JSON.stringify({
                     state: 'pushed',
                     level: typographyLevel,
                     aiq: currentAIQ,
+                    xp: getElementXP(element),
+                    elementType: element.tagName.toLowerCase(),
                     timestamp: Date.now()
                 }));
             });
@@ -687,3 +788,29 @@ function createFinalBurst(container, x, y) {
         setTimeout(() => burst.remove(), 1000);
     }
 }
+
+// Test function to verify system is working
+window.testInteractiveReading = function() {
+    console.log('TESTING RCSP INTERACTIVE SYSTEM...');
+    const wrapper = document.getElementById('reading-content-wrapper');
+    console.log('Wrapper found:', !!wrapper);
+    if (wrapper) {
+        const paragraphs = wrapper.querySelectorAll('p');
+        const headings = wrapper.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        const listItems = wrapper.querySelectorAll('li');
+        const totalElements = paragraphs.length + headings.length + listItems.length;
+        
+        console.log('RCSP Elements found:');
+        console.log('- Paragraphs:', paragraphs.length);
+        console.log('- Headings:', headings.length);
+        console.log('- List Items:', listItems.length);
+        console.log('- Total Interactive Elements:', totalElements);
+        
+        if (paragraphs.length > 0) {
+            console.log('First paragraph text:', paragraphs[0].textContent.substring(0, 50) + '...');
+            console.log('First paragraph ID:', paragraphs[0].id);
+            console.log('First paragraph XP:', getElementXP ? getElementXP(paragraphs[0]) : 'XP function not available');
+        }
+    }
+    console.log('RCSP System test complete. Check console output above.');
+};

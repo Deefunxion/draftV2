@@ -24,7 +24,7 @@
             
             <!-- State 1: The Novice -->
             <section class="state-section">
-                <a href="main-book.html" class="state-card unlocked">
+                <a href="ai-smart-dummies-guide.html" class="state-card unlocked">
                     <div class="state-title">
                         <h2>Αλφαβητάριον</h2>
                         <span class="state-level">Level 1: The Novice</span>
@@ -100,11 +100,73 @@
                 </div>
                 <p>Journey Progress: 1/4 States Unlocked</p>
             </div>
+            <button onclick="resetRcpProgress()" style="margin-top: 1rem; padding: 8px 16px; background-color: var(--accent-red); border: none; border-radius: 8px; color: var(--text-primary); cursor: pointer;">Reset Progress</button>
         </footer>
     </div>
 
     <!-- Scripts -->
     <script src="theme-switcher.js"></script>
     <script src="aiq-tracker.js"></script>
+    <script src="interactive-reading.js"></script>
+    
+    <script>
+    /**
+     * Reset all RCSP progress and AI-Q data
+     * Clears localStorage and reloads page for fresh start
+     */
+    function resetRcpProgress() {
+        if (confirm('Θέλεις να σβήσεις όλη την πρόοδο; Αυτό δεν μπορεί να αναιρεθεί!')) {
+            console.log('🔥 RESETTING ALL PROGRESS...');
+            
+            // Clear AI-Q progress
+            localStorage.removeItem('aiDirector_aiqProgress');
+            console.log('✅ AI-Q progress cleared');
+            
+            // Clear SVG marginalia annotations
+            localStorage.removeItem('svg_marginalia_annotations');
+            console.log('✅ SVG annotations cleared');
+            
+            // Clear all RCSP element progress
+            let elementsCleared = 0;
+            const keysToRemove = [];
+            
+            // Find all localStorage keys that look like element IDs
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && (
+                    key.startsWith('p-interactive-') ||
+                    key.startsWith('h1-interactive-') ||
+                    key.startsWith('h2-interactive-') ||
+                    key.startsWith('h3-interactive-') ||
+                    key.startsWith('h4-interactive-') ||
+                    key.startsWith('h5-interactive-') ||
+                    key.startsWith('h6-interactive-') ||
+                    key.startsWith('li-interactive-')
+                )) {
+                    keysToRemove.push(key);
+                }
+            }
+            
+            // Remove all element progress
+            keysToRemove.forEach(key => {
+                localStorage.removeItem(key);
+                elementsCleared++;
+            });
+            
+            console.log(`✅ ${elementsCleared} RCSP elements cleared`);
+            
+            // Clear any other progress data
+            localStorage.removeItem('theme-preference');
+            console.log('✅ Theme preference cleared');
+            
+            console.log('🚀 RESET COMPLETE! Reloading page...');
+            
+            // Reload page to show fresh state
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+    }
+    </script>
 </body>
 </html>
