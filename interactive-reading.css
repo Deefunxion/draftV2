@@ -337,8 +337,8 @@ li.element-committed.level-4 {
         text-indent: 1.5em;
         padding-left: 16px; /* Increased for better touch comfort */
         padding-right: 16px;
-        font-size: 17px; /* Match sophisticated mobile body font */
-        line-height: 1.6; /* Match mobile line height */
+        font-size: 15px; /* Match mobile body font */
+        line-height: 1.5; /* Match mobile line height */
     }
     
     /* Only paragraphs get text-indent on mobile */
@@ -542,12 +542,12 @@ li.element-committed.level-4 {
     /* Enhanced typography tiers for mobile */
     .p-committed.level-3, .element-committed.level-3,
     .p-committed.level-4, .element-committed.level-4 {
-        font-size: 16px; /* Consistent with body mobile size */
-        line-height: 1.65; /* Match mobile line height */
+        font-size: 14px; /* Match small mobile body size */
+        line-height: 1.6; /* Match mobile line height */
         padding: 12px 16px;
     }
     
     .p-committed.level-4, .element-committed.level-4 {
-        letter-spacing: 0.2px; /* Match mobile letter spacing */
+        letter-spacing: 0.1px; /* Consistent with mobile body */
     }
 }
