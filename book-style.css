@@ -1071,6 +1071,12 @@ h3 i, h3 a i, h2 i, h2 a i {
     /* REMOVED: Opacity change - subtle and potentially confusing */
 }
 
+@media (max-width: 768px) {
+    body {
+        max-width: 95%; /* Instead of 50% - gives you 50-65 characters per line */
+    }
+}
+
 /* REMOVED: Back-link component - redundant with clear navigation */
 /* Users can navigate via browser back button or main navigation */
 
