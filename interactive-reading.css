@@ -611,3 +611,12 @@ li.element-committed.level-4 {
 .element-interaction-container {
     width: 100%;
 }
+/* =================================
+   FIX: Mobile Header Word Wrap Bug
+   ================================= */
+
+#reading-content-wrapper header h1,
+#reading-content-wrapper header h2,
+#reading-content-wrapper header h3 {
+  display: inline;
+}
