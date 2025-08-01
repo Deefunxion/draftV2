@@ -452,19 +452,25 @@ class SVGMarginalia {
     
     /**
      * Lock scroll to prevent accidental scrolling while drawing
+     * Uses padding-right technique to prevent layout jumping
      */
     lockScroll() {
         if (this.scrollLocked) return;
         
+        // Calculate the width of the scrollbar BEFORE hiding it
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        
+        // Store current scroll position
         this.savedScrollY = window.scrollY;
         this.scrollLocked = true;
         
-        // Prevent scrolling on touch devices
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.savedScrollY}px`;
-        document.body.style.width = '100%';
+        // Apply padding to compensate for scrollbar removal
+        document.body.style.paddingRight = scrollbarWidth + 'px';
         
-        console.log('Scroll locked for drawing');
+        // Add CSS class to hide overflow (preserves centering)
+        document.body.classList.add('scroll-locked-for-drawing');
+        
+        console.log('Scroll locked with padding compensation:', scrollbarWidth + 'px');
     }
     
     /**
@@ -475,13 +481,9 @@ class SVGMarginalia {
         
         this.scrollLocked = false;
         
-        // Restore normal scrolling
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        
-        // Restore scroll position
-        window.scrollTo(0, this.savedScrollY);
+        // Remove padding compensation and CSS class
+        document.body.style.paddingRight = '';
+        document.body.classList.remove('scroll-locked-for-drawing');
         
         console.log('Scroll unlocked');
     }

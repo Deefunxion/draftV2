@@ -296,3 +296,17 @@ body.marginalia-drawing {
         opacity: 0.7 !important;
     }
 }
+
+/* =================================
+   SCROLL LOCK FOR DRAWING
+   ================================= */
+
+/* 
+   This class is added by svg-marginalia.js to prevent page scrolling 
+   while drawing, without breaking the centered layout.
+*/
+body.scroll-locked-for-drawing {
+    overflow: hidden;
+    /* NOTE: We do NOT change position, width, or margin here! 
+       This preserves the centered layout while preventing scroll. */
+}

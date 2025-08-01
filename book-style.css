@@ -2520,3 +2520,15 @@ a.ink-overlay {
     color: #0066cc !important;
     text-decoration: underline !important;
 }
+
+/* =================================
+   SCROLL LOCK FOR DRAWING
+   ================================= */
+
+/* 
+   This class is added by svg-marginalia.js to prevent the page from scrolling 
+   while the user is drawing.
+*/
+body.scroll-locked-for-drawing {
+    overflow: hidden;
+}
