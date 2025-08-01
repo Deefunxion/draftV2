@@ -463,20 +463,25 @@ li.element-committed.level-4 {
 @media (max-width: 768px) {
     .paragraph-interaction-container,
     .element-interaction-container {
-        padding-right: 60px; /* Reduced space for smaller button */
+        padding-right: 10px; /* Minimal padding - button will be floating */
     }
     
     .commit-button {
+        /* Mobile floating button - positioned in thumb reach zone */
+        position: fixed;
+        bottom: 80px; /* Above reset scribblings button */
+        right: 20px; /* Thumb reach position */
         width: 44px; /* Larger for touch */
         height: 44px; /* Minimum 44px for accessibility */
         font-size: 18px;
+        z-index: 1001; /* Above other elements */
         /* Enhanced touch target */
         -webkit-tap-highlight-color: rgba(16, 185, 129, 0.3);
         touch-action: manipulation; /* Prevent zoom on double-tap */
     }
     
     .commit-button.visible {
-        right: 10px; /* Ergonomic thumb reach */
+        right: 20px; /* Stay in thumb zone when visible */
     }
     
     .commit-button:active {
@@ -507,7 +512,7 @@ li.element-committed.level-4 {
     .paragraph-interaction-container,
     .element-interaction-container {
         /* Slightly more padding for touch comfort */
-        padding-right: 70px;
+        padding-right: 10px; /* Consistent with mobile floating button approach */
     }
 }
 
@@ -519,7 +524,7 @@ li.element-committed.level-4 {
     
     .paragraph-interaction-container,
     .element-interaction-container {
-        padding-right: 50px;
+        padding-right: 10px; /* Minimal padding - button will be floating */
         margin: 1.2em 0; /* Slightly increased spacing for mobile comfort */
     }
     
