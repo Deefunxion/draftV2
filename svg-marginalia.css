@@ -310,3 +310,68 @@ body.scroll-locked-for-drawing {
     /* NOTE: We do NOT change position, width, or margin here! 
        This preserves the centered layout while preventing scroll. */
 }
+
+/* =================================
+   MOBILE TOUCH ZONE INDICATORS
+   ================================= */
+
+@media (max-width: 768px) {
+    /* Visual indicators for touch zones */
+    body.marginalia-active::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--margin-zone-width);
+        height: 100vh;
+        background: linear-gradient(90deg, 
+            rgba(124, 58, 237, 0.1) 0%, 
+            rgba(124, 58, 237, 0.05) 100%);
+        pointer-events: none;
+        z-index: 1;
+        animation: mobile-zone-pulse 2s infinite;
+    }
+    
+    body.marginalia-active::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: var(--margin-zone-width);
+        height: 100vh;
+        background: linear-gradient(-90deg, 
+            rgba(124, 58, 237, 0.1) 0%, 
+            rgba(124, 58, 237, 0.05) 100%);
+        pointer-events: none;
+        z-index: 1;
+        animation: mobile-zone-pulse 2s infinite;
+    }
+    
+    /* Touch feedback ripple effect */
+    .marginalia-touch-ripple {
+        position: fixed;
+        border-radius: 50%;
+        background: rgba(124, 58, 237, 0.3);
+        pointer-events: none;
+        z-index: 9998;
+        animation: touch-ripple 0.6s ease-out forwards;
+    }
+}
+
+@keyframes mobile-zone-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes touch-ripple {
+    0% {
+        width: 20px;
+        height: 20px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+    }
+}

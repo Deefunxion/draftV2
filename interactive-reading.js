@@ -1144,6 +1144,94 @@ function createFinalBurst(container, x, y) {
     }
 }
 
+// Mobile-specific behavior initialization
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize mobile enhancements if on mobile device
+    if (window.innerWidth <= 768) {
+        initMobileEnhancements();
+    }
+    
+    // Re-initialize on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            initMobileEnhancements();
+        }
+    });
+});
+
+/**
+ * Initialize mobile-specific enhancements
+ */
+function initMobileEnhancements() {
+    // Auto-highlight paragraphs on scroll for mobile
+    let scrollTimeout;
+    
+    // Remove existing listener if it exists
+    window.removeEventListener('scroll', handleMobileScroll);
+    
+    function handleMobileScroll() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            highlightVisibleParagraphs();
+        }, 150);
+    }
+    
+    window.addEventListener('scroll', handleMobileScroll);
+    
+    // Touch ripple effect for marginalia
+    document.removeEventListener('touchstart', handleTouchRipple);
+    document.addEventListener('touchstart', handleTouchRipple);
+}
+
+/**
+ * Highlight paragraphs that are currently visible on mobile
+ */
+function highlightVisibleParagraphs() {
+    const paragraphs = document.querySelectorAll('.paragraph-interaction-container');
+    
+    paragraphs.forEach(p => {
+        const rect = p.getBoundingClientRect();
+        const isVisible = rect.top >= 0 && rect.top <= window.innerHeight * 0.6;
+        
+        if (isVisible) {
+            p.classList.add('mobile-highlight');
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                p.classList.remove('mobile-highlight');
+            }, 2000);
+        }
+    });
+}
+
+/**
+ * Handle touch events for marginalia ripple effect
+ */
+function handleTouchRipple(e) {
+    if (document.body.classList.contains('marginalia-active')) {
+        const touch = e.touches[0];
+        createTouchRipple(touch.clientX, touch.clientY);
+    }
+}
+
+/**
+ * Create touch ripple effect at specified coordinates
+ */
+function createTouchRipple(x, y) {
+    const ripple = document.createElement('div');
+    ripple.className = 'marginalia-touch-ripple';
+    ripple.style.left = (x - 10) + 'px';
+    ripple.style.top = (y - 10) + 'px';
+    
+    document.body.appendChild(ripple);
+    
+    // Remove ripple after animation completes
+    setTimeout(() => {
+        if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+        }
+    }, 600);
+}
+
 // Test function to verify system is working
 window.testInteractiveReading = function() {
     console.log('TESTING RCSP INTERACTIVE SYSTEM...');
