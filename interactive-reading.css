@@ -457,6 +457,36 @@ li.element-committed.level-4 {
 }
 
 /* =================================
+   FIX: Mobile Header Word Wrap Bug
+   ================================= */
+
+/* 
+   Rule 1: Force the header element to occupy the full width 
+   of its parent container. This is the primary fix.
+*/
+#reading-content-wrapper header {
+    width: 100%;
+}
+
+/* 
+   Rule 2: Ensure the heading elements (h1, h2, h3) inside the header
+   also use the full width available to them.
+*/
+#reading-content-wrapper header h1,
+#reading-content-wrapper header h2,
+#reading-content-wrapper header h3 {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included correctly in the width calculation */
+}
+
+/* 
+   Rule 3: Ensure the dynamically added container also respects the full width.
+*/
+.element-interaction-container {
+    width: 100%;
+}
+
+/* =================================
    RESPONSIVE DESIGN
    ================================= */
 
@@ -550,4 +580,34 @@ li.element-committed.level-4 {
     .p-committed.level-4, .element-committed.level-4 {
         letter-spacing: 0.1px; /* Consistent with mobile body */
     }
+}
+
+/* =================================
+   FIX: Mobile Header Word Wrap Bug
+   ================================= */
+
+/* 
+   Rule 1: Force the header element to occupy the full width 
+   of its parent container. This is the primary fix.
+*/
+#reading-content-wrapper header {
+    width: 100%;
+}
+
+/* 
+   Rule 2: Ensure the heading elements (h1, h2, h3) inside the header
+   also use the full width available to them.
+*/
+#reading-content-wrapper header h1,
+#reading-content-wrapper header h2,
+#reading-content-wrapper header h3 {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included correctly in the width calculation */
+}
+
+/* 
+   Rule 3: Ensure the dynamically added container also respects the full width.
+*/
+.element-interaction-container {
+    width: 100%;
 }
