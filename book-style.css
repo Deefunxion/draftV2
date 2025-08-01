@@ -67,6 +67,27 @@ body {
     touch-action: none;
 }
 
+/* When drawing mode is active - enable pointer events */
+#fullscreen-canvas.drawing-active {
+    pointer-events: auto;
+}
+
+/* Prevent text selection and layout shifts during drawing */
+body.drawing-mode {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body.drawing-mode * {
+    pointer-events: none;
+}
+
+body.drawing-mode #fullscreen-canvas {
+    pointer-events: auto;
+}
+
 /* Clear Doodles Button - Updated for New System */
 #clear-doodles-btn {
     position: fixed;
