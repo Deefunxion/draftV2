@@ -22,7 +22,7 @@
 
 /* REMOVED: Complex font fallbacks - single, system-standard font for consistency */
 body {
-    max-width: 50%;                 /* Half screen width for comfortable reading */
+    max-width: 85%;                 /* 85% screen width for comfortable reading */
     margin: 0 auto;
     padding: 40px;                  /* Generous padding for comfortable reading */
     font-family: Georgia, serif;    /* Single, highly readable serif font */
@@ -1073,7 +1073,7 @@ h3 i, h3 a i, h2 i, h2 a i {
 
 @media (max-width: 768px) {
     body {
-        max-width: 95%; /* Instead of 50% - gives you 50-65 characters per line */
+        max-width: 85%; /* Instead of 50% - gives you 50-65 characters per line */
     }
 }
 
