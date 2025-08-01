@@ -11,6 +11,13 @@
     --visited-link: #666666;        /* Medium gray for visited links */
     --nav-border: #000000;          /* Strong border for clear separation */
     --table-border: #000000;        /* Black borders for table clarity */
+    
+    /* Mobile Typography Variables for Sophisticated Reading */
+    --mobile-font-size: 17px;       /* Optimal mobile reading size */
+    --mobile-line-height: 1.6;      /* Enhanced reading rhythm */
+    --mobile-letter-spacing: 0.2px; /* Subtle spacing for readability */
+    --mobile-content-width: 500px;  /* Optimal width for 50-65 characters per line */
+    --mobile-small-font: 16px;      /* For smaller screens */
 }
 
 /* REMOVED: Complex font fallbacks - single, system-standard font for consistency */
@@ -1603,14 +1610,62 @@ pre {
 
 /* Additional Mobile Optimizations */
 @media (max-width: 768px) {
-    /* Adjust main content padding on mobile */
+    /* Sophisticated Mobile Typography for Premium Reading Experience */
     body {
-        padding-top: 70px;
+        max-width: 100%; /* Full width utilization on mobile */
+        padding: 20px 24px; /* Comfortable margins with proper character count */
+        margin: 0; /* Reset auto margins */
+        font-size: var(--mobile-font-size); /* Optimal mobile reading size */
+        line-height: var(--mobile-line-height); /* Enhanced reading rhythm */
+        letter-spacing: var(--mobile-letter-spacing); /* Subtle spacing for readability */
+        word-spacing: 0.1em; /* Proper word separation */
+        
+        /* Calculate optimal width for 50-65 characters per line */
+        /* At 17px with proper spacing, roughly 450-500px gives optimal CPL */
     }
     
+    /* Enhanced main content container for book-like experience */
+    #reading-content-wrapper,
+    .main-content-column {
+        max-width: var(--mobile-content-width); /* Optimal width for 50-65 characters */
+        margin: 0 auto; /* Center content for symmetry */
+        padding: 0; /* Remove extra padding, handled by body */
+    }
+    
+    /* Typography hierarchy optimized for mobile reading */
     h1 {
-        font-size: 1.8em;
-        margin: 20px 0;
+        font-size: 26px; /* Clear hierarchy, mobile-optimized */
+        line-height: 1.3;
+        margin: 32px 0 20px 0;
+        letter-spacing: -0.2px; /* Tight spacing for headers */
+    }
+    
+    h2 {
+        font-size: 22px;
+        line-height: 1.4;
+        margin: 28px 0 16px 0;
+        letter-spacing: -0.1px;
+    }
+    
+    h3 {
+        font-size: 19px;
+        line-height: 1.4;
+        margin: 24px 0 14px 0;
+    }
+    
+    /* Paragraph spacing for comfortable reading flow */
+    p {
+        margin: 0 0 20px 0;
+        text-align: left; /* Maintain left alignment for mobile readability */
+        hyphens: auto; /* Enable hyphenation for better line breaks */
+        word-break: normal;
+    }
+    
+    /* Navigation adjustments */
+    .nav-menu a {
+        font-size: 16px;
+        margin-right: 16px;
+        padding: 8px 0;
     }
     
     .foundation-path, .core-path, .advanced-path {
@@ -1621,6 +1676,40 @@ pre {
     .tool-grid {
         grid-template-columns: 1fr;
         gap: 15px;
+    }
+}
+
+/* Ultra-refined mobile typography for smaller screens */
+@media (max-width: 480px) {
+    body {
+        padding: 16px 20px; /* Tighter margins for smaller screens */
+        font-size: var(--mobile-small-font); /* Slightly smaller but still readable */
+        line-height: 1.65; /* Increased line height for comfort */
+    }
+    
+    #reading-content-wrapper,
+    .main-content-column {
+        max-width: 100%; /* Full utilization of available space */
+        padding: 0;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin: 28px 0 18px 0;
+    }
+    
+    h2 {
+        font-size: 20px;
+        margin: 24px 0 14px 0;
+    }
+    
+    h3 {
+        font-size: 18px;
+        margin: 20px 0 12px 0;
+    }
+    
+    p {
+        margin: 0 0 18px 0;
     }
 }
 
